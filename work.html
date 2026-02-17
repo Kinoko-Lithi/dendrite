@@ -1,51 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Works — Dendrite Creative Studio</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
+.works-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 60px 5vw;
+}
 
-<!-- NAVIGATION -->
-<nav class="nav">
-  <div class="nav-container">
-    <div class="brand-group">
-      <div class="logo-wrap"><a href="index.html"><img src="image/logo.png" alt="Logo"></a></div>
-      <div class="hero-content">
-        <h1 class="gr1">Dendrite Creative Studio</h1>
-        <h2 class="gr2">Digital | Mixed Media | Web Design</h2>
-      </div>
-    </div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <div class="dropdown">
-        <a href="work.html">Works</a>
-        <div class="dropdown-content">
-          <a href="videos.html">Videos</a>
-          <a href="images.html">Images</a>
-        </div>
-      </div>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </div>
-</nav>
+.works-row {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
-<main>
-  <section class="image-grid">
-    <img src="image/image1.png" alt="Artwork 1">
-    <img src="image/image2.png" alt="Artwork 2">
-    <img src="image/image3.png" alt="Artwork 3">
-    <img src="image/image4.png" alt="Artwork 4">
-    <img src="image/image5.png" alt="Artwork 5">
-  </section>
-</main>
+.works-row.single {
+  justify-content: center;
+}
 
-<footer>
-  <p>&copy; 2026 Dendrite Creative Studio</p>
-</footer>
+.works-row.single img,
+.works-row.single .video-item {
+  flex: 0 0 900px;
+  max-width: 100%;
+}
 
-</body>
-</html>
+.works-row.double img,
+.works-row.double .video-item {
+  flex: 0 0 45%;
+  max-width: 45%;
+}
+
+.works-row.triple img,
+.works-row.triple .video-item {
+  flex: 0 0 30%;
+  max-width: 30%;
+}
+
+.video-item {
+  aspect-ratio: 16/9;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.video-item iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  pointer-events: none;
+}
+
+img {
+  border-radius: 15px;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 900px) {
+  .works-row.double img,
+  .works-row.double .video-item,
+  .works-row.triple img,
+  .works-row.triple .video-item {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
