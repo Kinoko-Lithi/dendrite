@@ -13,13 +13,19 @@
 <body>
 
 
+
 <header class="site-header">
 
 <div class="nav-container">
 
+
 <div class="logo">
 
-<img src="logo.png">
+<a href="index.html">
+
+<img src="image/logo.png">
+
+</a>
 
 <span>DENDRITE</span>
 
@@ -55,25 +61,121 @@
 
 </nav>
 
+
 </div>
 
 </header>
 
 
 
-<div class="page">
 
-<div class="image-grid">
+<div class="images-page">
 
-<img src="img1.jpg">
 
-<img src="img2.jpg">
 
-<img src="img3.jpg">
+<div class="masonry">
+
+
+<div class="masonry-item">
+
+<img src="image/img1.jpg">
 
 </div>
 
+
+<div class="masonry-item">
+
+<img src="image/img2.jpg">
+
 </div>
+
+
+<div class="masonry-item">
+
+<img src="image/img3.jpg">
+
+</div>
+
+
+<div class="masonry-item">
+
+<img src="image/img4.jpg">
+
+</div>
+
+
+<div class="masonry-item">
+
+<img src="image/img5.jpg">
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+<!-- LIGHTBOX -->
+
+
+<div class="lightbox" id="lightbox">
+
+<div class="lightbox-close" id="close">✕</div>
+
+<img id="lightbox-img">
+
+</div>
+
+
+
+
+<script>
+
+
+const images = document.querySelectorAll(".masonry-item img");
+
+const lightbox = document.getElementById("lightbox");
+
+const lightboxImg = document.getElementById("lightbox-img");
+
+const close = document.getElementById("close");
+
+
+
+images.forEach(img => {
+
+img.onclick = () => {
+
+lightbox.classList.add("active");
+
+lightboxImg.src = img.src;
+
+};
+
+});
+
+
+close.onclick = () => {
+
+lightbox.classList.remove("active");
+
+};
+
+
+lightbox.onclick = () => {
+
+lightbox.classList.remove("active");
+
+};
+
+
+</script>
+
+
 
 
 </body>
