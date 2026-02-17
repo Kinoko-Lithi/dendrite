@@ -17,6 +17,13 @@ body {
 /* ===============================
    NAVIGATION
 =============================== */
+.nav-links .disabled {
+  cursor: default;
+  pointer-events: none; /* disables click */
+  color: black; /* or same as other links */
+  opacity: 0.8;
+}
+
 .nav {
   position: fixed;
   top: 0;
@@ -254,3 +261,4 @@ footer {
     flex-wrap: wrap;
   }
 }
+
