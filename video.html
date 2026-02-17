@@ -18,7 +18,7 @@
       </div>
       <div class="hero-content">
         <h1 class="gr1">Dendrite Creative Studio</h1>
-        <h2 class="gr2 subtitle">Digital | Mixed Media | Web Design</h2>
+        <h2 class="gr2 subtitle">Digital | Mixed Media | Experimental</h2>
       </div>
     </div>
     <div class="nav-links">
@@ -33,9 +33,11 @@
 <main>
   <section class="video-playlist-section">
     <div class="video-wrapper">
-      <!-- Single iframe, will change video IDs with JS -->
-      <iframe id="vimeo-player" src="https://player.vimeo.com/video/1155265233?autoplay=1&muted=0" 
-              frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+      <iframe id="vimeo-player"
+        src="https://player.vimeo.com/video/1155265233?autoplay=1&muted=1&loop=0&controls=0"
+        frameborder="0"
+        allow="autoplay; fullscreen"
+        allowfullscreen>
       </iframe>
     </div>
   </section>
@@ -46,26 +48,19 @@
 </footer>
 
 <script>
-  // List of Vimeo video IDs
-  const videos = [
-    '1155265233', 
-    '123456789', 
-    '987654321' // replace with your video IDs
-  ];
-
+  // Array of Vimeo IDs
+  const videos = ['1155265233', '123456789', '987654321']; // replace with your IDs
   let currentIndex = 0;
   const iframe = document.getElementById('vimeo-player');
   const player = new Vimeo.Player(iframe);
 
   // Play first video
-  player.loadVideo(videos[currentIndex]);
+  player.loadVideo(videos[currentIndex]).then(() => player.play());
 
-  // When video ends, play next one
+  // On video end, load next video
   player.on('ended', function() {
-    currentIndex = (currentIndex + 1) % videos.length; // loop back to start
-    player.loadVideo(videos[currentIndex]).then(() => {
-      player.play();
-    });
+    currentIndex = (currentIndex + 1) % videos.length;
+    player.loadVideo(videos[currentIndex]).then(() => player.play());
   });
 </script>
 
