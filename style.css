@@ -119,6 +119,65 @@ body {
 .dropdown-content a:hover {
   color: #8C5C74;
 }
+/* ===============================
+   HOME PAGE: statement + video
+================================ */
+#home-page .statement-video-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 140px 5vw 60px 5vw; /* offset for nav */
+  flex-wrap: wrap;
+}
+
+#home-page .statement-text {
+  flex: 1 1 350px;
+  max-width: 500px;
+}
+
+#home-page .statement-text .section-title {
+  font-size: 21px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+#home-page .statement-text p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+#home-page .statement-video {
+  flex: 1 1 350px;
+  max-width: 600px;
+}
+
+#home-page .statement-video .video-frame {
+  border-radius: 20px;
+  overflow: hidden;
+  height: 100%;
+}
+
+#home-page .statement-video iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: none;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  #home-page .statement-video-section {
+    flex-direction: column;
+    gap: 30px;
+    padding-top: 100px;
+  }
+
+  #home-page .statement-text,
+  #home-page .statement-video {
+    max-width: 100%;
+  }
+}
 
 /* ===============================
    FOOTER
@@ -233,3 +292,4 @@ footer a:hover {
     font-size: 16px;
   }
 }
+
