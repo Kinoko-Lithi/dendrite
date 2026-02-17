@@ -82,7 +82,7 @@ NAVIGATION
 MAIN CONTENT
 =============================== */
 main {
-  padding-top: 100px; /* account for fixed nav */
+  padding-top: 100px;
   display: flex;
   justify-content: center;
 }
@@ -98,10 +98,11 @@ VIDEO PLAYLIST SECTION
 
 .video-wrapper {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  padding-bottom: 56.25%;
   height: 0;
-  border-radius: 15px;    /* rounded corners */
-  overflow: hidden;       /* clips the iframe */
+  border-radius: 15px;
+  overflow: hidden;
+  pointer-events: none; /* disables interaction */
   margin: 0 auto;
 }
 
@@ -113,7 +114,7 @@ VIDEO PLAYLIST SECTION
   height: 100%;
   border: 0;
   display: block;
-  border-radius: inherit; /* inherits rounding */
+  border-radius: inherit;
 }
 
 /* ===============================
@@ -143,7 +144,5 @@ RESPONSIVE
   .hero-content .gr1 { font-size: 14px; }
   .hero-content .gr2 { font-size: 8px; }
   .nav-links{ gap: 15px; }
-  .video-playlist-section {
-    width: 95%;
-  }
+  .video-playlist-section { width: 95%; }
 }
