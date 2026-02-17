@@ -1,5 +1,5 @@
 /* ===============================
-RESET
+GLOBAL RESET
 =============================== */
 * {
   margin: 0;
@@ -79,47 +79,33 @@ NAVIGATION
 }
 
 /* ===============================
-MAIN CONTENT SPACING
+MAIN CONTENT
 =============================== */
 main {
-  padding-top: 80px; /* adjust for fixed nav */
+  padding-top: 100px; /* account for fixed nav */
+  display: flex;
+  justify-content: center;
 }
 
 /* ===============================
-STATEMENT + VIDEO SECTION
+VIDEO PLAYLIST SECTION
 =============================== */
-.statement-video-section {
-  display: flex;
-  align-items: flex-start;
-  gap: 40px;
-  padding: 80px 10vw;
+.video-playlist-section {
+  width: 80%;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.statement-text {
-  flex: 0 0 400px; /* fixed width for text */
-  text-align: left;
-}
-
-.statement-text p {
-  font-size: 20px;
-  line-height: 1.6;
-}
-
-/* Video wrapper for rounded corners */
-.statement-video {
-  flex: 1;
-  max-width: 600px;
-}
-
-.statement-video .video-wrapper {
+.video-wrapper {
   position: relative;
-  width: 100%;
-  padding-bottom: 56.25%; /* 16:9 ratio */
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
   border-radius: 15px;    /* rounded corners */
-  overflow: hidden;       /* clip the iframe */
+  overflow: hidden;       /* clips the iframe */
+  margin: 0 auto;
 }
 
-.statement-video .video-wrapper iframe {
+.video-wrapper iframe {
   position: absolute;
   top: 0;
   left: 0;
@@ -127,7 +113,7 @@ STATEMENT + VIDEO SECTION
   height: 100%;
   border: 0;
   display: block;
-  border-radius: 15px; /* ensures visible corners */
+  border-radius: inherit; /* inherits rounding */
 }
 
 /* ===============================
@@ -136,6 +122,7 @@ FOOTER
 footer {
   padding: 60px 5vw;
   text-align: center;
+  background: rgba(216,216,216,0.95);
 }
 
 footer p {
@@ -149,7 +136,6 @@ RESPONSIVE
   .nav-links a{ font-size: 16px; }
   .hero-content .gr1 { font-size: 16px; }
   .hero-content .gr2 { font-size: 9px; }
-  .statement-text p { font-size: 18px; }
 }
 
 @media(max-width:500px){
@@ -157,14 +143,7 @@ RESPONSIVE
   .hero-content .gr1 { font-size: 14px; }
   .hero-content .gr2 { font-size: 8px; }
   .nav-links{ gap: 15px; }
-
-  .statement-video-section {
-    flex-direction: column;
-    padding: 40px 5vw;
-  }
-
-  .statement-video, .statement-text { 
-    flex: 1 1 100%;
-    max-width: 100%;
+  .video-playlist-section {
+    width: 95%;
   }
 }
