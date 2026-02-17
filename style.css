@@ -11,7 +11,7 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   background: #D8D8D8;
   color: #111;
-  padding-top: 140px;
+  padding-top: 120px; /* nav height */
 }
 
 /* ===============================
@@ -23,12 +23,16 @@ body {
   left: 0;
   width: 100%;
   background: #D8D8D8;
-  padding: 20px 5vw;
+  padding: 15px 5vw;
   z-index: 1000;
+  display: flex;
+  justify-content: center;
   border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .nav-container {
+  max-width: 1200px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -37,7 +41,7 @@ body {
 .brand-group {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
 
 .logo-wrap img {
@@ -65,22 +69,20 @@ body {
 
 .nav-links {
   display: flex;
-  gap: 30px;
+  gap: 24px;
   align-items: center;
 }
 
 .nav-links a {
-  font-size: 16px;
-  font-weight: bold;
-  text-transform: uppercase;
   text-decoration: none;
   color: black;
-  opacity: 0.8;
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
   transition: 0.3s;
 }
 
 .nav-links a:hover {
-  opacity: 1;
   color: #8C5C74;
 }
 
@@ -113,13 +115,14 @@ body {
 }
 
 /* ===============================
-   HOME PAGE: STATEMENT + VIDEO
+   HOME PAGE
 =============================== */
 .statement-video-section {
   display: flex;
-  gap: 60px;
+  gap: 40px;
   padding: 60px 5vw;
   align-items: flex-start;
+  justify-content: flex-start;
 }
 
 .statement-text {
@@ -127,24 +130,25 @@ body {
 }
 
 .statement-text h2 {
-  font-size: 18px;
+  font-size: 20px;
   margin-bottom: 20px;
 }
 
 .statement-text p {
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.6;
 }
 
-/* Video with rounded corners */
-.video-frame {
+/* Video styling */
+.statement-video .video-frame {
   width: 700px;
+  max-width: 100%;
   aspect-ratio: 16/9;
   border-radius: 20px;
   overflow: hidden;
 }
 
-.video-frame iframe {
+.statement-video .video-frame iframe {
   width: 100%;
   height: 100%;
   border: none;
@@ -164,14 +168,9 @@ body {
 
 .image-grid img {
   width: 400px;
+  max-width: 100%;
   border-radius: 15px;
   display: block;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.image-grid img:hover {
-  transform: scale(1.02);
-  opacity: 0.9;
 }
 
 /* ===============================
@@ -180,13 +179,14 @@ body {
 .video-list {
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 40px;
   padding: 60px 5vw;
   align-items: center;
 }
 
 .video-item {
   width: 900px;
+  max-width: 100%;
   aspect-ratio: 16/9;
   border-radius: 20px;
   overflow: hidden;
@@ -204,8 +204,20 @@ body {
 =============================== */
 .contact-section {
   padding: 60px 5vw;
-  font-size: 22px;
+  font-size: 18px;
   text-align: center;
+}
+
+.contact-section a {
+  color: black;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: 0.3s;
+}
+
+.contact-section a:hover {
+  color: #8C5C74;
+  border-bottom: 1px solid #8C5C74;
 }
 
 /* ===============================
@@ -213,8 +225,8 @@ body {
 =============================== */
 footer {
   padding: 60px 5vw;
-  font-size: 14px;
   text-align: center;
+  font-size: 14px;
 }
 
 /* ===============================
@@ -225,7 +237,7 @@ footer {
     flex-direction: column;
   }
 
-  .video-frame {
+  .statement-video .video-frame {
     width: 100%;
   }
 
@@ -238,7 +250,7 @@ footer {
   }
 
   .nav-links {
-    gap: 20px;
+    gap: 16px;
     flex-wrap: wrap;
   }
 }
