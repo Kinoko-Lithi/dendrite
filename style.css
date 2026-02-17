@@ -1,10 +1,10 @@
 
 
-/* =========================
+/* =============================
 
 RESET
 
-========================= */
+============================= */
 
 *{
 
@@ -22,23 +22,23 @@ body{
 
 font-family:Helvetica, Arial, sans-serif;
 
-background:#d8d8d8;
+background:#D8D8D8;
 
-color:#111;
+color:#000;
 
-padding-top:110px;
+padding-top:140px;
 
 }
 
 
 
-/* =========================
+/* =============================
 
-HEADER / NAV
+NAVIGATION
 
-========================= */
+============================= */
 
-.site-header{
+.nav{
 
 position:fixed;
 
@@ -48,13 +48,11 @@ left:0;
 
 width:100%;
 
-background:#d8d8d8;
+background:#D8D8D8;
 
 padding:25px 60px;
 
 z-index:9999;
-
-border-bottom:1px solid rgba(0,0,0,0.1);
 
 }
 
@@ -72,59 +70,85 @@ align-items:center;
 
 
 
-/* LOGO */
+/* LEFT SIDE */
 
-.logo{
-
-display:flex;
-
-align-items:center;
-
-gap:15px;
-
-}
-
-
-
-.logo img{
-
-height:55px;
-
-}
-
-
-
-.logo span{
-
-font-size:14px;
-
-letter-spacing:2px;
-
-}
-
-
-
-/* NAV LINKS */
-
-.nav{
+.brand-group{
 
 display:flex;
 
 align-items:center;
+
+gap:20px;
+
+}
+
+
+
+.logo-wrap img{
+
+height:60px;
+
+display:block;
+
+}
+
+
+
+/* TEXT next to logo */
+
+.hero-content{
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+
+
+.gr1{
+
+font-size:22px;
+
+letter-spacing:1px;
+
+}
+
+
+
+.gr2{
+
+font-size:13px;
+
+opacity:0.6;
+
+margin-top:4px;
+
+}
+
+
+
+/* RIGHT SIDE LINKS */
+
+.nav-links{
+
+display:flex;
 
 gap:40px;
 
+align-items:center;
+
 }
 
 
 
-.nav a{
+.nav-links a{
 
 text-decoration:none;
 
 color:black;
 
-font-size:15px;
+font-size:18px;
 
 transition:0.3s;
 
@@ -132,7 +156,7 @@ transition:0.3s;
 
 
 
-.nav a:hover{
+.nav-links a:hover{
 
 opacity:0.5;
 
@@ -140,11 +164,11 @@ opacity:0.5;
 
 
 
-/* =========================
+/* =============================
 
 DROPDOWN
 
-========================= */
+============================= */
 
 .dropdown{
 
@@ -164,7 +188,7 @@ top:100%;
 
 left:0;
 
-background:#d8d8d8;
+background:#D8D8D8;
 
 min-width:160px;
 
@@ -176,9 +200,11 @@ box-shadow:0 5px 15px rgba(0,0,0,0.1);
 
 .dropdown-content a{
 
-padding:12px 20px;
-
 display:block;
+
+padding:12px;
+
+font-size:16px;
 
 }
 
@@ -192,35 +218,21 @@ display:block;
 
 
 
-/* =========================
-
-PAGE LAYOUT
-
-========================= */
-
-.page{
-
-padding:60px;
-
-}
-
-
-
-/* =========================
+/* =============================
 
 HOME PAGE
 
-STATEMENT + VIDEO
-
-========================= */
+============================= */
 
 .statement-video-section{
 
 display:flex;
 
-align-items:flex-start;
-
 gap:60px;
+
+padding:60px;
+
+align-items:flex-start;
 
 }
 
@@ -234,19 +246,9 @@ max-width:500px;
 
 
 
-.statement-text h2{
-
-font-size:18px;
-
-margin-bottom:20px;
-
-}
-
-
-
 .statement-text p{
 
-font-size:20px;
+font-size:22px;
 
 line-height:1.6;
 
@@ -284,11 +286,41 @@ pointer-events:none;
 
 
 
-/* =========================
+/* =============================
+
+WORK / IMAGES PAGE
+
+============================= */
+
+.image-grid{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:20px;
+
+padding:60px;
+
+}
+
+
+
+.image-grid img{
+
+width:400px;
+
+border-radius:15px;
+
+}
+
+
+
+/* =============================
 
 VIDEOS PAGE
 
-========================= */
+============================= */
 
 .video-list{
 
@@ -297,6 +329,8 @@ display:flex;
 flex-direction:column;
 
 gap:60px;
+
+padding:60px;
 
 }
 
@@ -330,41 +364,27 @@ pointer-events:none;
 
 
 
-/* =========================
+/* =============================
 
-IMAGES PAGE
+CONTACT PAGE
 
-========================= */
+============================= */
 
-.image-grid{
+.contact-section{
 
-display:flex;
+padding:60px;
 
-flex-wrap:wrap;
-
-gap:20px;
+font-size:22px;
 
 }
 
 
 
-.image-grid img{
-
-width:400px;
-
-border-radius:15px;
-
-display:block;
-
-}
-
-
-
-/* =========================
+/* =============================
 
 FOOTER
 
-========================= */
+============================= */
 
 footer{
 
@@ -376,11 +396,11 @@ font-size:14px;
 
 
 
-/* =========================
+/* =============================
 
 RESPONSIVE
 
-========================= */
+============================= */
 
 @media(max-width:900px){
 
@@ -415,6 +435,7 @@ width:100%;
 }
 
 }
+
 
 
 
