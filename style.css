@@ -1,217 +1,57 @@
-/* ===============================
-RESET
-=============================== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Helvetica, Arial, sans-serif;
-  background: #D8D8D8;
-  color: #373737;
-}
-
-/* ===============================
-NAVIGATION
-=============================== */
-.nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%; /* full width */
-  background: rgba(216,216,216,0.95);
-  z-index: 1000;
-}
-
-.nav-container {
+/* STATEMENT + VIDEO SECTION */
+.statement-video-section {
   display: flex;
-  justify-content: space-between; /* logo left, links right */
-  align-items: center;
-  padding: 10px 5vw;
-  width: 100%; /* remove max-width & margin auto */
+  gap: 40px;
+  align-items: flex-start;
+  padding: 80px 10vw;
+  flex-wrap: wrap; /* stacks on small screens */
 }
 
-.brand-group {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+/* Text block */
+.statement-text {
+  flex: 1 1 400px; /* grow, shrink, min width */
 }
 
-/* Remove hero-content on Work page */
-#works-page .hero-content {
-  display: none;
-} /* Text next to the logo */
-.hero-content {
-  display: flex;
-  flex-direction: column;
-}
-
-.hero-content .gr1 {
-  font-size: 18px;   /* smaller main text */
-  text-transform: uppercase;
-  line-height: 1;
-}
-
-.hero-content .gr2 {
-  font-size: 10px;   /* smaller subtitle */
-  opacity: 0.7;
-  margin-top: 2px;
-}
-
-
-.logo-wrap img {
-  height: 50px;
-}
-
-.nav-links {
-  display: flex;
-  gap: 30px;
-}
-
-.nav-links a {
-  font-size: 20px;
-  font-weight: bold;
-  text-decoration: none;
-  color: black;
-  opacity: 0.7;
-  transition: 0.3s;
-}
-
-.nav-links a:hover {
-  opacity: 1;
-  color: #8C5C74;
-}
-
-
-/* ===============================
-MAIN CONTENT SPACING
-=============================== */
-main {
-  padding-top: 80px; /* Adjust to nav height */
-}
-
-/* ===============================
-HERO SECTION (Home/About/Contact)
-=============================== */
-.hero-section {
-  height: 60vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 0 5vw;
-}
-
-.hero-section h1 {
-  font-size: 48px;
-  text-transform: uppercase;
-}
-
-.hero-section h2 {
-  font-size: 22px;
-  opacity: 0.8;
-  margin-top: 10px;
-}
-
-/* ===============================
-TEXT SECTIONS
-=============================== */
-.text {
-  padding: 60px 10vw;
-  max-width: 900px;
-}
-
-.text p {
+.statement-text p {
   font-size: 20px;
   line-height: 1.6;
 }
 
-.section-title {
-  font-size: 22px;
-  margin-bottom: 20px;
-  text-transform: uppercase;
+/* Video block */
+.statement-video {
+  flex: 1 1 400px;
 }
 
-/* ===============================
-WORKS PAGE GALLERY
-=============================== */
-.gallery {
-  padding: 40px 5vw 80px;
+.statement-video .video-frame {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 15px; /* rounded corners */
+  background: transparent;
 }
 
-.image-grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-auto-rows: 200px;
-  gap: 20px;
-}
-
-.image-grid img {
+.statement-video .video-frame iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  border: none;
+  border-radius: 15px;
 }
+  
+/* Responsive */
+@media(max-width: 768px){
+  .statement-video-section {
+    flex-direction: column;
+  }
 
-.image-grid img:nth-child(1){ grid-column: span 7; grid-row: span 3; }
-.image-grid img:nth-child(2){ grid-column: span 5; grid-row: span 2; }
-.image-grid img:nth-child(3){ grid-column: span 5; grid-row: span 2; }
-.image-grid img:nth-child(4){ grid-column: span 12; grid-row: span 2; }
+  .statement-text, .statement-video {
+    flex: 1 1 100%;
+  }
 
-/* ===============================
-CONTACT
-=============================== */
-.contact-section {
-  padding: 100px 5vw;
-  text-align: center;
-  background: #fff;
+  .statement-text p {
+    font-size: 18px;
+  }
 }
-
-.contact-section p {
-  font-size: 24px;
-  margin: 20px 0;
-}
-
-.contact-section a {
-  text-decoration: none;
-  color: black;
-  border-bottom: 2px solid transparent;
-  transition: 0.3s;
-}
-
-.contact-section a:hover {
-  color: #8C5C74;
-  border-bottom: 2px solid #8C5C74;
-}
-
-/* ===============================
-FOOTER
-=============================== */
-footer {
-  padding: 60px 5vw;
-  text-align: center;
-}
-
-footer p {
-  font-size: 20px;
-}
-
-/* ===============================
-RESPONSIVE
-=============================== */
-@media(max-width:768px){
-  .nav-links a{ font-size: 16px; }
-  .hero-section h1{ font-size: 36px; }
-  .hero-section h2{ font-size: 16px; }
-  .text p{ font-size: 16px; }
-  .contact-section p{ font-size: 18px; }
-}
-
-@media(max-width:500px){
-  .logo-wrap img{ height: 40px; }
-  .hero-section h1{ font-size: 28px; }
-  .nav-links{ gap: 15px; }
-}
-
