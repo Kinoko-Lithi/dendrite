@@ -30,7 +30,6 @@ NAVIGATION
   justify-content: space-between;
   align-items: center;
   padding: 10px 5vw;
-  width: 100%;
 }
 
 .brand-group {
@@ -93,30 +92,6 @@ main {
 }
 
 /* ===============================
-HERO SECTION (Home/About/Contact)
-=============================== */
-.hero-section {
-  height: 60vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 0 5vw;
-}
-
-.hero-section h1 {
-  font-size: 48px;
-  text-transform: uppercase;
-}
-
-.hero-section h2 {
-  font-size: 22px;
-  opacity: 0.8;
-  margin-top: 10px;
-}
-
-/* ===============================
 STATEMENT + VIDEO SECTION (Home)
 =============================== */
 .statement-video-section {
@@ -127,7 +102,7 @@ STATEMENT + VIDEO SECTION (Home)
 }
 
 .statement-text {
-  flex: 0 0 400px; /* fixed width for left-aligned text */
+  flex: 0 0 400px;
   text-align: left;
 }
 
@@ -136,30 +111,28 @@ STATEMENT + VIDEO SECTION (Home)
   line-height: 1.6;
 }
 
+/* Video wrapper for rounded corners */
 .statement-video {
   flex: 1;
-  max-width: 600px; /* limit video size */
+  max-width: 600px;
 }
 
-/* Video container with rounding */
-.statement-video .video-frame {
+.statement-video .video-wrapper {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 ratio */
-  height: 0;
-  overflow: hidden;       /* crucial for rounded corners */
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 */
   border-radius: 15px;
-  background: transparent;
+  overflow: hidden;
 }
 
-.statement-video .video-frame iframe {
+.statement-video .video-wrapper iframe {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  border: none;
+  border: 0;
   display: block;
-  border-radius: inherit; /* inherit rounding from container */
 }
 
 /* ===============================
@@ -251,8 +224,6 @@ RESPONSIVE
   .nav-links a{ font-size: 16px; }
   .hero-content .gr1 { font-size: 16px; }
   .hero-content .gr2 { font-size: 9px; }
-  .hero-section h1{ font-size: 36px; }
-  .hero-section h2{ font-size: 16px; }
   .statement-text p { font-size: 18px; }
   .contact-section p{ font-size: 18px; }
 }
@@ -261,7 +232,6 @@ RESPONSIVE
   .logo-wrap img{ height: 40px; }
   .hero-content .gr1 { font-size: 14px; }
   .hero-content .gr2 { font-size: 8px; }
-  .hero-section h1{ font-size: 28px; }
   .nav-links{ gap: 15px; }
 
   .statement-video-section {
