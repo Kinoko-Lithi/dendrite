@@ -50,13 +50,13 @@ NAVIGATION
 }
 
 .hero-content .gr1 {
-  font-size: 18px;   /* smaller main text */
+  font-size: 18px;
   text-transform: uppercase;
   line-height: 1;
 }
 
 .hero-content .gr2 {
-  font-size: 10px;   /* smaller subtitle */
+  font-size: 10px;
   opacity: 0.7;
   margin-top: 2px;
 }
@@ -89,7 +89,7 @@ NAVIGATION
 MAIN CONTENT SPACING
 =============================== */
 main {
-  padding-top: 80px; /* adjust according to nav height */
+  padding-top: 80px; /* adjust for nav height */
 }
 
 /* ===============================
@@ -121,14 +121,14 @@ STATEMENT + VIDEO SECTION (Home)
 =============================== */
 .statement-video-section {
   display: flex;
-  gap: 40px;
   align-items: flex-start;
+  gap: 40px;
   padding: 80px 10vw;
-  flex-wrap: wrap;
 }
 
 .statement-text {
-  flex: 1 1 400px;
+  flex: 0 0 400px; /* fixed width for left-aligned text */
+  text-align: left;
 }
 
 .statement-text p {
@@ -137,7 +137,8 @@ STATEMENT + VIDEO SECTION (Home)
 }
 
 .statement-video {
-  flex: 1 1 400px;
+  flex: 1;
+  max-width: 600px; /* limits video size */
 }
 
 .statement-video .video-frame {
@@ -145,7 +146,7 @@ STATEMENT + VIDEO SECTION (Home)
   padding-bottom: 56.25%; /* 16:9 ratio */
   height: 0;
   overflow: hidden;
-  border-radius: 15px;
+  border-radius: 15px; /* rounded corners */
   background: transparent;
 }
 
@@ -156,7 +157,7 @@ STATEMENT + VIDEO SECTION (Home)
   width: 100%;
   height: 100%;
   border: none;
-  border-radius: 15px;
+  border-radius: 15px; /* make corners visible */
 }
 
 /* ===============================
@@ -260,6 +261,14 @@ RESPONSIVE
   .hero-content .gr2 { font-size: 8px; }
   .hero-section h1{ font-size: 28px; }
   .nav-links{ gap: 15px; }
-  .statement-video-section { flex-direction: column; }
-  .statement-video, .statement-text { flex: 1 1 100%; }
+
+  .statement-video-section {
+    flex-direction: column;
+    padding: 40px 5vw;
+  }
+
+  .statement-video, .statement-text { 
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
 }
