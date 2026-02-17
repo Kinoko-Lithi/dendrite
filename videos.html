@@ -1,68 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Dendrite — Videos</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://player.vimeo.com/api/player.js"></script>
-</head>
-<body id="videos-page">
+<html>
 
-<!-- NAVIGATION -->
+<head>
+
+<title>Videos</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<header class="site-header">
+
+<div class="nav-container">
+
+<div class="logo">
+
+<img src="logo.png">
+
+<span>DENDRITE</span>
+
+</div>
+
+
 <nav class="nav">
-  <div class="nav-container">
-    <div class="brand-group">
-      <div class="logo-wrap">
-        <a href="index.html"><img src="image/logo.png" alt="Dendrite Logo"></a>
-      </div>
-      <div class="hero-content">
-        <h1 class="gr1">Dendrite Creative Studio</h1>
-        <h2 class="gr2 subtitle">Digital | Mixed Media | Experimental</h2>
-      </div>
-    </div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="work.html">Works</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </div>
+
+
+<a href="index.html">Home</a>
+
+
+<div class="dropdown">
+
+<a href="work.html">Works</a>
+
+<div class="dropdown-content">
+
+<a href="videos.html">Videos</a>
+
+<a href="images.html">Images</a>
+
+</div>
+
+</div>
+
+
+<a href="about.html">About</a>
+
+<a href="contact.html">Contact</a>
+
+
 </nav>
 
-<main>
-  <section class="video-playlist-section">
-    <div class="video-wrapper">
-      <iframe id="vimeo-player"
-        src="https://player.vimeo.com/video/1155265233?autoplay=1&muted=1&loop=0&controls=0"
-        frameborder="0"
-        allow="autoplay; fullscreen"
-        allowfullscreen>
-      </iframe>
-    </div>
-  </section>
-</main>
+</div>
 
-<footer>
-  <p>&copy; 2026 Dendrite Creative Studio</p>
-</footer>
+</header>
 
-<script>
-  // Array of Vimeo IDs
-  const videos = ['1155265233', '123456789', '987654321']; // replace with your IDs
-  let currentIndex = 0;
-  const iframe = document.getElementById('vimeo-player');
-  const player = new Vimeo.Player(iframe);
 
-  // Play first video
-  player.loadVideo(videos[currentIndex]).then(() => player.play());
 
-  // On video end, load next video
-  player.on('ended', function() {
-    currentIndex = (currentIndex + 1) % videos.length;
-    player.loadVideo(videos[currentIndex]).then(() => player.play());
-  });
-</script>
+<div class="page">
+
+<div class="video-player">
+
+<iframe src="https://player.vimeo.com/video/VIDEOID"></iframe>
+
+</div>
+
+</div>
+
 
 </body>
+
 </html>
