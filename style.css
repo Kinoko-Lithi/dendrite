@@ -47,13 +47,13 @@ NAVIGATION
   flex-direction: column;
 }
 
-.hero-content .gr1 {
+.gr1 {
   font-size: 18px;
   text-transform: uppercase;
   line-height: 1;
 }
 
-.hero-content .gr2 {
+.gr2 {
   font-size: 10px;
   opacity: 0.7;
   margin-top: 2px;
@@ -79,42 +79,64 @@ NAVIGATION
 }
 
 /* ===============================
-MAIN CONTENT
+MAIN SPACING
 =============================== */
 main {
   padding-top: 100px;
-  display: flex;
-  justify-content: center;
 }
 
 /* ===============================
-VIDEO PLAYLIST SECTION
+STATEMENT + VIDEO SECTION
 =============================== */
-.video-playlist-section {
-  width: 80%;
-  max-width: 900px;
-  margin: 0 auto;
+.statement-video-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 80px 10vw;
 }
 
-.video-wrapper {
+.statement-text {
+  flex: 0 0 400px;
+}
+
+.statement-text p {
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+/* ===============================
+VIDEO — NON INTERACTIVE
+=============================== */
+.statement-video {
+  flex: 1;
+  max-width: 600px;
+}
+
+.statement-video .video-wrapper {
+
   position: relative;
   padding-bottom: 56.25%;
-  height: 0;
+
   border-radius: 15px;
   overflow: hidden;
-  pointer-events: none; /* disables interaction */
-  margin: 0 auto;
+
+  pointer-events: none; /* THIS disables interaction */
+
 }
 
-.video-wrapper iframe {
+.statement-video iframe {
+
   position: absolute;
   top: 0;
   left: 0;
+
   width: 100%;
   height: 100%;
+
   border: 0;
-  display: block;
+
   border-radius: inherit;
+
 }
 
 /* ===============================
@@ -123,7 +145,6 @@ FOOTER
 footer {
   padding: 60px 5vw;
   text-align: center;
-  background: rgba(216,216,216,0.95);
 }
 
 footer p {
@@ -134,15 +155,14 @@ footer p {
 RESPONSIVE
 =============================== */
 @media(max-width:768px){
-  .nav-links a{ font-size: 16px; }
-  .hero-content .gr1 { font-size: 16px; }
-  .hero-content .gr2 { font-size: 9px; }
+
+  .statement-video-section {
+    flex-direction: column;
+  }
+
+  .statement-text {
+    flex: 1;
+  }
+
 }
 
-@media(max-width:500px){
-  .logo-wrap img{ height: 40px; }
-  .hero-content .gr1 { font-size: 14px; }
-  .hero-content .gr2 { font-size: 8px; }
-  .nav-links{ gap: 15px; }
-  .video-playlist-section { width: 95%; }
-}
