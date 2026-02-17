@@ -138,15 +138,16 @@ STATEMENT + VIDEO SECTION (Home)
 
 .statement-video {
   flex: 1;
-  max-width: 600px; /* limits video size */
+  max-width: 600px; /* limit video size */
 }
 
+/* Video container with rounding */
 .statement-video .video-frame {
   position: relative;
   padding-bottom: 56.25%; /* 16:9 ratio */
   height: 0;
-  overflow: hidden;
-  border-radius: 15px; /* rounded corners */
+  overflow: hidden;       /* crucial for rounded corners */
+  border-radius: 15px;
   background: transparent;
 }
 
@@ -157,7 +158,8 @@ STATEMENT + VIDEO SECTION (Home)
   width: 100%;
   height: 100%;
   border: none;
-  border-radius: 15px; /* make corners visible */
+  display: block;
+  border-radius: inherit; /* inherit rounding from container */
 }
 
 /* ===============================
