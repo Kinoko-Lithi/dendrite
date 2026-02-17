@@ -1,12 +1,16 @@
 /* RESET */
 
 *{
+
 margin:0;
 padding:0;
 box-sizing:border-box;
+
 }
 
 
+
+/* BODY */
 
 body{
 
@@ -136,7 +140,7 @@ display:flex;
 display:flex;
 
 justify-content:center;
-align-items:center;
+align-items:flex-start;
 
 gap:60px;
 
@@ -151,6 +155,8 @@ flex-wrap:wrap;
 }
 
 
+
+/* TEXT */
 
 .hero-text{
 
@@ -174,53 +180,8 @@ letter-spacing:2px;
 
 
 
-.hero-video iframe{
+/* VIDEO */
 
-width:600px;
-height:340px;
+.hero-video{
 
-border:none;
-
-}
-
-
-
-/* FOOTER */
-
-footer{
-
-text-align:center;
-
-padding:30px;
-
-border-top:1px solid #222;
-
-font-size:13px;
-
-color:#777;
-
-margin-top:60px;
-
-}
-
-
-
-/* MOBILE */
-
-@media(max-width:900px){
-
-.hero{
-
-flex-direction:column;
-
-}
-
-
-.hero-video iframe{
-
-width:100%;
-height:220px;
-
-}
-
-}
+margin-top:40
