@@ -1,57 +1,122 @@
-/* STATEMENT + VIDEO SECTION */
-.statement-video-section {
-  display: flex;
-  gap: 40px;
-  align-items: flex-start;
-  padding: 80px 10vw;
-  flex-wrap: wrap; /* stacks on small screens */
+/* ===============================
+RESET
+=============================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Text block */
-.statement-text {
-  flex: 1 1 400px; /* grow, shrink, min width */
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  background: #D8D8D8;
+  color: #373737;
 }
 
-.statement-text p {
-  font-size: 20px;
-  line-height: 1.6;
-}
-
-/* Video block */
-.statement-video {
-  flex: 1 1 400px;
-}
-
-.statement-video .video-frame {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 ratio */
-  height: 0;
-  overflow: hidden;
-  border-radius: 15px; /* rounded corners */
-  background: transparent;
-}
-
-.statement-video .video-frame iframe {
-  position: absolute;
+/* ===============================
+NAVIGATION
+=============================== */
+.nav {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  border: none;
-  border-radius: 15px;
+  background: rgba(216,216,216,0.95);
+  z-index: 1000;
 }
-  
-/* Responsive */
-@media(max-width: 768px){
-  .statement-video-section {
-    flex-direction: column;
-  }
 
-  .statement-text, .statement-video {
-    flex: 1 1 100%;
-  }
-
-  .statement-text p {
-    font-size: 18px;
-  }
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 5vw;
+  width: 100%;
 }
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo-wrap img {
+  height: 50px;
+}
+
+/* Text beside logo */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-content .gr1 {
+  font-size: 18px;   /* smaller main text */
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.hero-content .gr2 {
+  font-size: 10px;   /* smaller subtitle */
+  opacity: 0.7;
+  margin-top: 2px;
+}
+
+/* Hide hero text on Works page */
+#works-page .hero-content {
+  display: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  opacity: 1;
+  color: #8C5C74;
+}
+
+/* ===============================
+MAIN CONTENT SPACING
+=============================== */
+main {
+  padding-top: 80px; /* adjust according to nav height */
+}
+
+/* ===============================
+HERO SECTION (Home/About/Contact)
+=============================== */
+.hero-section {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 5vw;
+}
+
+.hero-section h1 {
+  font-size: 48px;
+  text-transform: uppercase;
+}
+
+.hero-section h2 {
+  font-size: 22px;
+  opacity: 0.8;
+  margin-top: 10px;
+}
+
+/* ===============================
+STATEMENT + VIDEO SECTION (Home)
+=============================== */
+.statement-video-secti
