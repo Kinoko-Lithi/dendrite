@@ -42,7 +42,24 @@ NAVIGATION
 /* Remove hero-content on Work page */
 #works-page .hero-content {
   display: none;
+} /* Text next to the logo */
+.hero-content {
+  display: flex;
+  flex-direction: column;
 }
+
+.hero-content .gr1 {
+  font-size: 18px;   /* smaller main text */
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.hero-content .gr2 {
+  font-size: 10px;   /* smaller subtitle */
+  opacity: 0.7;
+  margin-top: 2px;
+}
+
 
 .logo-wrap img {
   height: 50px;
@@ -197,22 +214,4 @@ RESPONSIVE
   .hero-section h1{ font-size: 28px; }
   .nav-links{ gap: 15px; }
 }
-/* Text next to the logo */
-.hero-content {
-  display: flex;
-  flex-direction: column;
-}
-
-.hero-content .gr1 {
-  font-size: 18px;   /* smaller main text */
-  text-transform: uppercase;
-  line-height: 1;
-}
-
-.hero-content .gr2 {
-  font-size: 10px;   /* smaller subtitle */
-  opacity: 0.7;
-  margin-top: 2px;
-}
-
 
