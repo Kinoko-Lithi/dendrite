@@ -1,6 +1,4 @@
-/* =========================
-RESET
-========================= */
+/* ================= RESET ================= */
 
 *{
 margin:0;
@@ -9,114 +7,121 @@ box-sizing:border-box;
 }
 
 body{
-font-family: Arial, Helvetica, sans-serif;
+font-family:Arial, Helvetica, sans-serif;
 background:#D9D9D9;
 color:#000;
-line-height:1.5;
 }
 
 
-/* =========================
-NAV
-========================= */
+/* ================= NAV ================= */
 
 .nav{
+
 position:fixed;
+
 top:0;
 left:0;
+
 width:100%;
 height:70px;
+
 background:#D9D9D9;
+
 border-bottom:1px solid rgba(0,0,0,0.2);
+
 z-index:1000;
+
 }
 
 .nav-container{
+
 max-width:1200px;
+
 margin:auto;
+
 height:100%;
+
 display:flex;
+
 justify-content:space-between;
+
 align-items:center;
+
 padding:0 30px;
+
 }
 
 .logo-wrap img{
+
 height:40px;
+
 }
 
 .nav-links{
+
 display:flex;
+
 gap:25px;
+
 }
 
 .nav-links a{
+
 text-decoration:none;
-color:#000;
+
+color:black;
+
 font-size:14px;
+
 }
 
 .dropdown{
+
 position:relative;
+
 }
 
 .dropdown-content{
+
 display:none;
+
 position:absolute;
-top:100%;
-left:0;
+
 background:#D9D9D9;
+
 border:1px solid rgba(0,0,0,0.2);
+
 }
 
 .dropdown-content a{
+
 display:block;
+
 padding:10px;
+
 }
 
 .dropdown:hover .dropdown-content{
+
 display:block;
+
 }
 
 
-
-/* =========================
-MAIN
-========================= */
+/* ================= MAIN ================= */
 
 main{
+
 max-width:1200px;
+
 margin:auto;
+
 padding:110px 20px 60px;
+
 }
 
 
-
-/* =========================
-HOME VIDEO
-========================= */
-
-.statement-video-section{
-display:flex;
-gap:50px;
-flex-wrap:wrap;
-}
-
-.statement-text{
-flex:1;
-max-width:500px;
-}
-
-.video-frame{
-flex:1;
-aspect-ratio:16/9;
-border-radius:12px;
-overflow:hidden;
-position:relative;
-}
-
-
-/* THIS DISABLES INTERACTION */
+/* ================= INDEX VIDEO ================= */
 
 .index-video iframe{
 
@@ -125,111 +130,28 @@ pointer-events:none;
 }
 
 
-.video-frame iframe{
-width:100%;
-height:100%;
-border:none;
+/* ================= GRID ================= */
+
+.grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+gap:25px;
+
 }
 
-
-
-/* =========================
-FOOTER
-========================= */
-
-footer{
-text-align:center;
-padding:30px;
-border-top:1px solid rgba(0,0,0,0.2);
-}
-
-/* FULLSCREEN VIDEO OVERLAY */
-
-/* =========================
-VIDEO OVERLAY
-========================= */
-
-.video-overlay{
-
-position:fixed;
-
-top:0;
-left:0;
+.grid img{
 
 width:100%;
-height:100%;
 
-background:rgba(0,0,0,0);
-
-display:flex;
-
-justify-content:center;
-align-items:center;
-
-opacity:0;
-
-visibility:hidden;
-
-transition:
-
-opacity 0.4s ease,
-
-background 0.4s ease;
-
-z-index:9999;
+border-radius:10px;
 
 }
 
 
-
-.video-overlay.active{
-
-opacity:1;
-
-visibility:visible;
-
-background:rgba(0,0,0,0.95);
-
-}
-
-
-
-.video-overlay-content{
-
-width:90%;
-max-width:1200px;
-
-aspect-ratio:16/9;
-
-transform:scale(0.92);
-
-transition:transform 0.4s ease;
-
-}
-
-
-
-.video-overlay.active .video-overlay-content{
-
-transform:scale(1);
-
-}
-
-
-
-.video-overlay iframe{
-
-width:100%;
-height:100%;
-border:none;
-
-}
-
-
-
-/* clickable videos */
-
-/* VIDEO CLICK CONTAINER */
+/* ================= VIDEO CLICK ================= */
 
 .video-click-container{
 
@@ -239,19 +161,19 @@ cursor:pointer;
 
 }
 
-
-
-/* prevent iframe interaction */
-
 .video-click-container iframe{
+
+width:100%;
+
+aspect-ratio:16/9;
+
+border:none;
 
 pointer-events:none;
 
+border-radius:10px;
+
 }
-
-
-
-/* overlay click layer */
 
 .video-click-layer{
 
@@ -263,13 +185,10 @@ left:0;
 width:100%;
 height:100%;
 
-z-index:2;
-
 }
 
 
-
-/* FULLSCREEN OVERLAY */
+/* ================= OVERLAY ================= */
 
 .video-overlay{
 
@@ -286,48 +205,48 @@ background:rgba(0,0,0,0);
 display:flex;
 
 justify-content:center;
+
 align-items:center;
 
 opacity:0;
+
 visibility:hidden;
 
-transition:opacity 0.4s ease, background 0.4s ease;
+transition:0.4s;
 
 z-index:9999;
 
 }
 
-
 .video-overlay.active{
 
 opacity:1;
+
 visibility:visible;
 
 background:rgba(0,0,0,0.95);
 
 }
 
-
 .video-overlay-content{
 
 width:90%;
+
 max-width:1200px;
 
 aspect-ratio:16/9;
 
-transform:scale(0.92);
+transform:scale(.9);
 
-transition:transform 0.4s ease;
+transition:.4s;
 
 }
-
 
 .video-overlay.active .video-overlay-content{
 
 transform:scale(1);
 
 }
-
 
 .video-overlay iframe{
 
@@ -338,4 +257,35 @@ border:none;
 }
 
 
+/* ================= IMAGE GRID ================= */
 
+.image-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:20px;
+
+}
+
+.image-grid img{
+
+width:100%;
+
+}
+
+
+/* ================= FOOTER ================= */
+
+footer{
+
+text-align:center;
+
+padding:30px;
+
+margin-top:40px;
+
+border-top:1px solid rgba(0,0,0,0.2);
+
+}
