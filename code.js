@@ -1,18 +1,41 @@
-const track = document.querySelector(".carousel-track");
-const slides = Array.from(track.children);
-const nextBtn = document.querySelector(".next");
-const prevBtn = document.querySelector(".prev");
+document.addEventListener("DOMContentLoaded", function(){
 
-let index = 0;
+const videos = document.querySelectorAll(".click-video");
 
-nextBtn.addEventListener("click", () => {
-  index = (index + 1) % slides.length;
-  updateCarousel();
+const overlay = document.createElement("div");
+
+overlay.className = "video-overlay";
+
+overlay.innerHTML = `
+<div class="video-overlay-content">
+<iframe allow="autoplay; fullscreen" allowfullscreen></iframe>
+</div>
+`;
+
+document.body.appendChild(overlay);
+
+const iframe = overlay.querySelector("iframe");
+
+
+videos.forEach(video => {
+
+video.addEventListener("click", function(){
+
+iframe.src = this.dataset.src;
+
+overlay.classList.add("active");
+
 });
 
-prevBtn.addEventListener("click", () => {
-  index = (index - 1 + slides.length) % slides.length;
-  updateCarousel();
 });
 
-window.addEventListener("resize", updateCarousel);
+
+overlay.addEventListener("click", function(){
+
+overlay.classList.remove("active");
+
+iframe.src = "";
+
+});
+
+});
