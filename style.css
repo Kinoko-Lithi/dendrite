@@ -229,25 +229,113 @@ border:none;
 
 /* clickable videos */
 
-.click-video{
+/* VIDEO CLICK CONTAINER */
+
+.video-click-container{
+
+position:relative;
 
 cursor:pointer;
 
 }
 
+
+
+/* prevent iframe interaction */
+
+.video-click-container iframe{
+
+pointer-events:none;
+
+}
+
+
+
+/* overlay click layer */
+
+.video-click-layer{
+
+position:absolute;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+z-index:2;
+
+}
+
+
+
+/* FULLSCREEN OVERLAY */
+
+.video-overlay{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,0);
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+opacity:0;
+visibility:hidden;
+
+transition:opacity 0.4s ease, background 0.4s ease;
+
+z-index:9999;
+
+}
+
+
+.video-overlay.active{
+
+opacity:1;
+visibility:visible;
+
+background:rgba(0,0,0,0.95);
+
+}
+
+
+.video-overlay-content{
+
+width:90%;
+max-width:1200px;
+
+aspect-ratio:16/9;
+
+transform:scale(0.92);
+
+transition:transform 0.4s ease;
+
+}
+
+
+.video-overlay.active .video-overlay-content{
+
+transform:scale(1);
+
+}
+
+
+.video-overlay iframe{
+
+width:100%;
+height:100%;
 border:none;
 
-cursor:pointer;
-
 }
 
 
-
-/* make videos clickable */
-
-.click-video{
-
-cursor:pointer;
-
-}
 
