@@ -1,14 +1,12 @@
 document.addEventListener("DOMContentLoaded", function(){
 
-const videos = document.querySelectorAll(".click-video");
+const videos=document.querySelectorAll(".video-click-container");
 
+const overlay=document.createElement("div");
 
-const overlay = document.createElement("div");
+overlay.className="video-overlay";
 
-overlay.className = "video-overlay";
-
-
-overlay.innerHTML = `
+overlay.innerHTML=`
 
 <div class="video-overlay-content">
 
@@ -18,23 +16,16 @@ overlay.innerHTML = `
 
 `;
 
-
 document.body.appendChild(overlay);
 
-
-const iframe = overlay.querySelector("iframe");
-
+const iframe=overlay.querySelector("iframe");
 
 
-/* OPEN */
+videos.forEach(video=>{
 
-videos.forEach(video => {
+video.addEventListener("click",function(){
 
-video.addEventListener("click", function(e){
-
-e.stopPropagation();
-
-iframe.src = this.dataset.src;
+iframe.src=this.dataset.src;
 
 overlay.classList.add("active");
 
@@ -43,44 +34,25 @@ overlay.classList.add("active");
 });
 
 
+overlay.addEventListener("click",close);
 
-/* CLOSE CLICK */
+document.addEventListener("keydown",function(e){
 
-overlay.addEventListener("click", function(){
-
-closeVideo();
-
-});
-
-
-
-/* CLOSE ESC */
-
-document.addEventListener("keydown", function(e){
-
-if(e.key === "Escape"){
-
-closeVideo();
-
-}
+if(e.key==="Escape") close();
 
 });
 
 
-
-/* CLOSE FUNCTION */
-
-function closeVideo(){
+function close(){
 
 overlay.classList.remove("active");
 
-setTimeout(() => {
+setTimeout(()=>{
 
-iframe.src = "";
+iframe.src="";
 
-}, 400);
+},400);
 
 }
-
 
 });
