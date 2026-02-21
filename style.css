@@ -145,6 +145,10 @@ border-top:1px solid rgba(0,0,0,0.2);
 
 /* FULLSCREEN VIDEO OVERLAY */
 
+/* =========================
+VIDEO OVERLAY
+========================= */
+
 .video-overlay{
 
 position:fixed;
@@ -155,22 +159,40 @@ left:0;
 width:100%;
 height:100%;
 
-background:rgba(0,0,0,0.95);
+background:rgba(0,0,0,0);
 
-display:none;
+display:flex;
 
 justify-content:center;
 align-items:center;
+
+opacity:0;
+
+visibility:hidden;
+
+transition:
+
+opacity 0.4s ease,
+
+background 0.4s ease;
 
 z-index:9999;
 
 }
 
+
+
 .video-overlay.active{
 
-display:flex;
+opacity:1;
+
+visibility:visible;
+
+background:rgba(0,0,0,0.95);
 
 }
+
+
 
 .video-overlay-content{
 
@@ -179,12 +201,39 @@ max-width:1200px;
 
 aspect-ratio:16/9;
 
+transform:scale(0.92);
+
+transition:transform 0.4s ease;
+
 }
+
+
+
+.video-overlay.active .video-overlay-content{
+
+transform:scale(1);
+
+}
+
+
 
 .video-overlay iframe{
 
 width:100%;
 height:100%;
+border:none;
+
+}
+
+
+
+/* clickable videos */
+
+.click-video{
+
+cursor:pointer;
+
+}
 
 border:none;
 
@@ -201,3 +250,4 @@ cursor:pointer;
 cursor:pointer;
 
 }
+
