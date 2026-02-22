@@ -1,12 +1,12 @@
-/* ================= HOME PROFESSIONAL LAYOUT ================= */
+/* ===== HOME LAYOUT ===== */
 
-.home-layout{
+.home{
 
 display:grid;
 
-grid-template-columns: 1fr 1.4fr;
+grid-template-columns: 1fr 1.5fr;
 
-gap:60px;
+gap:80px;
 
 align-items:center;
 
@@ -14,59 +14,63 @@ align-items:center;
 
 
 
-/* SERVICES */
+/* ===== SERVICES BLOCK ===== */
 
-.services-title{
+.services-block{
 
-font-size:32px;
-
-font-weight:500;
-
-margin-bottom:30px;
+max-width:500px;
 
 }
 
 
 
-.services-list{
+/* TITLE */
 
-list-style:none;
+.services-header{
 
-padding:0;
+font-size:14px;
 
-}
+letter-spacing:2px;
 
+margin-bottom:40px;
 
-
-.services-list li{
-
-font-size:18px;
-
-margin-bottom:18px;
-
-opacity:0.85;
-
-transition:opacity 0.3s ease, transform 0.3s ease;
+opacity:0.6;
 
 }
 
 
 
-/* hover effect */
+/* SERVICE ITEM */
 
-.services-list li:hover{
+.service{
 
-opacity:1;
+font-size:28px;
 
-transform:translateX(6px);
+padding:18px 0;
+
+border-bottom:1px solid rgba(0,0,0,0.2);
+
+transition: all 0.3s ease;
 
 }
 
 
 
-/* INDEX VIDEO */
+/* HOVER EFFECT */
 
-.index-video iframe{
+.service:hover{
+
+padding-left:12px;
+
+opacity:0.6;
+
+}
+
+
+
+/* VIDEO */
+
+.home-video iframe{
 
 width:100%;
 
@@ -84,11 +88,17 @@ pointer-events:none;
 
 @media(max-width:900px){
 
-.home-layout{
+.home{
 
 grid-template-columns:1fr;
 
-gap:40px;
+gap:50px;
+
+}
+
+.service{
+
+font-size:22px;
 
 }
 
