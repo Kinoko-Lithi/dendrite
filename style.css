@@ -26,9 +26,7 @@ background:#D9D9D9;
 
 color:#000;
 
-line-height:1.5;
-
-overflow-x:hidden;
+line-height:1.6;
 
 }
 
@@ -90,8 +88,6 @@ display:block;
 
 
 
-/* LINKS */
-
 .nav-links{
 
 display:flex;
@@ -111,8 +107,6 @@ text-decoration:none;
 color:#000;
 
 font-size:14px;
-
-transition:opacity 0.3s;
 
 }
 
@@ -184,7 +178,7 @@ max-width:1200px;
 
 margin:auto;
 
-padding-top:100px;
+padding-top:120px;
 
 padding-left:20px;
 
@@ -197,16 +191,14 @@ padding-bottom:50px;
 
 
 /* ===============================
-SERVICES WALL
+SERVICES + VIDEO SECTION
 =============================== */
 
-.services-wall{
-
-height:calc(100vh - 120px);
-
-overflow:hidden;
+.statement-video-section{
 
 display:flex;
+
+gap:60px;
 
 align-items:center;
 
@@ -214,227 +206,61 @@ align-items:center;
 
 
 
-/* TRACK */
+/* TEXT */
 
-.services-track{
+.services-text{
 
-display:flex;
+flex:1;
 
-flex-direction:column;
-
-animation: scrollServices 20s linear infinite;
+max-width:500px;
 
 }
 
 
 
-/* SERVICE */
+.services-text h2{
 
-.service{
+font-size:28px;
 
-font-size:64px;
-
-font-weight:300;
-
-padding:30px 0;
-
-opacity:0.2;
-
-transition:all 0.4s ease;
-
-cursor:default;
+margin-bottom:25px;
 
 }
 
 
 
-/* HOVER */
+.services-text p{
 
-.service:hover{
+font-size:18px;
 
-opacity:1;
-
-transform:translateX(40px);
+margin-bottom:12px;
 
 }
 
 
 
-/* PAUSE ON HOVER */
+/* VIDEO */
 
-.services-wall:hover .services-track{
+.video-frame{
 
-animation-play-state:paused;
-
-}
-
-
-
-/* ANIMATION */
-
-@keyframes scrollServices{
-
-0%{
-
-transform:translateY(0);
-
-}
-
-100%{
-
-transform:translateY(-50%);
-
-}
-
-}
-
-
-
-/* ===============================
-GRID (WORKS)
-=============================== */
-
-.grid{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-
-gap:25px;
-
-}
-
-
-
-.grid img{
-
-width:100%;
-
-display:block;
-
-}
-
-
-
-.grid iframe{
-
-width:100%;
+flex:1;
 
 aspect-ratio:16/9;
 
-border:none;
-
-cursor:pointer;
+position:relative;
 
 }
 
 
 
-/* ===============================
-IMAGES PAGE
-=============================== */
-
-.image-grid{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-
-gap:25px;
-
-}
-
-
-
-.image-grid img{
+.video-frame iframe{
 
 width:100%;
 
-display:block;
-
-}
-
-
-
-/* ===============================
-VIDEOS PAGE
-=============================== */
-
-.video-list{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-
-gap:25px;
-
-}
-
-
-
-.video-item iframe{
-
-width:100%;
-
-aspect-ratio:16/9;
+height:100%;
 
 border:none;
 
-cursor:pointer;
-
-}
-
-
-
-/* ===============================
-ABOUT
-=============================== */
-
-.statement-text{
-
-max-width:800px;
-
-margin:auto;
-
-}
-
-
-
-/* ===============================
-CONTACT
-=============================== */
-
-.contact-section{
-
-max-width:600px;
-
-margin:auto;
-
-}
-
-
-
-.contact-section h2{
-
-margin-bottom:20px;
-
-}
-
-
-
-.contact-section a{
-
-color:black;
-
-text-decoration:none;
-
-}
-
-
-
-.contact-section a:hover{
-
-opacity:0.5;
+pointer-events:none;
 
 }
 
@@ -464,9 +290,9 @@ RESPONSIVE
 
 @media(max-width:768px){
 
-.service{
+.statement-video-section{
 
-font-size:36px;
+flex-direction:column;
 
 }
 
