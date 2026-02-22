@@ -106,7 +106,7 @@ text-decoration:none;
 
 color:#000;
 
-font-size:14px;
+font-size:13px;
 
 }
 
@@ -191,7 +191,7 @@ padding-bottom:50px;
 
 
 /* ===============================
-SERVICES + VIDEO SECTION
+SERVICES + VIDEO
 =============================== */
 
 .statement-video-section{
@@ -206,13 +206,13 @@ align-items:center;
 
 
 
-/* TEXT */
+/* SERVICES TEXT */
 
 .services-text{
 
 flex:1;
 
-max-width:500px;
+max-width:400px;
 
 }
 
@@ -220,19 +220,23 @@ max-width:500px;
 
 .services-text h2{
 
-font-size:28px;
+font-size:20px;
 
-margin-bottom:25px;
+margin-bottom:20px;
+
+font-weight:normal;
 
 }
 
 
 
+/* SMALLER LETTERS */
+
 .services-text p{
 
-font-size:18px;
+font-size:14px;
 
-margin-bottom:12px;
+margin-bottom:8px;
 
 }
 
@@ -245,8 +249,6 @@ margin-bottom:12px;
 flex:1;
 
 aspect-ratio:16/9;
-
-position:relative;
 
 }
 
@@ -261,6 +263,10 @@ height:100%;
 border:none;
 
 pointer-events:none;
+
+/* ensure no transform */
+
+transform:none;
 
 }
 
