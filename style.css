@@ -12,8 +12,8 @@ BODY
 =============================== */
 body {
   font-family: "Hiragino Kaku Gothic ProN", Helvetica, Arial, sans-serif;
-  background: #D9D9D9;
-  color: #000;
+  background: #000;
+  color: #fff;
   line-height: 1.6;
   overflow-x: hidden;
 }
@@ -27,8 +27,7 @@ NAVIGATION
   left: 0;
   width: 100%;
   height: 70px;
-  background: rgba(217,217,217,0.95);
-  border-bottom: 1px solid rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0.5);
   z-index: 1000;
   backdrop-filter: blur(6px);
 }
@@ -56,7 +55,7 @@ NAVIGATION
 .logo-text {
   font-size: 16px;
   font-weight: bold;
-  color: #000;
+  color: #fff;
   letter-spacing: 1px;
 }
 
@@ -68,7 +67,7 @@ NAVIGATION
 
 .nav-links a {
   text-decoration: none;
-  color: #000;
+  color: #fff;
   font-size: 14px;
 }
 
@@ -85,14 +84,13 @@ NAVIGATION
   position: absolute;
   top: 100%;
   left: 0;
-  background: rgba(217,217,217,0.95);
-  border: 1px solid rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0.7);
 }
 
 .dropdown-content a {
   display: block;
   padding: 10px;
-  color: #000;
+  color: #fff;
 }
 
 .dropdown:hover .dropdown-content {
@@ -100,25 +98,40 @@ NAVIGATION
 }
 
 /* ===============================
-INDEX PAGE: HERO + VIDEO BACKGROUND
+INDEX PAGE: VIDEO BACKGROUND
 =============================== */
 .video-background {
   position: fixed;
-  top:0;
-  left:0;
-  width: 100%;
-  height: 100%;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   z-index: -1;
   overflow: hidden;
 }
 
 .video-background iframe {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 177.77vh; /* 16:9 ratio */
+  height: 100vh;
+  transform: translate(-50%, -50%);
   pointer-events: none; /* non-interactable */
 }
 
+.video-background::after {
+  content: "";
+  position: absolute;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.25); /* optional overlay for readability */
+}
+
+/* ===============================
+INDEX PAGE: SERVICES TEXT
+=============================== */
 .hero-section {
   position: relative;
   max-width: 1200px;
@@ -229,7 +242,8 @@ footer {
   text-align: center;
   padding: 60px 30px 30px 30px;
   margin-top: 60px;
-  border-top: 1px solid rgba(0,0,0,0.2);
+  color: #fff;
+  border-top: 1px solid rgba(255,255,255,0.2);
 }
 
 /* ===============================
