@@ -60,14 +60,16 @@
 </footer>
 
 <script>
-// Animate letters (fade-in sequentially)
+// Animate letters (fade-in sequentially) with spaces preserved
 const textContainer = document.querySelectorAll("#services-text p");
+
 textContainer.forEach((line, index) => {
   const letters = line.textContent.split("");
   line.textContent = "";
+
   letters.forEach((letter, i) => {
     const span = document.createElement("span");
-    span.textContent = letter;
+    span.textContent = letter === " " ? "\u00A0" : letter; // preserve spaces
     span.style.opacity = 0;
     span.style.display = "inline-block";
     span.style.transition = "opacity 0.5s ease";
