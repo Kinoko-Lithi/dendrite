@@ -11,10 +11,11 @@ RESET
 BODY
 =============================== */
 body {
-  font-family: "Hiragino Kaku Gothic ProN", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Hiragino Kaku Gothic ProN", Helvetica, Arial, sans-serif;
   background: #D9D9D9;
   color: #000;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 /* ===============================
@@ -26,10 +27,10 @@ NAVIGATION
   left: 0;
   width: 100%;
   height: 70px;
-  background: rgba(217, 217, 217, 0.95);
+  background: rgba(217,217,217,0.95);
   border-bottom: 1px solid rgba(0,0,0,0.2);
   z-index: 1000;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(6px);
 }
 
 .nav-container {
@@ -55,8 +56,8 @@ NAVIGATION
 .logo-text {
   font-size: 16px;
   font-weight: bold;
-  letter-spacing: 1px;
   color: #000;
+  letter-spacing: 1px;
 }
 
 .nav-links {
@@ -72,7 +73,7 @@ NAVIGATION
 }
 
 .nav-links a:hover {
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .dropdown {
@@ -91,6 +92,7 @@ NAVIGATION
 .dropdown-content a {
   display: block;
   padding: 10px;
+  color: #000;
 }
 
 .dropdown:hover .dropdown-content {
@@ -98,30 +100,39 @@ NAVIGATION
 }
 
 /* ===============================
-INDEX HERO SECTION (SERVICES + VIDEO)
+INDEX PAGE: HERO + VIDEO BACKGROUND
 =============================== */
+.video-background {
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.video-background iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none; /* non-interactable */
+}
+
 .hero-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 40px;
+  position: relative;
   max-width: 1200px;
-  margin: 120px auto 0 auto;
-  padding: 0 20px;
-  flex-wrap: wrap;
+  margin: 120px 30px 0 30px;
 }
 
 .services-text {
-  flex: 1;
-  min-width: 280px;
-  max-width: 400px;
   font-size: 20px;
   line-height: 1.7;
+  color: #fff;
 }
 
 .services-text p {
   margin-bottom: 16px;
-  color: #000;
   font-weight: 500;
 }
 
@@ -131,36 +142,8 @@ INDEX HERO SECTION (SERVICES + VIDEO)
   transition: opacity 0.5s ease;
 }
 
-/* VIDEO BESIDE TEXT */
-.video-frame {
-  flex: 1;
-  min-width: 300px;
-  border-radius: 16px;
-  overflow: hidden;
-}
-
-.video-frame .video-wrapper {
-  width: 100%;
-  height: 0;
-  padding-bottom: 56.25%;
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-}
-
-.video-frame .video-wrapper.non-interactable iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-  border-radius: 16px;
-  pointer-events: none; /* makes the video non-interactable */
-}
-
 /* ===============================
-IMAGES PAGE GRID
+IMAGES PAGE
 =============================== */
 .image-grid {
   display: grid;
@@ -184,7 +167,7 @@ IMAGES PAGE GRID
 }
 
 /* ===============================
-VIDEOS PAGE GRID
+VIDEOS PAGE
 =============================== */
 .quirky-video-grid {
   display: grid;
@@ -260,13 +243,11 @@ RESPONSIVE
 
 @media(max-width:768px){
   .hero-section {
-    flex-direction: column;
-    margin-top: 100px;
+    margin: 100px 20px 0 20px;
   }
 
-  .video-frame {
-    width: 100%;
-    height: auto;
+  .services-text {
+    font-size: 18px;
   }
 
   .image-grid {
