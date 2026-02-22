@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Videos — Dendrite Creative Studio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+<meta charset="UTF-8">
+<title>Videos — Dendrite Creative Studio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <nav class="nav">
   <div class="nav-container">
-    <div class="logo-wrap"><a href="index.html"><img src="image/logo.png" alt="Logo"></a></div>
+    <div class="logo-wrap">
+      <a href="index.html">
+        <img src="image/logo.png" alt="Logo">
+      </a>
+      <span class="logo-text">DENDRITE CREATIVE STUDIO</span>
+    </div>
     <div class="nav-links">
       <a href="index.html">Home</a>
       <div class="dropdown">
@@ -28,18 +33,52 @@
 </nav>
 
 <main>
-  <div class="grid">
-    <div class="video-click-container" data-src="https://player.vimeo.com/video/1155265233">
-      <iframe src="https://player.vimeo.com/video/1155265233?autoplay=1&loop=1&muted=1"></iframe>
-      <div class="video-click-layer"></div>
-    </div>
-    <div class="video-click-container" data-src="https://player.vimeo.com/video/1155279695">
-      <iframe src="https://player.vimeo.com/video/1155279695?autoplay=1&loop=1&muted=1"></iframe>
-      <div class="video-click-layer"></div>
-    </div>
-  </div>
+  <section class="quirky-video-grid">
+    <div class="video-item"><iframe src="https://player.vimeo.com/video/1155265233" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+    <div class="video-item"><iframe src="https://player.vimeo.com/video/1155279695" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+    <div class="video-item"><iframe src="https://player.vimeo.com/video/1155288512" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+    <div class="video-item"><iframe src="https://player.vimeo.com/video/1155265233" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+    <div class="video-item"><iframe src="https://player.vimeo.com/video/1155279695" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+    <div class="video-item"><iframe src="https://player.vimeo.com/video/1155288512" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+    <div class="video-item"><iframe src="https://player.vimeo.com/video/1155265233" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+    <div class="video-item"><iframe src="https://player.vimeo.com/video/1155279695" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+    <div class="video-item"><iframe src="https://player.vimeo.com/video/1155288512" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+  </section>
 </main>
 
-<footer>&copy; 2026 Dendrite Creative Studio</footer>
+<!-- FULLSCREEN MODAL -->
+<div class="fullscreen-overlay" id="fullscreenOverlay">
+  <iframe id="fullscreenIframe" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+</div>
+
+<footer>
+  © 2026 Dendrite Creative Studio
+</footer>
+
+<script>
+const videos = document.querySelectorAll('.video-item iframe');
+const overlay = document.getElementById('fullscreenOverlay');
+const fullscreenIframe = document.getElementById('fullscreenIframe');
+
+videos.forEach(v => {
+  v.addEventListener('click', () => {
+    fullscreenIframe.src = v.src + "?autoplay=1";
+    overlay.style.display = "flex";
+  });
+});
+
+overlay.addEventListener('click', () => {
+  overlay.style.display = "none";
+  fullscreenIframe.src = "";
+});
+
+document.addEventListener('keydown', e => {
+  if(e.key === "Escape"){
+    overlay.style.display = "none";
+    fullscreenIframe.src = "";
+  }
+});
+</script>
+
 </body>
 </html>
