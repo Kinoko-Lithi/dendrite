@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <style>
-    bsckground:src="https://player.vimeo.com/video/1155265233?autoplay=1&loop=1&muted=1&background=1"
-        allow="autoplay; fullscreen"
-        frameborder="0">;
-  </style>
 <meta charset="UTF-8">
 <title>Dendrite Creative Studio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,14 +36,13 @@
 <main>
   <section class="hero-section">
 
-    <div class="video-background">
-      <iframe
-        src="https://player.vimeo.com/video/1155265233?autoplay=1&loop=1&muted=1&background=1"
-        allow="autoplay; fullscreen"
-        frameborder="0">
-      </iframe>
-    </div>
+    <!-- FULL SCREEN VIDEO BACKGROUND -->
+    <video class="background-video" autoplay muted loop playsinline>
+      <source src="video/background.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
 
+    <!-- SERVICES LEFT-ALIGNED -->
     <div class="services-overlay">
       <div class="services-list">
         <p>Graphic Design</p>
@@ -68,4 +62,3 @@
 
 </body>
 </html>
-
