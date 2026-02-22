@@ -15,6 +15,8 @@ body{
   background:#D9D9D9;
   color:#fff;
   line-height:1.6;
+  height:100%;
+  overflow-x:hidden;
 }
 
 /* ===============================
@@ -107,9 +109,11 @@ HERO SECTION
   height:100vh;
   width:100%;
   overflow:hidden;
+  display:flex;
+  align-items:center;
 }
 
-/* VIDEO BACKGROUND */
+/* VIDEO BACKGROUND FULL COVER */
 .video-background{
   position:absolute;
   top:0;
@@ -125,22 +129,23 @@ HERO SECTION
   height:100%;
   border:none;
   pointer-events:none;
-  transform:none;
+  object-fit:cover;
 }
 
-/* SERVICES OVERLAY */
+/* SERVICES LEFT-ALIGNED */
 .services-overlay{
   position:relative;
   z-index:2;
-  max-width:500px;
+  max-width:400px;
   padding:40px;
+  margin-left:60px;
   background:rgba(0,0,0,0.5);
   border-radius:12px;
 }
 
 .services-list p{
-  font-size:18px;
-  margin-bottom:12px;
+  font-size:20px;
+  margin-bottom:16px;
   opacity:0;
   animation:fadeSlide 1s ease forwards;
   color:#fff;
@@ -183,6 +188,7 @@ RESPONSIVE
 @media(max-width:768px){
   .services-overlay{
     max-width:90%;
+    margin-left:20px;
     padding:20px;
   }
 }
