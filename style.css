@@ -3,9 +3,13 @@ RESET
 =============================== */
 
 *{
+
 margin:0;
+
 padding:0;
+
 box-sizing:border-box;
+
 }
 
 
@@ -60,9 +64,9 @@ z-index:1000;
 
 max-width:1200px;
 
-height:100%;
-
 margin:auto;
+
+height:100%;
 
 display:flex;
 
@@ -92,9 +96,9 @@ display:block;
 
 display:flex;
 
-align-items:center;
-
 gap:25px;
+
+align-items:center;
 
 }
 
@@ -193,25 +197,101 @@ padding-bottom:50px;
 
 
 /* ===============================
-FOOTER
+SERVICES WALL
 =============================== */
 
-footer{
+.services-wall{
 
-text-align:center;
+height:calc(100vh - 120px);
 
-padding:30px;
+overflow:hidden;
 
-border-top:1px solid rgba(0,0,0,0.2);
+display:flex;
 
-margin-top:60px;
+align-items:center;
+
+}
+
+
+
+/* TRACK */
+
+.services-track{
+
+display:flex;
+
+flex-direction:column;
+
+animation: scrollServices 20s linear infinite;
+
+}
+
+
+
+/* SERVICE */
+
+.service{
+
+font-size:64px;
+
+font-weight:300;
+
+padding:30px 0;
+
+opacity:0.2;
+
+transition:all 0.4s ease;
+
+cursor:default;
+
+}
+
+
+
+/* HOVER */
+
+.service:hover{
+
+opacity:1;
+
+transform:translateX(40px);
+
+}
+
+
+
+/* PAUSE ON HOVER */
+
+.services-wall:hover .services-track{
+
+animation-play-state:paused;
+
+}
+
+
+
+/* ANIMATION */
+
+@keyframes scrollServices{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+100%{
+
+transform:translateY(-50%);
+
+}
 
 }
 
 
 
 /* ===============================
-GRID (WORKS PAGE)
+GRID (WORKS)
 =============================== */
 
 .grid{
@@ -251,7 +331,7 @@ cursor:pointer;
 
 
 /* ===============================
-IMAGE GRID
+IMAGES PAGE
 =============================== */
 
 .image-grid{
@@ -307,6 +387,20 @@ cursor:pointer;
 
 
 /* ===============================
+ABOUT
+=============================== */
+
+.statement-text{
+
+max-width:800px;
+
+margin:auto;
+
+}
+
+
+
+/* ===============================
 CONTACT
 =============================== */
 
@@ -347,124 +441,18 @@ opacity:0.5;
 
 
 /* ===============================
-ABOUT
+FOOTER
 =============================== */
 
-.statement-text{
+footer{
 
-max-width:800px;
+text-align:center;
 
-margin:auto;
+padding:30px;
 
-}
+border-top:1px solid rgba(0,0,0,0.2);
 
-
-
-/* ===============================
-HERO INNOVATIVE SECTION
-=============================== */
-
-.hero{
-
-position:relative;
-
-width:100%;
-
-height:calc(100vh - 70px);
-
-overflow:hidden;
-
-margin-top:-30px;
-
-}
-
-
-
-/* VIDEO BACKGROUND */
-
-.hero-video{
-
-position:absolute;
-
-top:0;
-
-left:0;
-
-width:100%;
-
-height:100%;
-
-z-index:1;
-
-}
-
-
-
-.hero-video iframe{
-
-width:100%;
-
-height:100%;
-
-object-fit:cover;
-
-border:none;
-
-pointer-events:none;
-
-filter:brightness(0.65);
-
-}
-
-
-
-/* SERVICES OVERLAY */
-
-.hero-services{
-
-position:absolute;
-
-z-index:2;
-
-left:8%;
-
-top:50%;
-
-transform:translateY(-50%);
-
-}
-
-
-
-/* SERVICE TEXT STYLE */
-
-.hero-service{
-
-font-size:64px;
-
-font-weight:300;
-
-margin:12px 0;
-
-color:transparent;
-
--webkit-text-stroke:1px white;
-
-cursor:default;
-
-transition:all 0.4s ease;
-
-}
-
-
-
-/* HOVER EFFECT */
-
-.hero-service:hover{
-
-color:white;
-
-transform:translateX(25px);
+margin-top:60px;
 
 }
 
@@ -474,23 +462,11 @@ transform:translateX(25px);
 RESPONSIVE
 =============================== */
 
-@media(max-width:900px){
+@media(max-width:768px){
 
-.hero-service{
+.service{
 
 font-size:36px;
-
-}
-
-}
-
-
-
-@media(max-width:600px){
-
-.nav-container{
-
-padding:0 15px;
 
 }
 
