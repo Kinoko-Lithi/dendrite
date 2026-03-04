@@ -19,7 +19,6 @@ body {
   flex-direction: column;
 }
 
-
 /* ============================= */
 /* NAVIGATION */
 /* ============================= */
@@ -76,7 +75,6 @@ body {
   cursor: pointer;
 }
 
-
 /* Dropdown */
 
 .dropdown {
@@ -110,7 +108,6 @@ body {
   display: flex;
 }
 
-
 /* ============================= */
 /* PAGE CONTENT */
 /* ============================= */
@@ -124,20 +121,34 @@ body {
   padding-right: 40px;
 }
 
-
 /* ============================= */
-/* HOME HERO */
+/* HOME HERO VIDEO BACKGROUND */
 /* ============================= */
 
 .hero-section {
+  position: relative;
   height: calc(100vh - 70px);
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+}
+
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
 }
 
 .home-page .services-text {
+  position: relative;
+  z-index: 1;
   text-align: center;
+  color: #ffffff;
   font-size: 32px;
   font-weight: 600;
   line-height: 1.6;
@@ -146,14 +157,6 @@ body {
 .home-page .services-text p {
   margin-bottom: 25px;
 }
-
-.services-text span {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
 
 /* ============================= */
 /* VIDEO GRID */
@@ -178,7 +181,6 @@ body {
   border: none;
 }
 
-
 /* ============================= */
 /* IMAGE GRID */
 /* ============================= */
@@ -195,7 +197,6 @@ body {
   border-radius: 10px;
   display: block;
 }
-
 
 /* ============================= */
 /* ABOUT */
@@ -221,7 +222,6 @@ body {
   margin-bottom: 20px;
   font-size: 28px;
 }
-
 
 /* ============================= */
 /* CONTACT */
@@ -262,7 +262,6 @@ body {
   color: #2e004d;
 }
 
-
 /* ============================= */
 /* FOOTER */
 /* ============================= */
@@ -275,7 +274,6 @@ footer {
   border-top: 1px solid #eeeeee;
   font-size: 14px;
 }
-
 
 /* ============================= */
 /* RESPONSIVE */
@@ -292,7 +290,6 @@ footer {
     grid-template-columns: repeat(3, 1fr);
   }
 }
-
 
 /* Mobile */
 @media (max-width: 768px) {
@@ -328,7 +325,6 @@ footer {
   }
 }
 
-
 /* Small phones */
 @media (max-width: 480px) {
 
@@ -339,5 +335,4 @@ footer {
   .image-grid {
     grid-template-columns: 1fr;
   }
-
 }
