@@ -1,32 +1,31 @@
-/* ========================= */
+/* ============================= */
 /* RESET */
-/* ========================= */
+/* ============================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ========================= */
+/* ============================= */
 /* BODY */
-/* ========================= */
+/* ============================= */
 body {
   font-family: Helvetica, Arial, sans-serif;
-  background: #000;
   color: white;
   overflow-x: hidden;
 }
 
-/* ========================= */
+/* ============================= */
 /* VIDEO BACKGROUND */
-/* ========================= */
+/* ============================= */
 .video-bg {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: -2;
   overflow: hidden;
 }
 
@@ -42,9 +41,20 @@ body {
   object-fit: cover;
 }
 
-/* ========================= */
+/* Dark overlay for better readability */
+.video-bg::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  top: 0;
+  left: 0;
+}
+
+/* ============================= */
 /* NAVIGATION */
-/* ========================= */
+/* ============================= */
 .nav {
   position: fixed;
   top: 0;
@@ -91,75 +101,84 @@ body {
   text-decoration: none;
   font-size: 14px;
   cursor: pointer;
+  transition: 0.3s ease;
 }
 
 .nav-links a:hover {
   opacity: 0.7;
 }
 
-/* ========================= */
+/* ============================= */
 /* DROPDOWN */
-/* ========================= */
+/* ============================= */
 .dropdown {
   position: relative;
 }
 
 .dropdown-content {
   position: absolute;
-  top: 25px;
+  top: 30px;
   left: 0;
   background: rgba(0, 0, 0, 0.9);
   display: none;
   flex-direction: column;
-  padding: 10px;
+  padding: 10px 15px;
+  min-width: 120px;
 }
 
 .dropdown-content a {
-  padding: 5px 0;
+  padding: 6px 0;
 }
 
 .dropdown:hover .dropdown-content {
   display: flex;
 }
 
-/* ========================= */
-/* HERO SECTION */
-/* ========================= */
+/* ============================= */
+/* PAGE CONTENT */
+/* ============================= */
 .page-content {
+  position: relative;
+  z-index: 5;
   min-height: 100vh;
+  padding-top: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 70px;
   text-align: center;
 }
 
+/* ============================= */
+/* HERO TEXT */
+/* ============================= */
 .services-text p {
   font-size: 2rem;
   margin: 15px 0;
   letter-spacing: 2px;
 }
 
-/* ========================= */
+/* ============================= */
 /* FOOTER */
-/* ========================= */
+/* ============================= */
 footer {
+  position: relative;
+  z-index: 5;
   text-align: center;
   padding: 20px;
   background: rgba(0, 0, 0, 0.6);
 }
 
-/* ========================= */
+/* ============================= */
 /* MOBILE */
-/* ========================= */
+/* ============================= */
 @media (max-width: 768px) {
-
-  .nav-links {
-    gap: 15px;
-  }
 
   .logo-text {
     display: none;
+  }
+
+  .nav-links {
+    gap: 15px;
   }
 
   .services-text p {
