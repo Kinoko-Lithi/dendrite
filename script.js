@@ -1,74 +1,92 @@
-// Animate services text on page load
-window.addEventListener("load", () => {
+/* =========================
+   SERVICES TEXT ANIMATION
+========================= */
+
+window.addEventListener("load", function () {
   const container = document.getElementById("services-text");
   if (!container) return;
 
-  const lines = container.querySelectorAll("p");
-  lines.forEach((line, index) => {
-    const text = line.textContent;
-    line.textContent = "";
+  const paragraphs = container.querySelectorAll("p");
 
-    text.split("").forEach((char, i) => {
+  paragraphs.forEach(function (paragraph, paragraphIndex) {
+    const content = paragraph.textContent;
+    paragraph.textContent = "";
+
+    content.split("").forEach(function (character, charIndex) {
       const span = document.createElement("span");
-      span.textContent = char === " " ? "\u00A0" : char;
+
+      span.textContent = character === " " ? "\u00A0" : character;
       span.style.opacity = "0";
       span.style.transform = "translateY(8px)";
       span.style.display = "inline-block";
       span.style.transition = "opacity 0.4s ease, transform 0.4s ease";
-      line.appendChild(span);
 
-      setTimeout(() => {
+      paragraph.appendChild(span);
+
+      setTimeout(function () {
         span.style.opacity = "1";
         span.style.transform = "translateY(0)";
-      }, i * 40 + index * 250);
+      }, charIndex * 40 + paragraphIndex * 250);
     });
   });
 });
 
-// Vimeo video gallery with lightbox
-document.addEventListener("DOMContentLoaded", () => {
+
+/* =========================
+   VIMEO VIDEO GALLERY
+========================= */
+
+document.addEventListener("DOMContentLoaded", function () {
   const cards = document.querySelectorAll(".video-card");
   const lightbox = document.getElementById("videoLightbox");
-  const lightboxIframe = lightbox.querySelector("iframe");
 
   if (!cards.length || !lightbox) return;
 
-  // Helper function to build Vimeo URL
-  const getVimeoURL = (id, autoplay = false) =>
-    `https://player.vimeo.com/video/${id}?autoplay=${autoplay ? 1 : 0}&loop=0&muted=0`;
+  const lightboxIframe = lightbox.querySelector("iframe");
 
-  cards.forEach(card => {
+  function buildVimeoURL(id, autoplay) {
+    return `https://player.vimeo.com/video/${id}?autoplay=${autoplay ? 1 : 0}&loop=0&muted=0`;
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove("active");
+    if (lightboxIframe) lightboxIframe.src = "";
+    document.body.style.overflow = "auto";
+  }
+
+  cards.forEach(function (card) {
     const videoId = card.dataset.vimeo;
+    if (!videoId) return;
 
-    // Create iframe inside card
+    /* Create embedded preview iframe */
     const iframe = document.createElement("iframe");
-    iframe.src = getVimeoURL(videoId);
+    iframe.src = buildVimeoURL(videoId, false);
     iframe.frameBorder = "0";
     iframe.allow = "autoplay; fullscreen; picture-in-picture";
     iframe.allowFullscreen = true;
+
     card.appendChild(iframe);
 
-    // Random rotation for scattered look
-    const rotateDeg = (Math.random() * 6 - 3) + "deg";
-    card.style.setProperty("--rotate", rotateDeg);
+    /* Random slight rotation */
+    const randomRotation = (Math.random() * 6 - 3) + "deg";
+    card.style.setProperty("--rotate", randomRotation);
 
-    // Click opens fullscreen lightbox
-    card.addEventListener("click", () => {
+    /* Open lightbox on click */
+    card.addEventListener("click", function () {
+      if (!lightboxIframe) return;
+
+      lightboxIframe.src = buildVimeoURL(videoId, true);
       lightbox.classList.add("active");
-      lightboxIframe.src = getVimeoURL(videoId, true);
       document.body.style.overflow = "hidden";
     });
   });
 
-  // Close lightbox on click
-  const closeLightbox = () => {
-    lightbox.classList.remove("active");
-    lightboxIframe.src = "";
-    document.body.style.overflow = "auto";
-  };
-
+  /* Close lightbox */
   lightbox.addEventListener("click", closeLightbox);
-  document.addEventListener("keydown", e => {
-    if (e.key === "Escape") closeLightbox();
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeLightbox();
+    }
   });
 });
