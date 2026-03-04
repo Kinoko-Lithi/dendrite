@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dendrite Creative Studio — Images</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <div class="nav-container">
+    <div class="logo-wrap">
+      <a href="index.html"><img src="image/logo.png" alt="Logo"></a>
+      <span class="logo-text">DENDRITE CREATIVE STUDIO</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <div class="dropdown">
+        <span class="nav-label">Works</span>
+        <div class="dropdown-content">
+          <a href="videos.html">Videos</a>
+          <a href="images.html">Images</a>
+        </div>
+      </div>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main class="page-content">
+  <h2>Images</h2>
+
+  <div class="image-grid">
+    <!-- 33 images named 1.png → 33.png -->
+    <img src="image/1.png" alt="">
+    <img src="image/2.png" alt="">
+    <img src="image/3.png" alt="">
+    <img src="image/4.png" alt="">
+    <img src="image/5.png" alt="">
+    <img src="image/6.png" alt="">
+    <img src="image/7.png" alt="">
+    <img src="image/8.png" alt="">
+    <img src="image/9.png" alt="">
+    <img src="image/10.png" alt="">
+    <img src="image/11.png" alt="">
+    <img src="image/12.png" alt="">
+    <img src="image/13.png" alt="">
+    <img src="image/14.png" alt="">
+    <img src="image/15.png" alt="">
+    <img src="image/16.png" alt="">
+    <img src="image/17.png" alt="">
+    <img src="image/18.png" alt="">
+    <img src="image/19.png" alt="">
+    <img src="image/20.png" alt="">
+    <img src="image/21.png" alt="">
+    <img src="image/22.png" alt="">
+    <img src="image/23.png" alt="">
+    <img src="image/24.png" alt="">
+    <img src="image/25.png" alt="">
+    <img src="image/26.png" alt="">
+    <img src="image/27.png" alt="">
+    <img src="image/28.png" alt="">
+    <img src="image/29.png" alt="">
+    <img src="image/30.png" alt="">
+    <img src="image/31.png" alt="">
+    <img src="image/32.png" alt="">
+    <img src="image/33.png" alt="">
+  </div>
+
+</main>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <img src="" alt="">
+</div>
+
+<footer>
+  © 2026 Dendrite Creative Studio
+</footer>
+
+<!-- LIGHTBOX SCRIPT -->
+<script>
+const images = document.querySelectorAll('.image-grid img');
+const lightbox = document.getElementById('lightbox');
+const lbImg = lightbox.querySelector('img');
+
+images.forEach(img => {
+  img.addEventListener('click', () => {
+    lbImg.src = img.src;
+    lightbox.classList.add('active');
+  });
+});
+
+lightbox.addEventListener('click', () => {
+  lightbox.classList.remove('active');
+  lbImg.src = '';
+});
+</script>
+
+</body>
+</html>
