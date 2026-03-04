@@ -11,7 +11,6 @@
 html, body {
   height: 100%;
   font-family: Arial, Helvetica, sans-serif;
-  background: #ffffff; /* previous white background */
 }
 
 body {
@@ -144,17 +143,16 @@ body {
 .hero-section {
   min-height: 100vh;
   display: flex;
-  justify-content: center; /* center horizontally */
-  align-items: center;     /* center vertically */
-  overflow: hidden;
+  justify-content: center;
+  align-items: center;
 }
 
 .home-page .services-text {
-  text-align: center; /* centered text */
+  text-align: center;
   font-size: 32px;
   font-weight: 600;
   line-height: 1.6;
-  color: #000000; /* black text */
+  color: #000000; /* text is black */
 }
 
 .home-page .services-text p {
@@ -273,7 +271,7 @@ footer {
   margin-top: auto;
   padding: 30px;
   text-align: center;
-  background: #ffffff; /* white background */
+  background: #d9d9d9;
   border-top: 1px solid #eeeeee;
   font-size: 14px;
 }
