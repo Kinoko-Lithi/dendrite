@@ -11,7 +11,7 @@
 html, body {
   height: 100%;
   font-family: Arial, Helvetica, sans-serif;
-  background: #d9d9d9; /* grey background for the rest of the site */
+  background: #d9d9d9; /* grey background for rest of site */
 }
 
 body {
@@ -135,24 +135,23 @@ body {
   padding-right: 40px;
   z-index: 1;
   position: relative;
-  background: #d9d9d9; /* ensures rest of site is grey */
+  background: #d9d9d9; /* grey background */
 }
 
 /* ============================= */
-/* HOME HERO SECTION - LEFT ALIGNED TEXT */
+/* HOME HERO SECTION */
 /* ============================= */
 
 .hero-section {
   min-height: 100vh;
   display: flex;
-  justify-content: flex-start; /* align content to left */
-  align-items: center;         /* vertical center */
-  padding-left: 60px;          /* spacing from left edge */
+  justify-content: center; /* center horizontally */
+  align-items: center;     /* center vertically */
   overflow: hidden;
 }
 
 .home-page .services-text {
-  text-align: left;   /* left-align the text */
+  text-align: center; /* centered text */
   font-size: 32px;
   font-weight: 600;
   line-height: 1.6;
@@ -275,7 +274,7 @@ footer {
   margin-top: auto;
   padding: 30px;
   text-align: center;
-  background: #d9d9d9;
+  background: #d9d9d9; /* grey background for footer */
   border-top: 1px solid #eeeeee;
   font-size: 14px;
 }
