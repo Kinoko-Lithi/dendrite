@@ -358,3 +358,35 @@ footer {
   }
 
 }
+```css
+/* =========================
+   LETTER ANIMATION
+========================= */
+
+.letter {
+
+  opacity: 0;
+  display: inline-block;
+
+  transform: translateY(10px);
+
+  animation-name: letterReveal;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
+
+}
+
+@keyframes letterReveal {
+
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
