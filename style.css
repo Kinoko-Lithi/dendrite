@@ -18,7 +18,6 @@ body {
   flex-direction: column;
   background: #d9d9d9;
 
-  /* Mac rendering fixes */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -41,7 +40,6 @@ body {
 
   pointer-events: none;
 
-  /* Fix Mac Chrome / Safari rendering */
   transform: translateZ(0);
   backface-visibility: hidden;
   will-change: transform;
@@ -79,6 +77,9 @@ body {
 
 .logo-wrap img {
   height: 40px;
+
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .logo-text {
@@ -189,12 +190,24 @@ body {
   aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 12px;
+
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .video-card iframe {
   width: 100%;
   height: 100%;
   border: none;
+
+  transform: scale(1);
+  transition: transform 0.35s ease;
+}
+
+/* Smooth hover animation */
+
+.video-card:hover iframe {
+  transform: scale(1.03);
 }
 
 /* ============================= */
@@ -212,6 +225,14 @@ body {
   width: 100%;
   border-radius: 10px;
   display: block;
+
+  transform: scale(1) translateZ(0);
+  transition: transform 0.35s ease;
+  backface-visibility: hidden;
+}
+
+.image-grid img:hover {
+  transform: scale(1.05);
 }
 
 /* ============================= */
@@ -228,6 +249,9 @@ body {
 .about-image img {
   max-width: 300px;
   border-radius: 12px;
+
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .about-text {
@@ -295,8 +319,6 @@ footer {
 /* RESPONSIVE */
 /* ============================= */
 
-/* Tablet */
-
 @media (max-width: 1024px) {
 
   .video-grid {
@@ -308,8 +330,6 @@ footer {
   }
 
 }
-
-/* Mobile */
 
 @media (max-width: 768px) {
 
@@ -345,8 +365,6 @@ footer {
 
 }
 
-/* Small phones */
-
 @media (max-width: 480px) {
 
   .home-page .services-text {
@@ -355,38 +373,6 @@ footer {
 
   .image-grid {
     grid-template-columns: 1fr;
-  }
-
-}
-```css
-/* =========================
-   LETTER ANIMATION
-========================= */
-
-.letter {
-
-  opacity: 0;
-  display: inline-block;
-
-  transform: translateY(10px);
-
-  animation-name: letterReveal;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
-  animation-timing-function: ease;
-
-}
-
-@keyframes letterReveal {
-
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 
 }
