@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <title>Dendrite Creative Studio — Contact</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
 
 <nav class="nav">
@@ -14,40 +16,45 @@
       <a href="./index.html"><img src="./image/logo.png" alt="Logo"></a>
       <span class="logo-text">DENDRITE CREATIVE STUDIO</span>
     </div>
+
     <div class="nav-links">
-      <a href="./index.html">Home</a>
+      <a href="./index.html" data-i18n="home">Home</a>
       <div class="dropdown">
-        <span class="nav-label">Works</span>
+        <span class="nav-label" data-i18n="works">Works</span>
         <div class="dropdown-content">
-          <a href="./videos.html">Videos</a>
-          <a href="./images.html">Images</a>
+          <a href="./videos.html" data-i18n="videos">Videos</a>
+          <a href="./images.html" data-i18n="images">Images</a>
         </div>
       </div>
-      <a href="./about.html">About</a>
-      <a href="./contact.html">Contact</a>
+      <a href="./about.html" data-i18n="about">About</a>
+      <a href="./contact.html" data-i18n="contact">Contact</a>
+    </div>
+
+    <div class="language-switch">
+      <button data-lang="en">EN</button>
+      <button data-lang="el">EL</button>
     </div>
   </div>
 </nav>
 
 <main class="page-content">
-
   <section class="contact-section card">
-    <h2>Get in Touch</h2>
+    <h2 data-i18n="get-in-touch">Get in Touch</h2>
     <div class="contact-items">
-      <div class="contact-item"><strong>Email:</strong> <a href="mailto:info@dendriteart.com">info@dendriteart.com</a></div>
-      <div class="contact-item"><strong>Phone:</strong> <a href="tel:+306900000000">+30 6945388291</a></div>
-      <div class="contact-item"><strong>Instagram:</strong> <a href="https://www.instagram.com/dendrite_art/" target="_blank">@dendrite_art</a></div>
-      <div class="contact-item"><strong>Address:</strong> 11 Tsimiski street, Thessaloniki, Greece</div>
+      <div class="contact-item"><strong data-i18n="email">Email:</strong> <a href="mailto:tasos@dendriteart.com">info@dendriteart.com</a></div>
+      <div class="contact-item"><strong data-i18n="phone">Phone:</strong> <a href="tel:+306900000000">+30 6945388291</a></div>
+      <div class="contact-item"><strong data-i18n="instagram">Instagram:</strong> <a href="https://www.instagram.com/dendrite_art/" target="_blank">@dendrite_art</a></div>
+      <div class="contact-item"><strong data-i18n="address">Address:</strong> 11 Tsimiski street, Thessaloniki, Greece</div>
     </div>
   </section>
-
 </main>
 
-<footer>
+<footer data-i18n="copyright">
   © 2026 Dendrite Creative Studio
 </footer>
 
+<script src="./translations.js"></script>
+<script src="./language.js"></script>
+
 </body>
 </html>
-
-
