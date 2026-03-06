@@ -152,18 +152,33 @@ body {
 }
 
 /* ============================= */
-/* HOME HERO SECTION */
+/* HERO SECTION & SERVICES TEXT */
 /* ============================= */
 
 .hero-section {
   min-height: 100vh;
   display: flex;
+  flex-direction: column; /* stack intro above services */
   justify-content: center;
   align-items: center;
+  gap: 40px; /* space between intro and services */
+  text-align: center;
+}
+
+.hero-intro h1 {
+  font-size: 48px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.hero-intro h2 {
+  font-size: 28px;
+  font-weight: 500;
+  color: #000;
 }
 
 .home-page .services-text {
-  text-align: center;
   font-size: 32px;
   font-weight: 600;
   line-height: 1.6;
@@ -172,6 +187,14 @@ body {
 
 .home-page .services-text p {
   margin-bottom: 25px;
+}
+
+/* Animated characters for services */
+.home-page .services-text span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 /* ============================= */
@@ -357,4 +380,11 @@ footer {
     grid-template-columns: 1fr;
   }
 
+  .hero-intro h1 {
+    font-size: 28px;
+  }
+
+  .hero-intro h2 {
+    font-size: 18px;
+  }
 }
