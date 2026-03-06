@@ -10,12 +10,17 @@
   .hero-intro {
     text-align: center;
     padding-top: 120px;       /* space from top */
-    margin-bottom: 80px;      /* smaller distance to services */
+    margin-bottom: 80px;      /* distance to services */
+  }
+
+  .hero-intro h1,
+  .hero-intro h2 {
+    font-weight: 800;
+    display: inline-block;
   }
 
   .hero-intro h1 {
     font-size: 72px;
-    font-weight: 800;
     margin-bottom: 20px;
   }
 
@@ -23,17 +28,14 @@
     font-size: 28px;
     font-weight: 500;
     color: #333;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: slideFadeIn 1s forwards 0.5s; /* animate in 0.5s delay */
+    margin-top: 0;
   }
 
-  /* Animation keyframes */
-  @keyframes slideFadeIn {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .hero-intro span {
+    opacity: 0;
+    transform: translateY(20px);
+    display: inline-block;
+    transition: opacity 0.5s ease, transform 0.5s ease;
   }
 
   /* SERVICES TEXT - pushed down for scrolling */
@@ -89,8 +91,8 @@
 
   <!-- HERO INTRO -->
   <div class="hero-intro">
-    <h1>Dendrite</h1>
-    <h2>Creative Ideas in Motion</h2>
+    <h1 id="dendrite-text">Dendrite</h1>
+    <h2 id="slogan-text">Creative Ideas in Motion</h2>
   </div>
 
   <!-- HERO SERVICES SECTION -->
@@ -112,7 +114,33 @@
 </footer>
 
 <!-- JAVASCRIPT -->
-<script src="./main.js"></script>
+<script>
+window.addEventListener("DOMContentLoaded", function() {
+  function animateText(id) {
+    const container = document.getElementById(id);
+    if (!container) return;
+
+    const text = container.textContent;
+    container.textContent = "";
+
+    text.split("").forEach((char, index) => {
+      const span = document.createElement("span");
+      span.textContent = char === " " ? "\u00A0" : char;
+      span.style.opacity = "0";
+      span.style.transform = "translateY(20px)";
+      container.appendChild(span);
+
+      setTimeout(() => {
+        span.style.opacity = "1";
+        span.style.transform = "translateY(0)";
+      }, index * 50);
+    });
+  }
+
+  animateText("dendrite-text");
+  animateText("slogan-text");
+});
+</script>
 
 </body>
 </html>
