@@ -17,8 +17,6 @@ body {
   display: flex;
   flex-direction: column;
   background: #d9d9d9;
-
-  /* Mac rendering fixes */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -31,17 +29,11 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-
   width: 100vw;
   height: 100vh;
-
   object-fit: cover;
-
   z-index: -1;
-
   pointer-events: none;
-
-  /* Fix Mac Chrome / Safari rendering */
   transform: translateZ(0);
   backface-visibility: hidden;
   will-change: transform;
@@ -137,6 +129,42 @@ body {
 }
 
 /* ============================= */
+/* HERO INTRO ABOVE SERVICES */
+/* ============================= */
+
+.hero-intro {
+  text-align: center;
+  padding-top: 120px;       /* space from top */
+  margin-bottom: 80px;      /* distance to services */
+}
+
+.hero-intro h1,
+.hero-intro h2 {
+  font-weight: 800;
+  display: block;           /* vertical stacking */
+  text-align: center;
+}
+
+.hero-intro h1 {
+  font-size: 72px;
+  margin-bottom: 20px;
+}
+
+.hero-intro h2 {
+  font-size: 28px;
+  font-weight: 500;
+  color: #333;
+  margin-top: 0;
+}
+
+.hero-intro span {
+  opacity: 0;
+  transform: translateY(20px);
+  display: inline-block;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* ============================= */
 /* PAGE CONTENT */
 /* ============================= */
 
@@ -144,7 +172,7 @@ body {
   flex: 1;
   max-width: 1200px;
   margin: 0 auto;
-  padding-top: 120px;
+  padding-top: 0; /* services pushed manually */
   padding-left: 40px;
   padding-right: 40px;
   z-index: 1;
@@ -152,49 +180,27 @@ body {
 }
 
 /* ============================= */
-/* HERO SECTION & SERVICES TEXT */
+/* HOME HERO SECTION / SERVICES */
 /* ============================= */
 
 .hero-section {
   min-height: 100vh;
   display: flex;
-  flex-direction: column; /* stack intro above services */
   justify-content: center;
-  align-items: center;
-  gap: 40px; /* space between intro and services */
-  text-align: center;
-}
-
-.hero-intro h1 {
-  font-size: 48px;
-  font-weight: 700;
-  color: #000;
-  margin-bottom: 10px;
-}
-
-.hero-intro h2 {
-  font-size: 28px;
-  font-weight: 500;
-  color: #000;
+  align-items: flex-start;
 }
 
 .home-page .services-text {
+  text-align: center;
   font-size: 32px;
   font-weight: 600;
   line-height: 1.6;
   color: #000;
+  margin-top: 60vh; /* push services far down */
 }
 
 .home-page .services-text p {
   margin-bottom: 25px;
-}
-
-/* Animated characters for services */
-.home-page .services-text span {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 /* ============================= */
@@ -318,10 +324,7 @@ footer {
 /* RESPONSIVE */
 /* ============================= */
 
-/* Tablet */
-
 @media (max-width: 1024px) {
-
   .video-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -329,13 +332,9 @@ footer {
   .image-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-
 }
 
-/* Mobile */
-
 @media (max-width: 768px) {
-
   .nav-container {
     padding: 0 20px;
   }
@@ -365,26 +364,14 @@ footer {
   .image-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
 }
 
-/* Small phones */
-
 @media (max-width: 480px) {
-
   .home-page .services-text {
     font-size: 20px;
   }
 
   .image-grid {
     grid-template-columns: 1fr;
-  }
-
-  .hero-intro h1 {
-    font-size: 28px;
-  }
-
-  .hero-intro h2 {
-    font-size: 18px;
   }
 }
