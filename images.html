@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <title>Dendrite Creative Studio — Images</title>
@@ -26,10 +25,21 @@
   max-height: 95vh;
   object-fit: contain;
 }
+/* LANGUAGE SWITCHER */
+.lang-switcher {
+  display: flex;
+  gap: 8px;
+}
+.lang-switcher button {
+  cursor: pointer;
+  padding: 4px 8px;
+  background: #eee;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.lang-switcher button:hover { background: #ddd; }
 </style>
-
 </head>
-
 <body>
 
 <!-- NAVIGATION -->
@@ -53,9 +63,10 @@
       <a href="contact.html" data-i18n="contact">Contact</a>
     </div>
 
-    <div class="language-switch">
-      <button data-lang="en">EN</button>
-      <button data-lang="el">EL</button>
+    <!-- LANGUAGE SWITCHER -->
+    <div class="lang-switcher">
+      <button id="lang-en">EN</button>
+      <button id="lang-el">EL</button>
     </div>
   </div>
 </nav>
@@ -105,7 +116,7 @@
   <img src="" alt="">
 </div>
 
-<footer data-i18n="copyright">
+<footer>
   © 2026 Dendrite Creative Studio
 </footer>
 
@@ -113,7 +124,7 @@
 <script src="./language.js"></script>
 
 <script>
-/* FULLSCREEN IMAGE LIGHTBOX */
+// LIGHTBOX SCRIPT
 const images = document.querySelectorAll(".image-grid img");
 const lightbox = document.getElementById("lightbox");
 const lightboxImage = lightbox.querySelector("img");
@@ -130,19 +141,9 @@ function closeLightbox() {
   document.body.style.overflow = "auto";
 }
 
-images.forEach(function(image) {
-  image.addEventListener("click", function() {
-    openLightbox(image.src);
-  });
-});
-
-lightbox.addEventListener("click", function(event) {
-  if (event.target === lightbox) closeLightbox();
-});
-
-document.addEventListener("keydown", function(event) {
-  if (event.key === "Escape") closeLightbox();
-});
+images.forEach(img => img.addEventListener("click", () => openLightbox(img.src)));
+lightbox.addEventListener("click", e => { if(e.target === lightbox) closeLightbox(); });
+document.addEventListener("keydown", e => { if(e.key === "Escape") closeLightbox(); });
 </script>
 
 </body>
