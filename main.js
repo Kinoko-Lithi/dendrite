@@ -2,7 +2,7 @@
    HERO TEXT ANIMATION
 ========================= */
 window.addEventListener("DOMContentLoaded", function() {
-  function animateText(id) {
+  function animateText(id, delay = 50) {
     const container = document.getElementById(id);
     if (!container) return;
 
@@ -14,49 +14,48 @@ window.addEventListener("DOMContentLoaded", function() {
       span.textContent = char === " " ? "\u00A0" : char;
       span.style.opacity = "0";
       span.style.transform = "translateY(20px)";
+      span.style.display = "inline-block";
+      span.style.transition = `opacity 1s ease ${index*delay}ms, transform 1s ease ${index*delay}ms`;
       container.appendChild(span);
 
       setTimeout(() => {
         span.style.opacity = "1";
         span.style.transform = "translateY(0)";
-      }, index * 80); // slower animation
+      }, index * delay);
     });
   }
 
-  animateText("dendrite-text");
-  animateText("slogan-text");
+  animateText("dendrite-text", 50);
+  animateText("slogan-text", 50);
 });
 
 /* =========================
-   SCROLL ANIMATION FOR SERVICES
+   SERVICES SCROLL ANIMATION
 ========================= */
-document.addEventListener("DOMContentLoaded", function () {
+function isInViewport(el) {
+  const rect = el.getBoundingClientRect();
+  return rect.top < window.innerHeight && rect.bottom > 0;
+}
+
+function servicesScrollAnimation() {
   const services = document.getElementById("services-text");
   if (!services) return;
 
-  const serviceLines = services.querySelectorAll("p");
+  if (isInViewport(services)) {
+    services.classList.add("visible");
+  } else {
+    services.classList.remove("visible");
+  }
+}
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        services.classList.add("visible");
-        serviceLines.forEach((line, i) => {
-          setTimeout(() => { line.classList.add("visible"); }, i * 150);
-        });
-      } else {
-        services.classList.remove("visible");
-        serviceLines.forEach(line => line.classList.remove("visible"));
-      }
-    });
-  }, { threshold: 0.3 });
-
-  observer.observe(services);
-});
+window.addEventListener("scroll", servicesScrollAnimation);
+window.addEventListener("resize", servicesScrollAnimation);
+servicesScrollAnimation();
 
 /* =========================
-   VIMEO VIDEO LIGHTBOX
+   VIDEO LIGHTBOX
 ========================= */
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
   const cards = document.querySelectorAll(".video-card");
   const lightbox = document.getElementById("videoLightbox");
   if (!cards.length || !lightbox) return;
@@ -73,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.style.overflow = "auto";
   }
 
-  cards.forEach(function(card) {
+  cards.forEach(card => {
     const videoId = card.dataset.vimeo;
     if (!videoId) return;
 
@@ -82,13 +81,12 @@ document.addEventListener("DOMContentLoaded", function () {
     iframe.frameBorder = "0";
     iframe.allow = "autoplay; fullscreen; picture-in-picture";
     iframe.allowFullscreen = true;
-
     card.appendChild(iframe);
 
-    const randomRotation = (Math.random() * 6 - 3) + "deg";
+    const randomRotation = (Math.random()*6 - 3) + "deg";
     card.style.setProperty("--rotate", randomRotation);
 
-    card.addEventListener("click", function () {
+    card.addEventListener("click", () => {
       if (!lightboxIframe) return;
       lightboxIframe.src = buildVimeoURL(videoId, true);
       lightbox.classList.add("active");
@@ -97,16 +95,15 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   lightbox.addEventListener("click", closeLightbox);
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape") closeLightbox();
-  });
+  document.addEventListener("keydown", (e) => { if(e.key==="Escape") closeLightbox(); });
 });
 
 /* =========================
-   MOBILE FRIENDLY DROPDOWN
+   MOBILE-FRIENDLY DROPDOWN
 ========================= */
 document.addEventListener("DOMContentLoaded", function () {
   const dropdowns = document.querySelectorAll(".dropdown");
+
   dropdowns.forEach(dropdown => {
     dropdown.addEventListener("click", function(e){
       e.stopPropagation();
