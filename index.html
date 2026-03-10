@@ -8,23 +8,25 @@
 
 <style>
 
-/* HERO INTRO */
+/* FULLSCREEN HERO */
 
 .hero-intro{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
   text-align:center;
-  padding-top:120px;
-  margin-bottom:80px;
+  padding-top:80px;
+  position:relative;
 }
 
-.hero-intro h1,
-.hero-intro h2{
-  font-weight:800;
-  display:block;
-  text-align:center;
-}
+/* HERO TEXT */
 
 .hero-intro h1{
-  font-size:72px;
+  font-size:96px;
+  font-weight:900;
+  letter-spacing:4px;
   margin-bottom:20px;
 }
 
@@ -34,31 +36,47 @@
   color:#333;
 }
 
-/* animated letters */
+/* LETTER ANIMATION */
 
 .hero-intro span{
   opacity:0;
-  transform:translateY(20px);
+  transform:translateY(30px);
   display:inline-block;
-  transition:opacity .8s ease, transform .8s ease;
+  transition:opacity 1s ease, transform 1s ease;
 }
 
+/* SCROLL ARROW */
 
-/* SERVICES */
+.scroll-arrow{
+  position:absolute;
+  bottom:40px;
+  font-size:36px;
+  color:#333;
+  cursor:pointer;
+  animation: bounce 1.6s infinite;
+}
+
+@keyframes bounce{
+  0%,20%,50%,80%,100%{transform:translateY(0);}
+  40%{transform:translateY(-15px);}
+  60%{transform:translateY(-7px);}
+}
+
+/* SERVICES SECTION */
+
+.hero-section{
+  padding-top:120px;
+  padding-bottom:350px;
+}
 
 .services-text{
   text-align:center;
   font-size:32px;
   font-weight:600;
-  line-height:1.6;
-  color:#000;
-
-  margin-top:60vh;
-  margin-bottom:320px;
-
+  line-height:1.7;
   opacity:0;
-  transform:translateY(80px);
-  transition:opacity 1.4s ease, transform 1.4s ease;
+  transform:translateY(100px);
+  transition:opacity 1.6s ease, transform 1.6s ease;
 }
 
 .services-text.visible{
@@ -67,7 +85,7 @@
 }
 
 .services-text h1{
-  font-size:36px;
+  font-size:38px;
   margin-bottom:40px;
 }
 
@@ -80,13 +98,11 @@
 
 <body class="home-page">
 
-
 <!-- VIDEO BACKGROUND -->
 
 <video class="background-video" autoplay muted loop playsinline preload="auto">
 <source src="./image/background.mp4" type="video/mp4">
 </video>
-
 
 <!-- NAVIGATION -->
 
@@ -106,7 +122,6 @@
 <a href="./index.html">Home</a>
 
 <div class="dropdown">
-
 <span class="nav-label">Works</span>
 
 <div class="dropdown-content">
@@ -125,21 +140,21 @@
 
 </nav>
 
-
 <!-- MAIN CONTENT -->
 
 <main class="page-content">
 
+<!-- HERO -->
 
-<!-- HERO INTRO -->
-
-<div class="hero-intro">
+<section class="hero-intro">
 
 <h1 id="dendrite-text">DENDRITE</h1>
 <h2 id="slogan-text">Creative Ideas in Motion</h2>
 
-</div>
+<!-- Scroll Arrow -->
+<div class="scroll-arrow" id="scroll-arrow">&#8595;</div>
 
+</section>
 
 <!-- SERVICES -->
 
@@ -161,95 +176,73 @@
 
 </main>
 
-
 <footer>
 © 2026 Dendrite Creative Studio
 </footer>
 
-
-
 <script src="./main.js"></script>
-
 
 <script>
 
-/* HERO TEXT ANIMATION (SLOWER) */
+/* HERO TEXT ANIMATION */
 
 function animateText(id){
-
-const container=document.getElementById(id);
-if(!container)return;
-
-const text=container.textContent;
-container.textContent="";
-
-text.split("").forEach(function(char,index){
-
-const span=document.createElement("span");
-
-span.textContent=char===" "?"\u00A0":char;
-
-container.appendChild(span);
-
-setTimeout(function(){
-
-span.style.opacity="1";
-span.style.transform="translateY(0)";
-
-},index*90);
-
-});
-
+  const container=document.getElementById(id);
+  if(!container) return;
+  const text=container.textContent;
+  container.textContent="";
+  text.split("").forEach(function(char,index){
+    const span=document.createElement("span");
+    span.textContent=char===" " ? "\u00A0" : char;
+    container.appendChild(span);
+    setTimeout(function(){
+      span.style.opacity="1";
+      span.style.transform="translateY(0)";
+    },index*120);
+  });
 }
 
 window.addEventListener("load",function(){
-
-animateText("dendrite-text");
-animateText("slogan-text");
-
+  animateText("dendrite-text");
+  animateText("slogan-text");
 });
-
 
 /* SERVICES SCROLL REVEAL */
 
 const services=document.querySelector("#services-text");
-
 function revealServices(){
-
-const rect=services.getBoundingClientRect();
-
-if(rect.top < window.innerHeight * 0.85){
-
-services.classList.add("visible");
-
+  const rect=services.getBoundingClientRect();
+  if(rect.top < window.innerHeight*0.85){
+    services.classList.add("visible");
+  }
 }
-
-}
-
 window.addEventListener("scroll",revealServices);
-
 revealServices();
 
-
-/* DROPDOWN FIX */
+/* WORKS DROPDOWN */
 
 const dropdown=document.querySelector(".dropdown");
-
 if(dropdown){
+  dropdown.addEventListener("click",function(e){
+    e.stopPropagation();
+    dropdown.classList.toggle("active");
+  });
+  document.addEventListener("click",function(){
+    dropdown.classList.remove("active");
+  });
+}
 
-dropdown.addEventListener("click",function(e){
+/* SCROLL ARROW FUNCTIONALITY */
 
-e.stopPropagation();
-dropdown.classList.toggle("active");
-
-});
-
-document.addEventListener("click",function(){
-
-dropdown.classList.remove("active");
-
-});
-
+const scrollArrow=document.getElementById("scroll-arrow");
+if(scrollArrow){
+  scrollArrow.addEventListener("click",function(){
+    const offset=services.offsetTop;
+    window.scrollTo({
+      top:offset-50,
+      behavior:"smooth"
+    });
+  });
 }
 
 </script>
