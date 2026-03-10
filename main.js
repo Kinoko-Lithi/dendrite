@@ -1,8 +1,8 @@
 // =============================
-// ANIMATE HERO TEXT
+// HERO TEXT ANIMATION
 // =============================
-window.addEventListener("DOMContentLoaded", function() {
-  function animateText(id) {
+window.addEventListener("DOMContentLoaded", function () {
+  function animateText(id, speed = 80) {
     const container = document.getElementById(id);
     if (!container) return;
 
@@ -15,25 +15,25 @@ window.addEventListener("DOMContentLoaded", function() {
       span.style.opacity = "0";
       span.style.transform = "translateY(20px)";
       span.style.display = "inline-block";
-      span.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+      span.style.transition = `opacity 0.6s ease, transform 0.6s ease`;
 
       container.appendChild(span);
 
       setTimeout(() => {
         span.style.opacity = "1";
         span.style.transform = "translateY(0)";
-      }, index * 80); // slower animation for a professional look
+      }, index * speed);
     });
   }
 
-  animateText("dendrite-text");
-  animateText("slogan-text");
+  animateText("dendrite-text", 100);
+  animateText("slogan-text", 80);
 });
 
 // =============================
 // SERVICES ANIMATION ON SCROLL
 // =============================
-function animateServicesOnScroll() {
+function animateServices() {
   const services = document.getElementById("services-text");
   if (!services) return;
 
@@ -45,43 +45,51 @@ function animateServicesOnScroll() {
   }
 }
 
-window.addEventListener("scroll", animateServicesOnScroll);
-window.addEventListener("resize", animateServicesOnScroll);
+window.addEventListener("scroll", animateServices);
+window.addEventListener("resize", animateServices);
 
 // =============================
-// NAVIGATION DROPDOWN (WORKS ON MOBILE)
+// NAV DROPDOWN
 // =============================
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   const dropdowns = document.querySelectorAll(".dropdown");
 
   dropdowns.forEach(drop => {
     const label = drop.querySelector(".nav-label");
     const menu = drop.querySelector(".dropdown-content");
 
-    // Mobile toggle
+    // Click toggle for mobile
     label.addEventListener("click", e => {
       e.stopPropagation();
-      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-      menu.style.opacity = "0";
-      menu.style.transform = "translateY(-10px)";
-      requestAnimationFrame(() => {
-        menu.style.transition = "opacity 0.3s ease, transform 0.3s ease";
-        menu.style.opacity = "1";
-        menu.style.transform = "translateY(0)";
-      });
+      if (menu.style.display === "flex") {
+        menu.style.opacity = "0";
+        menu.style.transform = "translateY(-10px)";
+        setTimeout(() => (menu.style.display = "none"), 300);
+      } else {
+        menu.style.display = "flex";
+        requestAnimationFrame(() => {
+          menu.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+          menu.style.opacity = "1";
+          menu.style.transform = "translateY(0)";
+        });
+      }
     });
 
     // Close dropdown if click outside
     document.addEventListener("click", () => {
-      menu.style.display = "none";
+      if (menu.style.display === "flex") {
+        menu.style.opacity = "0";
+        menu.style.transform = "translateY(-10px)";
+        setTimeout(() => (menu.style.display = "none"), 300);
+      }
     });
   });
 });
 
 // =============================
-// VIMEO VIDEO GALLERY (OPTIONAL)
+// VIMEO VIDEO GALLERY (if used)
 // =============================
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   const cards = document.querySelectorAll(".video-card");
   const lightbox = document.getElementById("videoLightbox");
 
@@ -99,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.body.style.overflow = "auto";
   }
 
-  cards.forEach(function(card) {
+  cards.forEach(card => {
     const videoId = card.dataset.vimeo;
     if (!videoId) return;
 
@@ -111,12 +119,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     card.appendChild(iframe);
 
-    const randomRotation = (Math.random() * 6 - 3) + "deg";
-    card.style.setProperty("--rotate", randomRotation);
-
-    card.addEventListener("click", function() {
+    card.addEventListener("click", function () {
       if (!lightboxIframe) return;
-
       lightboxIframe.src = buildVimeoURL(videoId, true);
       lightbox.classList.add("active");
       document.body.style.overflow = "hidden";
@@ -124,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   lightbox.addEventListener("click", closeLightbox);
-  document.addEventListener("keydown", function(event) {
-    if (event.key === "Escape") closeLightbox();
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") closeLightbox();
   });
 });
