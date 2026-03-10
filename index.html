@@ -1,302 +1,74 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-<meta charset="UTF-8">
-<title>Dendrite Creative Studio — Home</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="./style.css">
-<style>
-  /* ============================= */
-  /* HERO INTRO */
-  /* ============================= */
-  .hero-intro {
-    text-align: center;
-    padding-top: 150px; /* center vertically */
-    margin-bottom: 50px;
-  }
-
-  .hero-intro h1 {
-    font-size: 72px;
-    font-weight: 800;
-    margin-bottom: 15px;
-  }
-
-  .hero-intro h2 {
-    font-size: 28px;
-    font-weight: 500;
-    color: #333;
-    margin-top: 0;
-  }
-
-  .hero-intro span {
-    opacity: 0;
-    display: inline-block;
-    transform: translateY(20px);
-    transition: opacity 1s ease, transform 1s ease;
-  }
-
-  /* Arrow between hero and services */
-  .hero-arrow {
-    display: block;
-    font-size: 36px;
-    margin: 20px auto;
-    color: #333;
-    animation: bounce 1.5s infinite;
-  }
-
-  @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-15px); }
-    60% { transform: translateY(-7px); }
-  }
-
-  /* ============================= */
-  /* SERVICES */
-  /* ============================= */
-  .services-text {
-    text-align: center;
-    font-size: 28px; /* slightly smaller */
-    font-weight: 600;
-    line-height: 1.6;
-    color: #000;
-    margin-top: 80vh; /* push down for scrolling */
-    margin-bottom: 150px; /* space to footer */
-  }
-
-  .services-text p {
-    margin-bottom: 25px;
-  }
-
-  .services-text span {
-    display: inline-block;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1s ease, transform 1s ease;
-  }
-
-  /* ============================= */
-  /* NAVIGATION */
-  /* ============================= */
-  .nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 70px;
-    background: rgba(255,255,255,0.9);
-    border-bottom: 1px solid #eee;
-    z-index: 1000;
-  }
-
-  .nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 40px;
-  }
-
-  .logo-wrap {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .logo-wrap img { height: 40px; }
-  .logo-text { font-weight: 600; font-size: 14px; }
-
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-  }
-
-  .nav-links a,
-  .nav-label {
-    text-decoration: none;
-    color: #000;
-    font-weight: 500;
-    font-size: 15px;
-    cursor: pointer;
-  }
-
-  /* Animated dropdown */
-  .dropdown {
-    position: relative;
-  }
-
-  .dropdown-content {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: #fff;
-    border: 1px solid #eee;
-    display: flex;
-    flex-direction: column;
-    min-width: 140px;
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.5s ease;
-    z-index: 1000;
-  }
-
-  .dropdown-content a {
-    padding: 8px 15px;
-    color: #000;
-  }
-
-  .dropdown:hover .dropdown-content {
-    max-height: 500px; /* expand smoothly */
-  }
-
-  /* ============================= */
-  /* BACKGROUND VIDEO */
-  /* ============================= */
-  .background-video {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    object-fit: cover;
-    z-index: -1;
-  }
-
-  /* ============================= */
-  /* FOOTER */
-  /* ============================= */
-  footer {
-    padding: 30px;
-    text-align: center;
-    background: #d9d9d9;
-    border-top: 1px solid #eee;
-    font-size: 14px;
-  }
-
-  /* ============================= */
-  /* RESPONSIVE */
-  /* ============================= */
-  @media (max-width: 768px) {
-    .hero-intro h1 { font-size: 48px; }
-    .hero-intro h2 { font-size: 22px; }
-    .services-text { font-size: 20px; margin-top: 60vh; }
-  }
-
-</style>
+  <meta charset="UTF-8">
+  <title>Dendrite Creative Studio — Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
 </head>
+
 <body class="home-page">
 
-<!-- VIDEO BACKGROUND -->
-<video class="background-video" autoplay muted loop playsinline preload="auto">
-  <source src="./image/background.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+  <!-- VIDEO BACKGROUND -->
+  <video class="background-video" autoplay muted loop playsinline preload="auto">
+    <source src="./image/background.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
 
-<!-- NAVIGATION -->
-<nav class="nav">
-  <div class="nav-container">
-    <div class="logo-wrap">
-      <a href="./index.html">
-        <img src="./image/logo.png" alt="Dendrite Creative Studio Logo">
-      </a>
-      <span class="logo-text">DENDRITE CREATIVE STUDIO</span>
-    </div>
-
-    <div class="nav-links">
-      <a href="./index.html">Home</a>
-      <div class="dropdown">
-        <span class="nav-label">Works</span>
-        <div class="dropdown-content">
-          <a href="./videos.html">Videos</a>
-          <a href="./images.html">Images</a>
-        </div>
+  <!-- NAVIGATION -->
+  <nav class="nav">
+    <div class="nav-container">
+      <div class="logo-wrap">
+        <a href="./index.html">
+          <img src="./image/logo.png" alt="Dendrite Creative Studio Logo">
+        </a>
+        <span class="logo-text">DENDRITE CREATIVE STUDIO</span>
       </div>
-      <a href="./about.html">About</a>
-      <a href="./contact.html">Contact</a>
+
+      <div class="nav-links">
+        <a href="./index.html">Home</a>
+        <div class="dropdown">
+          <span class="nav-label">Works</span>
+          <div class="dropdown-content">
+            <a href="./videos.html">Videos</a>
+            <a href="./images.html">Images</a>
+          </div>
+        </div>
+        <a href="./about.html">About</a>
+        <a href="./contact.html">Contact</a>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<!-- MAIN CONTENT -->
-<main class="page-content">
+  <!-- MAIN CONTENT -->
+  <main class="page-content">
 
-  <!-- HERO INTRO -->
-  <div class="hero-intro">
-    <h1 id="dendrite-text">DENDRITE</h1>
-    <div class="hero-arrow">↓</div>
-    <h2 id="slogan-text">Creative Ideas in Motion</h2>
-  </div>
-
-  <!-- SERVICES SECTION -->
-  <section class="hero-section">
-    <div class="services-text" id="services-text">
-      <p>Graphic Design</p>
-      <p>Music & Sound Design</p>
-      <p>Video Art | Motion Graphics</p>
-      <p>Live Stage Visuals</p>
-      <p>Web Design | Web Development</p>
+    <!-- HERO INTRO -->
+    <div class="hero-intro">
+      <h1 id="dendrite-text">DENDRITE</h1>
+      <h2 id="slogan-text">Creative Ideas in Motion</h2>
+      <div class="hero-arrow">↓</div>
     </div>
-  </section>
 
-</main>
+    <!-- HERO SERVICES SECTION -->
+    <section class="hero-section">
+      <div class="services-text" id="services-text">
+        <p>Graphic Design</p>
+        <p>Music & Sound Design</p>
+        <p>Video Art | Motion Graphics</p>
+        <p>Live Stage Visuals</p>
+        <p>Web Design | Web Development</p>
+      </div>
+    </section>
 
-<!-- FOOTER -->
-<footer>
-  © 2026 Dendrite Creative Studio
-</footer>
+  </main>
 
-<!-- JAVASCRIPT -->
-<script>
-  // Animate hero text
-  window.addEventListener("DOMContentLoaded", function() {
-    function animateText(id) {
-      const container = document.getElementById(id);
-      if (!container) return;
-      const text = container.textContent;
-      container.textContent = "";
-      text.split("").forEach((char, index) => {
-        const span = document.createElement("span");
-        span.textContent = char === " " ? "\u00A0" : char;
-        span.style.opacity = 0;
-        span.style.transform = "translateY(20px)";
-        container.appendChild(span);
-        setTimeout(() => {
-          span.style.opacity = 1;
-          span.style.transform = "translateY(0)";
-        }, index * 80); // longer animation
-      });
-    }
-    animateText("dendrite-text");
-    animateText("slogan-text");
-  });
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Dendrite Creative Studio
+  </footer>
 
-  // Animate services on scroll
-  const services = document.getElementById("services-text");
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        const paragraphs = services.querySelectorAll("p");
-        paragraphs.forEach((p, idx) => {
-          const chars = p.textContent.split("");
-          p.textContent = "";
-          chars.forEach((c, i) => {
-            const span = document.createElement("span");
-            span.textContent = c === " " ? "\u00A0" : c;
-            span.style.opacity = 0;
-            span.style.transform = "translateY(20px)";
-            span.style.display = "inline-block";
-            span.style.transition = "opacity 1s ease, transform 1s ease";
-            p.appendChild(span);
-            setTimeout(() => {
-              span.style.opacity = 1;
-              span.style.transform = "translateY(0)";
-            }, i * 80 + idx * 400);
-          });
-        });
-      }
-    });
-  }, {threshold: 0.3});
-  observer.observe(services);
-</script>
-
+  <!-- JAVASCRIPT -->
+  <script src="./main.js"></script>
 </body>
 </html>
