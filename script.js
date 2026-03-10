@@ -1,92 +1,81 @@
-/* =========================
-   SERVICES TEXT ANIMATION
-========================= */
+window.addEventListener("DOMContentLoaded", function() {
 
-window.addEventListener("load", function () {
-  const container = document.getElementById("services-text");
-  if (!container) return;
-
-  const paragraphs = container.querySelectorAll("p");
-
-  paragraphs.forEach(function (paragraph, paragraphIndex) {
-    const content = paragraph.textContent;
-    paragraph.textContent = "";
-
-    content.split("").forEach(function (character, charIndex) {
-      const span = document.createElement("span");
-
-      span.textContent = character === " " ? "\u00A0" : character;
-      span.style.opacity = "0";
-      span.style.transform = "translateY(8px)";
-      span.style.display = "inline-block";
-      span.style.transition = "opacity 0.4s ease, transform 0.4s ease";
-
-      paragraph.appendChild(span);
-
-      setTimeout(function () {
-        span.style.opacity = "1";
-        span.style.transform = "translateY(0)";
-      }, charIndex * 40 + paragraphIndex * 250);
+  // HERO TEXT ANIMATION
+  function animateText(id, duration=150){
+    const container=document.getElementById(id);
+    if(!container) return;
+    const text=container.textContent;
+    container.textContent="";
+    text.split("").forEach((char,index)=>{
+      const span=document.createElement("span");
+      span.textContent=char===" "?"\u00A0":char;
+      span.style.opacity="0";
+      span.style.transform="translateY(20px)";
+      span.style.display="inline-block";
+      span.style.transition="opacity 0.5s ease, transform 0.5s ease";
+      container.appendChild(span);
+      setTimeout(()=>{ span.style.opacity="1"; span.style.transform="translateY(0)"; }, index*duration);
     });
-  });
-});
-
-
-/* =========================
-   VIMEO VIDEO GALLERY
-========================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-  const cards = document.querySelectorAll(".video-card");
-  const lightbox = document.getElementById("videoLightbox");
-
-  if (!cards.length || !lightbox) return;
-
-  const lightboxIframe = lightbox.querySelector("iframe");
-
-  function buildVimeoURL(id, autoplay) {
-    return `https://player.vimeo.com/video/${id}?autoplay=${autoplay ? 1 : 0}&loop=0&muted=0`;
   }
 
-  function closeLightbox() {
-    lightbox.classList.remove("active");
-    if (lightboxIframe) lightboxIframe.src = "";
-    document.body.style.overflow = "auto";
+  animateText("dendrite-text", 150);
+  animateText("slogan-text", 150);
+
+  // SERVICES TEXT ANIMATION
+  const services=document.getElementById("services-text");
+  if(services){
+    const lines=services.querySelectorAll("p");
+    lines.forEach((line,lineIndex)=>{
+      const text=line.textContent;
+      line.textContent="";
+      text.split("").forEach((char,charIndex)=>{
+        const span=document.createElement("span");
+        span.textContent=char===" "?"\u00A0":char;
+        span.style.opacity="0";
+        span.style.transform="translateY(8px)";
+        span.style.display="inline-block";
+        span.style.transition="opacity 0.5s ease, transform 0.5s ease";
+        line.appendChild(span);
+        setTimeout(()=>{ span.style.opacity="1"; span.style.transform="translateY(0)"; }, charIndex*50+lineIndex*200);
+      });
+    });
   }
 
-  cards.forEach(function (card) {
-    const videoId = card.dataset.vimeo;
-    if (!videoId) return;
-
-    /* Create embedded preview iframe */
-    const iframe = document.createElement("iframe");
-    iframe.src = buildVimeoURL(videoId, false);
-    iframe.frameBorder = "0";
-    iframe.allow = "autoplay; fullscreen; picture-in-picture";
-    iframe.allowFullscreen = true;
-
-    card.appendChild(iframe);
-
-    /* Random slight rotation */
-    const randomRotation = (Math.random() * 6 - 3) + "deg";
-    card.style.setProperty("--rotate", randomRotation);
-
-    /* Open lightbox on click */
-    card.addEventListener("click", function () {
-      if (!lightboxIframe) return;
-
-      lightboxIframe.src = buildVimeoURL(videoId, true);
-      lightbox.classList.add("active");
-      document.body.style.overflow = "hidden";
+  // NAV DROPDOWN ANIMATION (desktop + touch)
+  const dropdowns=document.querySelectorAll(".dropdown");
+  dropdowns.forEach(dropdown=>{
+    const btn=dropdown.querySelector(".nav-label");
+    btn.addEventListener("click", e=>{
+      e.stopPropagation();
+      dropdown.classList.toggle("active");
+      const items=dropdown.querySelectorAll(".dropdown-content a");
+      items.forEach((item,i)=>{ item.style.transitionDelay=`${i*0.08}s`; });
     });
+    document.addEventListener("click", ()=>{ dropdown.classList.remove("active"); });
   });
 
-  /* Close lightbox */
-  lightbox.addEventListener("click", closeLightbox);
+  // VIDEO LIGHTBOX
+  const cards=document.querySelectorAll(".video-card");
+  const lightbox=document.getElementById("videoLightbox");
+  if(cards.length && lightbox){
+    const iframe=lightbox.querySelector("iframe");
+    function buildVimeoURL(id,autoplay){ return `https://player.vimeo.com/video/${id}?autoplay=${autoplay?1:0}&loop=0&muted=0`; }
+    function closeLightbox(){ lightbox.classList.remove("active"); if(iframe) iframe.src=""; document.body.style.overflow="auto"; }
+    cards.forEach(card=>{
+      const videoId=card.dataset.vimeo;
+      if(!videoId) return;
+      const f=document.createElement("iframe");
+      f.src=buildVimeoURL(videoId,false); f.frameBorder="0"; f.allow="autoplay; fullscreen; picture-in-picture"; f.allowFullscreen=true;
+      card.appendChild(f);
+      card.addEventListener("click", ()=>{
+        if(!iframe) return;
+        iframe.src=buildVimeoURL(videoId,true);
+        lightbox.classList.add("active");
+        document.body.style.overflow="hidden";
+      });
+    });
+    lightbox.addEventListener("click", closeLightbox);
+    document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeLightbox(); });
+  }
 
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape") {
-      closeLightbox();
-    }
-  });
 });
