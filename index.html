@@ -5,88 +5,6 @@
 <title>Dendrite Creative Studio — Home</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="./style.css">
-<style>
-  /* HERO INTRO ABOVE SERVICES */
-  .hero-intro {
-    text-align: center;
-    padding-top: 120px;       /* space from top */
-    margin-bottom: 40px;      /* distance to services */
-  }
-
-  .hero-intro h1,
-  .hero-intro h2 {
-    font-weight: 800;
-    display: block;           /* vertical stacking */
-    text-align: center;
-  }
-
-  .hero-intro h1 {
-    font-size: 72px;
-    margin-bottom: 20px;
-  }
-
-  .hero-intro h2 {
-    font-size: 28px;
-    font-weight: 500;
-    color: #333;
-    margin-top: 0;
-  }
-
-  .hero-intro span {
-    opacity: 0;
-    transform: translateY(20px);
-    display: inline-block;
-    transition: opacity 1s ease, transform 1s ease; /* longer animation */
-  }
-
-  /* SERVICES TEXT - pushed down for scrolling */
-  .services-text {
-    text-align: center;
-    font-size: 32px;
-    font-weight: 600;
-    line-height: 1.6;
-    color: #000;
-    margin-top: 70vh; /* scroll distance */
-  }
-
-  .services-text p {
-    margin-bottom: 25px;
-  }
-
-  /* =============================
-     NAVIGATION DROPDOWN ANIMATION
-  ============================= */
-  .dropdown-content {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: #fff;
-    border: 1px solid #eee;
-    min-width: 140px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    max-height: 0;
-    opacity: 0;
-    transition: max-height 0.4s ease, opacity 0.4s ease;
-    z-index: 1000;
-  }
-
-  .dropdown.active .dropdown-content {
-    max-height: 500px; /* enough for all links */
-    opacity: 1;
-  }
-
-  .dropdown-content a {
-    padding: 10px 15px;
-    text-decoration: none;
-    color: #000;
-  }
-
-  .dropdown-content a:hover {
-    background: #f5f5f5;
-  }
-</style>
 </head>
 <body class="home-page">
 
@@ -108,15 +26,13 @@
 
     <div class="nav-links">
       <a href="./index.html">Home</a>
-
       <div class="dropdown">
-        <button class="nav-label">Works ▼</button>
+        <span class="nav-label">Works</span>
         <div class="dropdown-content">
           <a href="./videos.html">Videos</a>
           <a href="./images.html">Images</a>
         </div>
       </div>
-
       <a href="./about.html">About</a>
       <a href="./contact.html">Contact</a>
     </div>
@@ -135,7 +51,6 @@
   <!-- HERO SERVICES SECTION -->
   <section class="hero-section">
     <div class="services-text" id="services-text">
-      <h1>What we can do for you</h1>
       <p>Graphic Design</p>
       <p>Music & Sound Design</p>
       <p>Video Art | Motion Graphics</p>
@@ -151,50 +66,6 @@
   © 2026 Dendrite Creative Studio
 </footer>
 
-<!-- JAVASCRIPT -->
-<script>
-window.addEventListener("DOMContentLoaded", function() {
-  function animateText(id) {
-    const container = document.getElementById(id);
-    if (!container) return;
-
-    const text = container.textContent;
-    container.textContent = "";
-
-    text.split("").forEach((char, index) => {
-      const span = document.createElement("span");
-      span.textContent = char === " " ? "\u00A0" : char;
-      span.style.opacity = "0";
-      span.style.transform = "translateY(20px)";
-      container.appendChild(span);
-
-      setTimeout(() => {
-        span.style.opacity = "1";
-        span.style.transform = "translateY(0)";
-      }, index * 100); /* longer animation */
-    });
-  }
-
-  animateText("dendrite-text");
-  animateText("slogan-text");
-
-  // NAV DROPDOWN FOR MOBILE & TOUCH
-  const dropdowns = document.querySelectorAll(".dropdown");
-  dropdowns.forEach(dropdown => {
-    const btn = dropdown.querySelector(".nav-label");
-
-    btn.addEventListener("click", e => {
-      e.stopPropagation();
-      dropdown.classList.toggle("active");
-    });
-
-    // Close if click outside
-    document.addEventListener("click", () => {
-      dropdown.classList.remove("active");
-    });
-  });
-});
-</script>
-
+<script src="./main.js"></script>
 </body>
 </html>
