@@ -1,74 +1,156 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-  <meta charset="UTF-8">
-  <title>Dendrite Creative Studio — Home</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./style.css">
-</head>
+<meta charset="UTF-8">
+<title>Dendrite Creative Studio — Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="./style.css">
+<style>
+/* Hero arrow */
+.hero-arrow {
+  display: block;
+  margin: 20px auto 0 auto;
+  font-size: 32px;
+  color: #333;
+  animation: bounce 2s infinite;
+}
 
+/* Bounce animation for arrow */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-15px); }
+  60% { transform: translateY(-8px); }
+}
+</style>
+</head>
 <body class="home-page">
 
-  <!-- VIDEO BACKGROUND -->
-  <video class="background-video" autoplay muted loop playsinline preload="auto">
-    <source src="./image/background.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+<!-- VIDEO BACKGROUND -->
+<video class="background-video" autoplay muted loop playsinline preload="auto">
+  <source src="./image/background.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
-  <!-- NAVIGATION -->
-  <nav class="nav">
-    <div class="nav-container">
-      <div class="logo-wrap">
-        <a href="./index.html">
-          <img src="./image/logo.png" alt="Dendrite Creative Studio Logo">
-        </a>
-        <span class="logo-text">DENDRITE CREATIVE STUDIO</span>
-      </div>
+<!-- NAVIGATION -->
+<nav class="nav">
+  <div class="nav-container">
+    <div class="logo-wrap">
+      <a href="./index.html">
+        <img src="./image/logo.png" alt="Dendrite Creative Studio Logo">
+      </a>
+      <span class="logo-text">DENDRITE CREATIVE STUDIO</span>
+    </div>
 
-      <div class="nav-links">
-        <a href="./index.html">Home</a>
-        <div class="dropdown">
-          <span class="nav-label">Works</span>
-          <div class="dropdown-content">
-            <a href="./videos.html">Videos</a>
-            <a href="./images.html">Images</a>
-          </div>
+    <div class="nav-links">
+      <a href="./index.html">Home</a>
+      <div class="dropdown">
+        <span class="nav-label">Works</span>
+        <div class="dropdown-content">
+          <a href="./videos.html">Videos</a>
+          <a href="./images.html">Images</a>
         </div>
-        <a href="./about.html">About</a>
-        <a href="./contact.html">Contact</a>
       </div>
+      <a href="./about.html">About</a>
+      <a href="./contact.html">Contact</a>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <!-- MAIN CONTENT -->
-  <main class="page-content">
+<!-- MAIN CONTENT -->
+<main class="page-content">
 
-    <!-- HERO INTRO -->
-    <div class="hero-intro">
-      <h1 id="dendrite-text">DENDRITE</h1>
-      <h2 id="slogan-text">Creative Ideas in Motion</h2>
-      <div class="hero-arrow">↓</div>
+  <!-- HERO INTRO -->
+  <div class="hero-intro">
+    <h1 id="dendrite-text">DENDRITE</h1>
+    <h2 id="slogan-text">Creative Ideas in Motion</h2>
+    <span class="hero-arrow">⬇</span>
+  </div>
+
+  <!-- HERO SERVICES SECTION -->
+  <section class="hero-section">
+    <div class="services-text" id="services-text">
+      <p>Graphic Design</p>
+      <p>Music & Sound Design</p>
+      <p>Video Art | Motion Graphics</p>
+      <p>Live Stage Visuals</p>
+      <p>Web Design | Web Development</p>
     </div>
+  </section>
 
-    <!-- HERO SERVICES SECTION -->
-    <section class="hero-section">
-      <div class="services-text" id="services-text">
-        <p>Graphic Design</p>
-        <p>Music & Sound Design</p>
-        <p>Video Art | Motion Graphics</p>
-        <p>Live Stage Visuals</p>
-        <p>Web Design | Web Development</p>
-      </div>
-    </section>
+</main>
 
-  </main>
+<!-- FOOTER -->
+<footer>
+  © 2026 Dendrite Creative Studio
+</footer>
 
-  <!-- FOOTER -->
-  <footer>
-    © 2026 Dendrite Creative Studio
-  </footer>
+<!-- JAVASCRIPT -->
+<script>
+// Animated hero text
+window.addEventListener("DOMContentLoaded", function() {
+  function animateText(id, delay = 50) {
+    const container = document.getElementById(id);
+    if (!container) return;
+    const text = container.textContent;
+    container.textContent = "";
+    text.split("").forEach((char, i) => {
+      const span = document.createElement("span");
+      span.textContent = char === " " ? "\u00A0" : char;
+      span.style.opacity = "0";
+      span.style.transform = "translateY(20px)";
+      span.style.display = "inline-block";
+      span.style.transition = `opacity 0.8s ease, transform 0.8s ease`;
+      container.appendChild(span);
+      setTimeout(() => {
+        span.style.opacity = "1";
+        span.style.transform = "translateY(0)";
+      }, i * delay);
+    });
+  }
+  animateText("dendrite-text", 80);
+  animateText("slogan-text", 80);
+});
 
-  <!-- JAVASCRIPT -->
-  <script src="./main.js"></script>
+// Dropdown animation
+document.querySelectorAll('.dropdown').forEach(dropdown => {
+  const label = dropdown.querySelector('.nav-label');
+  const content = dropdown.querySelector('.dropdown-content');
+
+  label.addEventListener('mouseenter', () => {
+    content.style.display = 'flex';
+    requestAnimationFrame(() => {
+      content.style.opacity = '1';
+      content.style.transform = 'translateY(0)';
+    });
+  });
+
+  dropdown.addEventListener('mouseleave', () => {
+    content.style.opacity = '0';
+    content.style.transform = 'translateY(-10px)';
+    setTimeout(() => { content.style.display = 'none'; }, 300);
+  });
+});
+
+// Scroll-based services animation
+function isElementInViewport(el) {
+  const rect = el.getBoundingClientRect();
+  return rect.top < window.innerHeight && rect.bottom >= 0;
+}
+
+function handleScrollAnimation() {
+  const services = document.getElementById('services-text');
+  if (!services) return;
+  if (isElementInViewport(services)) {
+    services.classList.add('visible');
+  } else {
+    services.classList.remove('visible');
+  }
+}
+
+window.addEventListener('scroll', handleScrollAnimation);
+window.addEventListener('resize', handleScrollAnimation);
+handleScrollAnimation();
+</script>
+
 </body>
 </html>
