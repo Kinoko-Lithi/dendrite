@@ -1,8 +1,8 @@
 /* =============================
-   HERO TEXT ANIMATION
+   HERO & SERVICES TEXT ANIMATION
 ============================= */
 window.addEventListener("DOMContentLoaded", function() {
-  function animateText(id, duration = 100) {
+  function animateText(id, duration = 150) {
     const container = document.getElementById(id);
     if (!container) return;
 
@@ -23,8 +23,31 @@ window.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-  animateText("dendrite-text", 150); // slower, longer animation
+  animateText("dendrite-text", 150);
   animateText("slogan-text", 150);
+
+  // Services animation
+  const servicesContainer = document.getElementById("services-text");
+  if (servicesContainer) {
+    const lines = servicesContainer.querySelectorAll("p");
+    lines.forEach((line, lineIndex) => {
+      const text = line.textContent;
+      line.textContent = "";
+
+      text.split("").forEach((char, charIndex) => {
+        const span = document.createElement("span");
+        span.textContent = char === " " ? "\u00A0" : char;
+        span.style.opacity = "0";
+        span.style.transform = "translateY(8px)";
+        line.appendChild(span);
+
+        setTimeout(() => {
+          span.style.opacity = "1";
+          span.style.transform = "translateY(0)";
+        }, charIndex * 40 + lineIndex * 250);
+      });
+    });
+  }
 
   /* =============================
      NAV DROPDOWN ANIMATION
