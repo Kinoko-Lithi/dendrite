@@ -1,8 +1,142 @@
-/* =========================
-   HERO INTRO ANIMATION
-========================= */
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<title>Dendrite Creative Studio — Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="./style.css">
+<style>
+/* HERO INTRO */
+.hero-intro {
+  text-align: center;
+  padding-top: 180px; /* Push DENDRITE down from top */
+  margin-bottom: 20px;
+}
+
+.hero-intro h1, .hero-intro h2 {
+  display: block;
+  font-weight: 800;
+  text-align: center;
+}
+
+.hero-intro h1 {
+  font-size: 72px;
+  margin-bottom: 20px;
+}
+
+.hero-intro h2 {
+  font-size: 28px;
+  font-weight: 500;
+  color: #333;
+  margin-top: 0;
+}
+
+/* Animate letters */
+.hero-intro span {
+  opacity: 0;
+  transform: translateY(20px);
+  display: inline-block;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+/* DOWN ARROW */
+.down-arrow {
+  font-size: 48px;
+  color: #333;
+  margin: 40px auto 0;
+  text-align: center;
+  display: block;
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-15px); }
+  60% { transform: translateY(-7px); }
+}
+
+/* SERVICES TEXT */
+.services-text {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #000;
+  margin-top: 60vh;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.services-text.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.services-text p {
+  margin-bottom: 20px;
+}
+</style>
+</head>
+<body class="home-page">
+
+<!-- VIDEO BACKGROUND -->
+<video class="background-video" autoplay muted loop playsinline preload="auto">
+  <source src="./image/background.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <div class="nav-container">
+    <div class="logo-wrap">
+      <a href="./index.html"><img src="./image/logo.png" alt="Dendrite Creative Studio Logo"></a>
+      <span class="logo-text">DENDRITE CREATIVE STUDIO</span>
+    </div>
+    <div class="nav-links">
+      <a href="./index.html">Home</a>
+      <div class="dropdown">
+        <span class="nav-label">Works</span>
+        <div class="dropdown-content">
+          <a href="./videos.html">Videos</a>
+          <a href="./images.html">Images</a>
+        </div>
+      </div>
+      <a href="./about.html">About</a>
+      <a href="./contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO INTRO -->
+<div class="hero-intro">
+  <h1 id="dendrite-text">DENDRITE</h1>
+  <h2 id="slogan-text">Creative Ideas in Motion</h2>
+  <span class="down-arrow">&#x2193;</span> <!-- Down arrow -->
+</div>
+
+<!-- SERVICES SECTION -->
+<section class="hero-section">
+  <div class="services-text" id="services-text">
+    <h1>What we can do for you</h1>
+    <p>Graphic Design</p>
+    <p>Music & Sound Design</p>
+    <p>Video Art | Motion Graphics</p>
+    <p>Live Stage Visuals</p>
+    <p>Web Design | Web Development</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 Dendrite Creative Studio
+</footer>
+
+<!-- JAVASCRIPT -->
+<script>
+// Animate hero text letters
 window.addEventListener("DOMContentLoaded", function() {
-  function animateText(id, delay = 50) {
+  function animateText(id) {
     const container = document.getElementById(id);
     if (!container) return;
 
@@ -19,115 +153,26 @@ window.addEventListener("DOMContentLoaded", function() {
       setTimeout(() => {
         span.style.opacity = "1";
         span.style.transform = "translateY(0)";
-      }, index * delay);
+      }, index * 80); // slower animation
     });
   }
 
-  animateText("dendrite-text", 60);
-  animateText("slogan-text", 60);
+  animateText("dendrite-text");
+  animateText("slogan-text");
 });
 
-
-/* =========================
-   SERVICES SCROLL ANIMATION
-========================= */
-function animateServicesOnScroll() {
-  const services = document.getElementById("services-text");
-  if (!services) return;
-
-  const serviceItems = services.querySelectorAll("p, h1");
-
-  function checkVisibility() {
-    const rect = services.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-
-    if (rect.top < windowHeight * 0.8) {
-      services.classList.add("visible");
-      window.removeEventListener("scroll", checkVisibility);
-    }
+// Scroll-triggered services animation
+const services = document.getElementById("services-text");
+function revealServices() {
+  const triggerBottom = window.innerHeight * 0.85;
+  const serviceTop = services.getBoundingClientRect().top;
+  if(serviceTop < triggerBottom) {
+    services.classList.add("visible");
   }
-
-  window.addEventListener("scroll", checkVisibility);
-  checkVisibility(); // trigger immediately in case already visible
 }
-window.addEventListener("DOMContentLoaded", animateServicesOnScroll);
+window.addEventListener("scroll", revealServices);
+revealServices(); // in case already in view
+</script>
 
-
-/* =========================
-   VIDEO LIGHTBOX
-========================= */
-document.addEventListener("DOMContentLoaded", function() {
-  const cards = document.querySelectorAll(".video-card");
-  const lightbox = document.getElementById("videoLightbox");
-  if (!cards.length || !lightbox) return;
-
-  const lightboxIframe = lightbox.querySelector("iframe");
-
-  function buildVimeoURL(id, autoplay) {
-    return `https://player.vimeo.com/video/${id}?autoplay=${autoplay?1:0}&loop=0&muted=0`;
-  }
-
-  function closeLightbox() {
-    lightbox.classList.remove("active");
-    if(lightboxIframe) lightboxIframe.src = "";
-    document.body.style.overflow = "auto";
-  }
-
-  cards.forEach(card => {
-    const videoId = card.dataset.vimeo;
-    if (!videoId) return;
-
-    const iframe = document.createElement("iframe");
-    iframe.src = buildVimeoURL(videoId, false);
-    iframe.frameBorder = "0";
-    iframe.allow = "autoplay; fullscreen; picture-in-picture";
-    iframe.allowFullscreen = true;
-    card.appendChild(iframe);
-
-    // Random slight rotation
-    const randomRotation = (Math.random()*6 - 3) + "deg";
-    card.style.setProperty("--rotate", randomRotation);
-
-    card.addEventListener("click", () => {
-      if(!lightboxIframe) return;
-      lightboxIframe.src = buildVimeoURL(videoId, true);
-      lightbox.classList.add("active");
-      document.body.style.overflow = "hidden";
-    });
-  });
-
-  lightbox.addEventListener("click", closeLightbox);
-  document.addEventListener("keydown", e => {
-    if(e.key === "Escape") closeLightbox();
-  });
-});
-
-
-/* =========================
-   DROPDOWN MENU TOUCH SUPPORT
-========================= */
-document.addEventListener("DOMContentLoaded", function() {
-  const dropdowns = document.querySelectorAll(".dropdown");
-
-  dropdowns.forEach(drop => {
-    // For touch devices, toggle on click
-    drop.addEventListener("click", e => {
-      // Ignore clicks on inner links
-      if(e.target.tagName.toLowerCase() === 'a') return;
-
-      // Close others
-      dropdowns.forEach(d => {
-        if(d !== drop) d.classList.remove("open");
-      });
-
-      drop.classList.toggle("open");
-    });
-  });
-
-  // Close dropdowns if clicking outside
-  document.addEventListener("click", e => {
-    dropdowns.forEach(drop => {
-      if(!drop.contains(e.target)) drop.classList.remove("open");
-    });
-  });
-});
+</body>
+</html>
