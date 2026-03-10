@@ -268,7 +268,7 @@ body{
 .video-card{
   aspect-ratio:16/9;
   overflow:hidden;
-  border-radius:12px;
+  border-radius:0;
 }
 
 .video-card iframe{
