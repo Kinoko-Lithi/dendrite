@@ -1,8 +1,8 @@
 /* =========================
    HERO TEXT ANIMATION (DENDRITE + SLOGAN)
 ========================= */
-document.addEventListener("DOMContentLoaded", function() {
-  function animateText(id, duration = 50) {
+window.addEventListener("DOMContentLoaded", function() {
+  function animateText(id, delay = 50) {
     const container = document.getElementById(id);
     if (!container) return;
 
@@ -15,74 +15,65 @@ document.addEventListener("DOMContentLoaded", function() {
       span.style.opacity = "0";
       span.style.transform = "translateY(20px)";
       span.style.display = "inline-block";
-      span.style.transition = `opacity ${duration}ms ease, transform ${duration}ms ease`;
+      span.style.transition = `opacity 0.7s ease, transform 0.7s ease`;
       container.appendChild(span);
 
       setTimeout(() => {
         span.style.opacity = "1";
         span.style.transform = "translateY(0)";
-      }, index * duration);
+      }, index * delay);
     });
   }
 
-  animateText("dendrite-text", 80);
-  animateText("slogan-text", 80);
+  animateText("dendrite-text", 60);
+  animateText("slogan-text", 60);
 });
 
+
 /* =========================
-   SERVICES SCROLL ANIMATION
+   SERVICES ANIMATION ON SCROLL
 ========================= */
-document.addEventListener("DOMContentLoaded", function() {
-  const services = document.querySelectorAll(".services-text p");
+window.addEventListener("scroll", function() {
+  const services = document.getElementById("services-text");
+  if (!services) return;
 
-  const options = {
-    root: null,
-    rootMargin: "0px",
-    threshold: 0.2
-  };
+  const rect = services.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
 
-  const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // Animate each character
-        const text = entry.target.textContent;
-        entry.target.textContent = "";
-        text.split("").forEach((char, idx) => {
+  if (rect.top < windowHeight - 100) {
+    services.querySelectorAll("p").forEach((line, lineIndex) => {
+      if (!line.classList.contains("animated")) {
+        line.classList.add("animated");
+        const text = line.textContent;
+        line.textContent = "";
+
+        text.split("").forEach((char, charIndex) => {
           const span = document.createElement("span");
           span.textContent = char === " " ? "\u00A0" : char;
           span.style.opacity = "0";
           span.style.transform = "translateY(20px)";
           span.style.display = "inline-block";
-          span.style.transition = "opacity 0.8s ease, transform 0.8s ease";
-          entry.target.appendChild(span);
+          span.style.transition = `opacity 0.6s ease, transform 0.6s ease`;
+          line.appendChild(span);
 
           setTimeout(() => {
             span.style.opacity = "1";
             span.style.transform = "translateY(0)";
-          }, idx * 50);
+          }, charIndex * 30 + lineIndex * 150);
         });
-      } else {
-        // Reset text for re-animation
-        entry.target.style.opacity = "0";
-        entry.target.style.transform = "translateY(20px)";
-        entry.target.innerHTML = entry.target.textContent;
       }
     });
-  }, options);
-
-  services.forEach(p => {
-    p.style.opacity = "0";
-    p.style.transform = "translateY(20px)";
-    observer.observe(p);
-  });
+  }
 });
+
 
 /* =========================
    VIMEO VIDEO GALLERY
 ========================= */
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   const cards = document.querySelectorAll(".video-card");
   const lightbox = document.getElementById("videoLightbox");
+
   if (!cards.length || !lightbox) return;
 
   const lightboxIframe = lightbox.querySelector("iframe");
@@ -97,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.body.style.overflow = "auto";
   }
 
-  cards.forEach(function(card) {
+  cards.forEach(function (card) {
     const videoId = card.dataset.vimeo;
     if (!videoId) return;
 
@@ -106,13 +97,12 @@ document.addEventListener("DOMContentLoaded", function() {
     iframe.frameBorder = "0";
     iframe.allow = "autoplay; fullscreen; picture-in-picture";
     iframe.allowFullscreen = true;
-
     card.appendChild(iframe);
 
     const randomRotation = (Math.random() * 6 - 3) + "deg";
     card.style.setProperty("--rotate", randomRotation);
 
-    card.addEventListener("click", function() {
+    card.addEventListener("click", function () {
       if (!lightboxIframe) return;
       lightboxIframe.src = buildVimeoURL(videoId, true);
       lightbox.classList.add("active");
@@ -121,13 +111,14 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   lightbox.addEventListener("click", closeLightbox);
-  document.addEventListener("keydown", function(event) {
+  document.addEventListener("keydown", function (event) {
     if (event.key === "Escape") closeLightbox();
   });
 });
 
+
 /* =========================
-   NAV DROPDOWN (HOVER + MOBILE CLICK)
+   NAV DROPDOWN (HOVER + TAP)
 ========================= */
 document.addEventListener("DOMContentLoaded", function() {
   const dropdowns = document.querySelectorAll(".dropdown");
@@ -136,14 +127,24 @@ document.addEventListener("DOMContentLoaded", function() {
     const label = drop.querySelector(".nav-label");
     const menu = drop.querySelector(".dropdown-content");
 
-    // Mobile click toggle
+    menu.style.maxHeight = "0px";
+    menu.style.overflow = "hidden";
+    menu.style.transition = "max-height 0.4s ease";
+
+    // Toggle on tap
     label.addEventListener("click", function(e) {
       e.preventDefault();
-      menu.classList.toggle("active");
-      menu.style.maxHeight = menu.classList.contains("active") ? menu.scrollHeight + "px" : "0px";
+      const isActive = menu.classList.contains("active");
+      if (isActive) {
+        menu.classList.remove("active");
+        menu.style.maxHeight = "0px";
+      } else {
+        menu.classList.add("active");
+        menu.style.maxHeight = menu.scrollHeight + "px";
+      }
     });
 
-    // Desktop hover animation
+    // Desktop hover
     drop.addEventListener("mouseenter", function() {
       menu.classList.add("active");
       menu.style.maxHeight = menu.scrollHeight + "px";
