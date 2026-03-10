@@ -1,4 +1,34 @@
 /* =========================
+   NAV DROPDOWN (TOUCH SUPPORT)
+========================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const dropdown = document.querySelector(".dropdown");
+  const menu = document.querySelector(".dropdown-content");
+
+  if (dropdown && menu) {
+
+    dropdown.addEventListener("click", function (event) {
+      event.stopPropagation();
+
+      if (menu.style.display === "flex") {
+        menu.style.display = "none";
+      } else {
+        menu.style.display = "flex";
+      }
+    });
+
+    document.addEventListener("click", function () {
+      menu.style.display = "none";
+    });
+
+  }
+
+});
+
+
+/* =========================
    SERVICES TEXT ANIMATION
 ========================= */
 
@@ -57,7 +87,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function closeLightbox() {
     lightbox.classList.remove("active");
-    if (lightboxIframe) lightboxIframe.src = "";
+
+    if (lightboxIframe) {
+      lightboxIframe.src = "";
+    }
+
     document.body.style.overflow = "auto";
   }
 
@@ -67,6 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!videoId) return;
 
     const iframe = document.createElement("iframe");
+
     iframe.src = buildVimeoURL(videoId, false);
     iframe.frameBorder = "0";
     iframe.allow = "autoplay; fullscreen; picture-in-picture";
@@ -83,6 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       lightboxIframe.src = buildVimeoURL(videoId, true);
       lightbox.classList.add("active");
+
       document.body.style.overflow = "hidden";
 
     });
@@ -92,7 +128,11 @@ document.addEventListener("DOMContentLoaded", function () {
   lightbox.addEventListener("click", closeLightbox);
 
   document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape") closeLightbox();
+
+    if (event.key === "Escape") {
+      closeLightbox();
+    }
+
   });
 
 });
