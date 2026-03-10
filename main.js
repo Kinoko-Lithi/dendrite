@@ -1,62 +1,59 @@
 /* =========================
-   HERO INTRO ANIMATION
-========================= */
-window.addEventListener("DOMContentLoaded", function() {
-  function animateText(id, delay = 50) {
-    const container = document.getElementById(id);
-    if (!container) return;
-
-    const text = container.textContent;
-    container.textContent = "";
-
-    text.split("").forEach((char, index) => {
-      const span = document.createElement("span");
-      span.textContent = char === " " ? "\u00A0" : char;
-      span.style.opacity = "0";
-      span.style.transform = "translateY(20px)";
-      container.appendChild(span);
-
-      setTimeout(() => {
-        span.style.opacity = "1";
-        span.style.transform = "translateY(0)";
-      }, index * delay);
-    });
-  }
-
-  animateText("dendrite-text", 60);
-  animateText("slogan-text", 60);
-});
-
-
-/* =========================
    SERVICES SCROLL ANIMATION
 ========================= */
-function animateServicesOnScroll() {
-  const services = document.getElementById("services-text");
-  if (!services) return;
 
-  const serviceItems = services.querySelectorAll("p, h1");
+document.addEventListener("DOMContentLoaded", function () {
 
-  function checkVisibility() {
-    const rect = services.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
+  const services = document.querySelectorAll(".services-text p");
 
-    if (rect.top < windowHeight * 0.8) {
-      services.classList.add("visible");
-      window.removeEventListener("scroll", checkVisibility);
-    }
-  }
+  const options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.2
+  };
 
-  window.addEventListener("scroll", checkVisibility);
-  checkVisibility(); // trigger immediately in case already visible
-}
-window.addEventListener("DOMContentLoaded", animateServicesOnScroll);
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Animate each character individually
+        const text = entry.target.textContent;
+        entry.target.textContent = "";
+        text.split("").forEach((char, idx) => {
+          const span = document.createElement("span");
+          span.textContent = char === " " ? "\u00A0" : char;
+          span.style.opacity = "0";
+          span.style.transform = "translateY(20px)";
+          span.style.display = "inline-block";
+          span.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+          entry.target.appendChild(span);
 
+          setTimeout(() => {
+            span.style.opacity = "1";
+            span.style.transform = "translateY(0)";
+          }, idx * 50);
+        });
+      } else {
+        // Reset animation when scrolling out
+        entry.target.innerHTML = entry.target.textContent;
+        entry.target.style.opacity = "0";
+        entry.target.style.transform = "translateY(20px)";
+      }
+    });
+  }, options);
+
+  services.forEach(p => {
+    p.style.opacity = "0";
+    p.style.transform = "translateY(20px)";
+    observer.observe(p);
+  });
+
+});
 
 /* =========================
-   VIDEO LIGHTBOX
+   VIMEO VIDEO GALLERY
 ========================= */
-document.addEventListener("DOMContentLoaded", function() {
+
+document.addEventListener("DOMContentLoaded", function () {
   const cards = document.querySelectorAll(".video-card");
   const lightbox = document.getElementById("videoLightbox");
   if (!cards.length || !lightbox) return;
@@ -64,32 +61,33 @@ document.addEventListener("DOMContentLoaded", function() {
   const lightboxIframe = lightbox.querySelector("iframe");
 
   function buildVimeoURL(id, autoplay) {
-    return `https://player.vimeo.com/video/${id}?autoplay=${autoplay?1:0}&loop=0&muted=0`;
+    return `https://player.vimeo.com/video/${id}?autoplay=${autoplay ? 1 : 0}&loop=0&muted=0`;
   }
 
   function closeLightbox() {
     lightbox.classList.remove("active");
-    if(lightboxIframe) lightboxIframe.src = "";
+    if (lightboxIframe) lightboxIframe.src = "";
     document.body.style.overflow = "auto";
   }
 
-  cards.forEach(card => {
+  cards.forEach(function (card) {
     const videoId = card.dataset.vimeo;
     if (!videoId) return;
 
+    // Create preview iframe
     const iframe = document.createElement("iframe");
     iframe.src = buildVimeoURL(videoId, false);
     iframe.frameBorder = "0";
     iframe.allow = "autoplay; fullscreen; picture-in-picture";
     iframe.allowFullscreen = true;
+
     card.appendChild(iframe);
 
-    // Random slight rotation
-    const randomRotation = (Math.random()*6 - 3) + "deg";
+    const randomRotation = (Math.random() * 6 - 3) + "deg";
     card.style.setProperty("--rotate", randomRotation);
 
-    card.addEventListener("click", () => {
-      if(!lightboxIframe) return;
+    card.addEventListener("click", function () {
+      if (!lightboxIframe) return;
       lightboxIframe.src = buildVimeoURL(videoId, true);
       lightbox.classList.add("active");
       document.body.style.overflow = "hidden";
@@ -97,37 +95,38 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   lightbox.addEventListener("click", closeLightbox);
-  document.addEventListener("keydown", e => {
-    if(e.key === "Escape") closeLightbox();
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") closeLightbox();
   });
 });
 
-
 /* =========================
-   DROPDOWN MENU TOUCH SUPPORT
+   NAV DROPDOWN (HOVER + MOBILE CLICK)
 ========================= */
-document.addEventListener("DOMContentLoaded", function() {
+
+document.addEventListener("DOMContentLoaded", function () {
   const dropdowns = document.querySelectorAll(".dropdown");
 
   dropdowns.forEach(drop => {
-    // For touch devices, toggle on click
-    drop.addEventListener("click", e => {
-      // Ignore clicks on inner links
-      if(e.target.tagName.toLowerCase() === 'a') return;
+    const label = drop.querySelector(".nav-label");
+    const menu = drop.querySelector(".dropdown-content");
 
-      // Close others
-      dropdowns.forEach(d => {
-        if(d !== drop) d.classList.remove("open");
-      });
-
-      drop.classList.toggle("open");
+    // Click for mobile
+    label.addEventListener("click", function(e) {
+      e.preventDefault();
+      menu.classList.toggle("active");
+      menu.style.maxHeight = menu.classList.contains("active") ? menu.scrollHeight + "px" : "0px";
     });
-  });
 
-  // Close dropdowns if clicking outside
-  document.addEventListener("click", e => {
-    dropdowns.forEach(drop => {
-      if(!drop.contains(e.target)) drop.classList.remove("open");
+    // Optional hover for desktop
+    drop.addEventListener("mouseenter", function() {
+      menu.classList.add("active");
+      menu.style.maxHeight = menu.scrollHeight + "px";
+    });
+    drop.addEventListener("mouseleave", function() {
+      menu.classList.remove("active");
+      menu.style.maxHeight = "0px";
     });
   });
 });
