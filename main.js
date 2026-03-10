@@ -1,8 +1,8 @@
-/* =========================
-   HERO TEXT ANIMATION (DENDRITE + SLOGAN)
-========================= */
+// =============================
+// ANIMATE HERO TEXT
+// =============================
 window.addEventListener("DOMContentLoaded", function() {
-  function animateText(id, delay = 50) {
+  function animateText(id) {
     const container = document.getElementById(id);
     if (!container) return;
 
@@ -15,62 +15,73 @@ window.addEventListener("DOMContentLoaded", function() {
       span.style.opacity = "0";
       span.style.transform = "translateY(20px)";
       span.style.display = "inline-block";
-      span.style.transition = `opacity 0.7s ease, transform 0.7s ease`;
+      span.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+
       container.appendChild(span);
 
       setTimeout(() => {
         span.style.opacity = "1";
         span.style.transform = "translateY(0)";
-      }, index * delay);
+      }, index * 80); // slower animation for a professional look
     });
   }
 
-  animateText("dendrite-text", 60);
-  animateText("slogan-text", 60);
+  animateText("dendrite-text");
+  animateText("slogan-text");
 });
 
-
-/* =========================
-   SERVICES ANIMATION ON SCROLL
-========================= */
-window.addEventListener("scroll", function() {
+// =============================
+// SERVICES ANIMATION ON SCROLL
+// =============================
+function animateServicesOnScroll() {
   const services = document.getElementById("services-text");
   if (!services) return;
 
   const rect = services.getBoundingClientRect();
-  const windowHeight = window.innerHeight;
-
-  if (rect.top < windowHeight - 100) {
-    services.querySelectorAll("p").forEach((line, lineIndex) => {
-      if (!line.classList.contains("animated")) {
-        line.classList.add("animated");
-        const text = line.textContent;
-        line.textContent = "";
-
-        text.split("").forEach((char, charIndex) => {
-          const span = document.createElement("span");
-          span.textContent = char === " " ? "\u00A0" : char;
-          span.style.opacity = "0";
-          span.style.transform = "translateY(20px)";
-          span.style.display = "inline-block";
-          span.style.transition = `opacity 0.6s ease, transform 0.6s ease`;
-          line.appendChild(span);
-
-          setTimeout(() => {
-            span.style.opacity = "1";
-            span.style.transform = "translateY(0)";
-          }, charIndex * 30 + lineIndex * 150);
-        });
-      }
-    });
+  if (rect.top < window.innerHeight - 100) {
+    services.classList.add("visible");
+  } else {
+    services.classList.remove("visible");
   }
+}
+
+window.addEventListener("scroll", animateServicesOnScroll);
+window.addEventListener("resize", animateServicesOnScroll);
+
+// =============================
+// NAVIGATION DROPDOWN (WORKS ON MOBILE)
+// =============================
+document.addEventListener("DOMContentLoaded", function() {
+  const dropdowns = document.querySelectorAll(".dropdown");
+
+  dropdowns.forEach(drop => {
+    const label = drop.querySelector(".nav-label");
+    const menu = drop.querySelector(".dropdown-content");
+
+    // Mobile toggle
+    label.addEventListener("click", e => {
+      e.stopPropagation();
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+      menu.style.opacity = "0";
+      menu.style.transform = "translateY(-10px)";
+      requestAnimationFrame(() => {
+        menu.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+        menu.style.opacity = "1";
+        menu.style.transform = "translateY(0)";
+      });
+    });
+
+    // Close dropdown if click outside
+    document.addEventListener("click", () => {
+      menu.style.display = "none";
+    });
+  });
 });
 
-
-/* =========================
-   VIMEO VIDEO GALLERY
-========================= */
-document.addEventListener("DOMContentLoaded", function () {
+// =============================
+// VIMEO VIDEO GALLERY (OPTIONAL)
+// =============================
+document.addEventListener("DOMContentLoaded", function() {
   const cards = document.querySelectorAll(".video-card");
   const lightbox = document.getElementById("videoLightbox");
 
@@ -88,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.style.overflow = "auto";
   }
 
-  cards.forEach(function (card) {
+  cards.forEach(function(card) {
     const videoId = card.dataset.vimeo;
     if (!videoId) return;
 
@@ -97,13 +108,15 @@ document.addEventListener("DOMContentLoaded", function () {
     iframe.frameBorder = "0";
     iframe.allow = "autoplay; fullscreen; picture-in-picture";
     iframe.allowFullscreen = true;
+
     card.appendChild(iframe);
 
     const randomRotation = (Math.random() * 6 - 3) + "deg";
     card.style.setProperty("--rotate", randomRotation);
 
-    card.addEventListener("click", function () {
+    card.addEventListener("click", function() {
       if (!lightboxIframe) return;
+
       lightboxIframe.src = buildVimeoURL(videoId, true);
       lightbox.classList.add("active");
       document.body.style.overflow = "hidden";
@@ -111,47 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   lightbox.addEventListener("click", closeLightbox);
-  document.addEventListener("keydown", function (event) {
+  document.addEventListener("keydown", function(event) {
     if (event.key === "Escape") closeLightbox();
-  });
-});
-
-
-/* =========================
-   NAV DROPDOWN (HOVER + TAP)
-========================= */
-document.addEventListener("DOMContentLoaded", function() {
-  const dropdowns = document.querySelectorAll(".dropdown");
-
-  dropdowns.forEach(drop => {
-    const label = drop.querySelector(".nav-label");
-    const menu = drop.querySelector(".dropdown-content");
-
-    menu.style.maxHeight = "0px";
-    menu.style.overflow = "hidden";
-    menu.style.transition = "max-height 0.4s ease";
-
-    // Toggle on tap
-    label.addEventListener("click", function(e) {
-      e.preventDefault();
-      const isActive = menu.classList.contains("active");
-      if (isActive) {
-        menu.classList.remove("active");
-        menu.style.maxHeight = "0px";
-      } else {
-        menu.classList.add("active");
-        menu.style.maxHeight = menu.scrollHeight + "px";
-      }
-    });
-
-    // Desktop hover
-    drop.addEventListener("mouseenter", function() {
-      menu.classList.add("active");
-      menu.style.maxHeight = menu.scrollHeight + "px";
-    });
-    drop.addEventListener("mouseleave", function() {
-      menu.classList.remove("active");
-      menu.style.maxHeight = "0px";
-    });
   });
 });
