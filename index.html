@@ -6,14 +6,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="./style.css">
 <style>
-/* HERO INTRO */
+/* HERO INTRO ABOVE SERVICES */
 .hero-intro {
   text-align: center;
-  padding-top: 180px; /* Push DENDRITE down from top */
-  margin-bottom: 20px;
+  padding-top: 150px; /* space from top for centering */
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 1;
 }
 
-.hero-intro h1, .hero-intro h2 {
+.hero-intro h1,
+.hero-intro h2 {
   display: block;
   font-weight: 800;
   text-align: center;
@@ -31,7 +34,6 @@
   margin-top: 0;
 }
 
-/* Animate letters */
 .hero-intro span {
   opacity: 0;
   transform: translateY(20px);
@@ -39,42 +41,112 @@
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-/* DOWN ARROW */
-.down-arrow {
-  font-size: 48px;
-  color: #333;
-  margin: 40px auto 0;
+/* Arrow between hero and services */
+.hero-arrow {
   text-align: center;
-  display: block;
+  font-size: 32px;
+  color: #333;
+  margin-top: 30px;
   animation: bounce 1.5s infinite;
 }
 
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-15px); }
-  60% { transform: translateY(-7px); }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(15px); }
 }
 
-/* SERVICES TEXT */
-.services-text {
+/* SERVICES SECTION */
+.home-page .services-text {
   text-align: center;
   font-size: 28px;
   font-weight: 600;
-  line-height: 1.5;
+  line-height: 1.6;
   color: #000;
-  margin-top: 60vh;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  margin-top: 60vh; /* scroll down */
+  margin-bottom: 200px; /* spacing from footer */
 }
 
-.services-text.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.services-text p {
+.home-page .services-text p {
   margin-bottom: 20px;
+}
+
+.home-page .services-text span {
+  opacity: 0;
+  transform: translateY(20px);
+  display: inline-block;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* NAV DROPDOWN FIX */
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px;
+  background: rgba(255,255,255,0.95);
+  border-bottom: 1px solid #eee;
+  z-index: 9999; /* higher than hero */
+}
+
+.dropdown {
+  position: relative;
+  z-index: 9999;
+}
+
+.dropdown-content {
+  top: 100%; /* always below nav item */
+  left: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #eee;
+  min-width: 140px;
+}
+
+.dropdown-content a {
+  padding: 8px 15px;
+  text-decoration: none;
+  color: #000;
+}
+
+.dropdown-content a:hover {
+  background: #f5f5f5;
+}
+
+/* Show dropdown when nav-label clicked (mobile) */
+.dropdown.active .dropdown-content {
+  max-height: 500px;
+}
+
+/* VIDEO BACKGROUND */
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* RESPONSIVE: MOBILE DROPDOWN CLICK */
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column;
+    background: rgba(255,255,255,0.95);
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    display: none;
+  }
+  .nav-links.show {
+    display: flex;
+  }
 }
 </style>
 </head>
@@ -83,7 +155,6 @@
 <!-- VIDEO BACKGROUND -->
 <video class="background-video" autoplay muted loop playsinline preload="auto">
   <source src="./image/background.mp4" type="video/mp4">
-  Your browser does not support the video tag.
 </video>
 
 <!-- NAVIGATION -->
@@ -93,9 +164,10 @@
       <a href="./index.html"><img src="./image/logo.png" alt="Dendrite Creative Studio Logo"></a>
       <span class="logo-text">DENDRITE CREATIVE STUDIO</span>
     </div>
+
     <div class="nav-links">
       <a href="./index.html">Home</a>
-      <div class="dropdown">
+      <div class="dropdown" id="worksDropdown">
         <span class="nav-label">Works</span>
         <div class="dropdown-content">
           <a href="./videos.html">Videos</a>
@@ -108,24 +180,26 @@
   </div>
 </nav>
 
-<!-- HERO INTRO -->
-<div class="hero-intro">
-  <h1 id="dendrite-text">DENDRITE</h1>
-  <h2 id="slogan-text">Creative Ideas in Motion</h2>
-  <span class="down-arrow">&#x2193;</span> <!-- Down arrow -->
-</div>
-
-<!-- SERVICES SECTION -->
-<section class="hero-section">
-  <div class="services-text" id="services-text">
-    <h1>What we can do for you</h1>
-    <p>Graphic Design</p>
-    <p>Music & Sound Design</p>
-    <p>Video Art | Motion Graphics</p>
-    <p>Live Stage Visuals</p>
-    <p>Web Design | Web Development</p>
+<!-- MAIN CONTENT -->
+<main class="page-content">
+  <!-- HERO INTRO -->
+  <div class="hero-intro">
+    <h1 id="dendrite-text">DENDRITE</h1>
+    <h2 id="slogan-text">Creative Ideas in Motion</h2>
+    <div class="hero-arrow">&#8595;</div>
   </div>
-</section>
+
+  <!-- HERO SERVICES SECTION -->
+  <section class="hero-section">
+    <div class="services-text" id="services-text">
+      <p>Graphic Design</p>
+      <p>Music & Sound Design</p>
+      <p>Video Art | Motion Graphics</p>
+      <p>Live Stage Visuals</p>
+      <p>Web Design | Web Development</p>
+    </div>
+  </section>
+</main>
 
 <!-- FOOTER -->
 <footer>
@@ -134,44 +208,60 @@
 
 <!-- JAVASCRIPT -->
 <script>
-// Animate hero text letters
+// Animate hero text on load
 window.addEventListener("DOMContentLoaded", function() {
   function animateText(id) {
     const container = document.getElementById(id);
     if (!container) return;
-
     const text = container.textContent;
     container.textContent = "";
-
     text.split("").forEach((char, index) => {
       const span = document.createElement("span");
       span.textContent = char === " " ? "\u00A0" : char;
-      span.style.opacity = "0";
-      span.style.transform = "translateY(20px)";
       container.appendChild(span);
-
       setTimeout(() => {
         span.style.opacity = "1";
         span.style.transform = "translateY(0)";
       }, index * 80); // slower animation
     });
   }
-
   animateText("dendrite-text");
   animateText("slogan-text");
 });
 
-// Scroll-triggered services animation
+// Animate services on scroll
 const services = document.getElementById("services-text");
-function revealServices() {
-  const triggerBottom = window.innerHeight * 0.85;
-  const serviceTop = services.getBoundingClientRect().top;
-  if(serviceTop < triggerBottom) {
-    services.classList.add("visible");
-  }
-}
-window.addEventListener("scroll", revealServices);
-revealServices(); // in case already in view
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      const spans = services.querySelectorAll("p");
+      spans.forEach((p, idx) => {
+        const chars = p.textContent.split("");
+        p.textContent = "";
+        chars.forEach((c, i) => {
+          const span = document.createElement("span");
+          span.textContent = c === " " ? "\u00A0" : c;
+          span.style.opacity = 0;
+          span.style.transform = "translateY(20px)";
+          span.style.display = "inline-block";
+          span.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+          p.appendChild(span);
+          setTimeout(() => {
+            span.style.opacity = 1;
+            span.style.transform = "translateY(0)";
+          }, i*30 + idx*200);
+        });
+      });
+    }
+  });
+},{threshold:0.3});
+observer.observe(services);
+
+// Dropdown toggle for mobile / click
+const worksDropdown = document.getElementById("worksDropdown");
+worksDropdown.querySelector(".nav-label").addEventListener("click", () => {
+  worksDropdown.classList.toggle("active");
+});
 </script>
 
 </body>
