@@ -1,6 +1,8 @@
+// main.js
+
 // Animate DENDRITE & Slogan
 window.addEventListener("DOMContentLoaded", function() {
-  function animateText(id, duration = 50) {
+  function animateText(id, duration = 80) {
     const container = document.getElementById(id);
     if (!container) return;
 
@@ -27,19 +29,24 @@ window.addEventListener("DOMContentLoaded", function() {
   animateText("slogan-text", 80);
 });
 
-// Animate services on scroll
+// Animate services on scroll every time
 const services = document.getElementById("services-text");
 window.addEventListener("scroll", function() {
   const top = services.getBoundingClientRect().top;
   const windowHeight = window.innerHeight;
+
   if (top < windowHeight * 0.85) {
     services.classList.add("visible");
+  } else {
+    services.classList.remove("visible");
   }
 });
 
-// Dropdown mobile/touch support
+// Desktop dropdown hover handled by CSS
+
+// Mobile dropdown support (tap)
 const dropdown = document.querySelector(".dropdown");
-dropdown.addEventListener("click", function(e){
+dropdown.addEventListener("click", function(e) {
   const content = dropdown.querySelector(".dropdown-content");
   content.style.display = content.style.display === "flex" ? "none" : "flex";
 });
