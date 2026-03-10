@@ -1,9 +1,38 @@
 /* =========================
+   HERO TEXT ANIMATION (DENDRITE + SLOGAN)
+========================= */
+document.addEventListener("DOMContentLoaded", function() {
+  function animateText(id, duration = 50) {
+    const container = document.getElementById(id);
+    if (!container) return;
+
+    const text = container.textContent;
+    container.textContent = "";
+
+    text.split("").forEach((char, index) => {
+      const span = document.createElement("span");
+      span.textContent = char === " " ? "\u00A0" : char;
+      span.style.opacity = "0";
+      span.style.transform = "translateY(20px)";
+      span.style.display = "inline-block";
+      span.style.transition = `opacity ${duration}ms ease, transform ${duration}ms ease`;
+      container.appendChild(span);
+
+      setTimeout(() => {
+        span.style.opacity = "1";
+        span.style.transform = "translateY(0)";
+      }, index * duration);
+    });
+  }
+
+  animateText("dendrite-text", 80);
+  animateText("slogan-text", 80);
+});
+
+/* =========================
    SERVICES SCROLL ANIMATION
 ========================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-
+document.addEventListener("DOMContentLoaded", function() {
   const services = document.querySelectorAll(".services-text p");
 
   const options = {
@@ -15,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const observer = new IntersectionObserver(function(entries) {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // Animate each character individually
+        // Animate each character
         const text = entry.target.textContent;
         entry.target.textContent = "";
         text.split("").forEach((char, idx) => {
@@ -33,10 +62,10 @@ document.addEventListener("DOMContentLoaded", function () {
           }, idx * 50);
         });
       } else {
-        // Reset animation when scrolling out
-        entry.target.innerHTML = entry.target.textContent;
+        // Reset text for re-animation
         entry.target.style.opacity = "0";
         entry.target.style.transform = "translateY(20px)";
+        entry.target.innerHTML = entry.target.textContent;
       }
     });
   }, options);
@@ -46,14 +75,12 @@ document.addEventListener("DOMContentLoaded", function () {
     p.style.transform = "translateY(20px)";
     observer.observe(p);
   });
-
 });
 
 /* =========================
    VIMEO VIDEO GALLERY
 ========================= */
-
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
   const cards = document.querySelectorAll(".video-card");
   const lightbox = document.getElementById("videoLightbox");
   if (!cards.length || !lightbox) return;
@@ -70,11 +97,10 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.style.overflow = "auto";
   }
 
-  cards.forEach(function (card) {
+  cards.forEach(function(card) {
     const videoId = card.dataset.vimeo;
     if (!videoId) return;
 
-    // Create preview iframe
     const iframe = document.createElement("iframe");
     iframe.src = buildVimeoURL(videoId, false);
     iframe.frameBorder = "0";
@@ -86,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const randomRotation = (Math.random() * 6 - 3) + "deg";
     card.style.setProperty("--rotate", randomRotation);
 
-    card.addEventListener("click", function () {
+    card.addEventListener("click", function() {
       if (!lightboxIframe) return;
       lightboxIframe.src = buildVimeoURL(videoId, true);
       lightbox.classList.add("active");
@@ -95,8 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   lightbox.addEventListener("click", closeLightbox);
-
-  document.addEventListener("keydown", function (event) {
+  document.addEventListener("keydown", function(event) {
     if (event.key === "Escape") closeLightbox();
   });
 });
@@ -104,22 +129,21 @@ document.addEventListener("DOMContentLoaded", function () {
 /* =========================
    NAV DROPDOWN (HOVER + MOBILE CLICK)
 ========================= */
-
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
   const dropdowns = document.querySelectorAll(".dropdown");
 
   dropdowns.forEach(drop => {
     const label = drop.querySelector(".nav-label");
     const menu = drop.querySelector(".dropdown-content");
 
-    // Click for mobile
+    // Mobile click toggle
     label.addEventListener("click", function(e) {
       e.preventDefault();
       menu.classList.toggle("active");
       menu.style.maxHeight = menu.classList.contains("active") ? menu.scrollHeight + "px" : "0px";
     });
 
-    // Optional hover for desktop
+    // Desktop hover animation
     drop.addEventListener("mouseenter", function() {
       menu.classList.add("active");
       menu.style.maxHeight = menu.scrollHeight + "px";
