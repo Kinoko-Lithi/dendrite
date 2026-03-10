@@ -1,7 +1,6 @@
 /* ============================= */
 /* RESET & GLOBALS */
 /* ============================= */
-
 * {
   margin: 0;
   padding: 0;
@@ -11,34 +10,39 @@
 html, body {
   height: 100%;
   font-family: Arial, Helvetica, sans-serif;
+  scroll-behavior: smooth;
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   background: #d9d9d9;
+
+  /* Mac rendering fixes */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: 1.5;
 }
 
 /* ============================= */
 /* VIDEO BACKGROUND */
 /* ============================= */
-
 .background-video {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   object-fit: cover;
   z-index: -1;
   pointer-events: none;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
 }
 
 /* ============================= */
 /* NAVIGATION */
 /* ============================= */
-
 .nav {
   position: fixed;
   top: 0;
@@ -75,7 +79,6 @@ body {
 }
 
 /* Navigation Links */
-
 .nav-links {
   display: flex;
   align-items: center;
@@ -89,16 +92,10 @@ body {
   font-weight: 500;
   font-size: 15px;
   cursor: pointer;
-}
-
-/* ============================= */
-/* DROPDOWN ANIMATION */
-/* ============================= */
-
-.dropdown {
   position: relative;
 }
 
+/* Dropdown */
 .dropdown-content {
   position: absolute;
   top: 100%;
@@ -108,24 +105,16 @@ body {
   display: flex;
   flex-direction: column;
   min-width: 140px;
-  padding: 10px 0;
-  z-index: 1000;
+  padding: 0;
   opacity: 0;
-  transform: translateY(-20px) scaleY(0.95);
-  transform-origin: top center;
-  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.25,1,0.5,1);
+  transform: translateY(-10px);
   pointer-events: none;
-}
-
-.dropdown:hover .dropdown-content,
-.dropdown.open .dropdown-content {
-  opacity: 1;
-  transform: translateY(0) scaleY(1);
-  pointer-events: auto;
+  transition: all 0.3s ease;
+  z-index: 1000;
 }
 
 .dropdown-content a {
-  padding: 8px 15px;
+  padding: 10px 15px;
   text-decoration: none;
   color: #000;
 }
@@ -134,36 +123,43 @@ body {
   background: #f5f5f5;
 }
 
+.dropdown:hover .dropdown-content {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
 /* ============================= */
 /* PAGE CONTENT */
 /* ============================= */
-
 .page-content {
+  flex: 1;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 140px 40px 40px; /* top padding avoids nav overlap */
-  position: relative;
+  padding-left: 40px;
+  padding-right: 40px;
   z-index: 1;
+  position: relative;
 }
 
 /* ============================= */
 /* HERO INTRO ABOVE SERVICES */
 /* ============================= */
-
 .hero-intro {
   text-align: center;
-  margin-bottom: 60px;
+  padding-top: 180px; /* extra space from top */
+  margin-bottom: 60px; /* distance to services */
 }
 
 .hero-intro h1,
 .hero-intro h2 {
-  font-weight: 800;
   display: block;
   text-align: center;
 }
 
 .hero-intro h1 {
   font-size: 72px;
+  font-weight: 800;
   margin-bottom: 20px;
 }
 
@@ -182,33 +178,27 @@ body {
 }
 
 /* ============================= */
-/* SERVICES SECTION */
+/* HERO SERVICES SECTION */
 /* ============================= */
-
-.services-text {
+.home-page .services-text {
   text-align: center;
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 600;
   line-height: 1.6;
   color: #000;
-  margin-top: 200px; /* scroll distance from hero intro */
-  transition: all 0.6s ease;
+  margin-top: 80vh; /* pushes it far down for scrolling */
 }
 
-.services-text p {
+.home-page .services-text p {
   margin-bottom: 20px;
   opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s ease;
-}
-
-.services-text.visible p {
-  opacity: 1;
-  transform: translateY(0);
+  transform: translateY(20px);
+  transition: all 0.8s ease;
 }
 
 /* ============================= */
 /* VIDEO GRID */
+/* ============================= */
 .video-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -217,9 +207,11 @@ body {
 }
 
 .video-card {
-  aspect-ratio: 16/9;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 12px;
+  transform: rotate(var(--rotate, 0deg));
+  transition: transform 0.3s ease;
 }
 
 .video-card iframe {
@@ -230,6 +222,7 @@ body {
 
 /* ============================= */
 /* IMAGE GRID */
+/* ============================= */
 .image-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -245,6 +238,7 @@ body {
 
 /* ============================= */
 /* ABOUT SECTION */
+/* ============================= */
 .about-section {
   display: flex;
   gap: 40px;
@@ -268,6 +262,7 @@ body {
 
 /* ============================= */
 /* CONTACT SECTION */
+/* ============================= */
 .contact-section {
   max-width: 700px;
   margin: 60px auto;
@@ -305,9 +300,10 @@ body {
 
 /* ============================= */
 /* FOOTER */
+/* ============================= */
 footer {
-  margin-top: 120px; /* space after services */
-  padding: 30px;
+  margin-top: auto;
+  padding: 50px 20px 20px 20px;
   text-align: center;
   background: #d9d9d9;
   border-top: 1px solid #eeeeee;
@@ -316,22 +312,52 @@ footer {
 
 /* ============================= */
 /* RESPONSIVE */
-@media(max-width:1024px){
-  .video-grid{grid-template-columns:repeat(2,1fr);}
-  .image-grid{grid-template-columns:repeat(3,1fr);}
+/* ============================= */
+/* Tablet */
+@media (max-width: 1024px) {
+  .video-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .image-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-@media(max-width:768px){
-  .nav-container{padding:0 20px;}
-  .logo-text{display:none;}
-  .nav-links{gap:15px;font-size:14px;}
-  .page-content{padding-left:20px;padding-right:20px;}
-  .services-text{font-size:24px;margin-top:150px;}
-  .video-grid{grid-template-columns:1fr;}
-  .image-grid{grid-template-columns:repeat(2,1fr);}
+/* Mobile */
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0 20px;
+  }
+  .logo-text {
+    display: none;
+  }
+  .nav-links {
+    gap: 15px;
+    font-size: 14px;
+  }
+  .page-content {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .home-page .services-text {
+    font-size: 24px;
+    margin-top: 100vh;
+  }
+  .video-grid {
+    grid-template-columns: 1fr;
+  }
+  .image-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-@media(max-width:480px){
-  .services-text{font-size:20px;}
-  .image-grid{grid-template-columns:1fr;}
+/* Small phones */
+@media (max-width: 480px) {
+  .home-page .services-text {
+    font-size: 20px;
+    margin-top: 120vh;
+  }
+  .image-grid {
+    grid-template-columns: 1fr;
+  }
 }
