@@ -10,15 +10,12 @@
 html, body {
   height: 100%;
   font-family: Arial, Helvetica, sans-serif;
-  scroll-behavior: smooth;
 }
 
 body {
   display: flex;
   flex-direction: column;
   background: #d9d9d9;
-
-  /* Mac rendering fixes */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -48,8 +45,8 @@ body {
   top: 0;
   width: 100%;
   height: 70px;
-  background: rgba(255,255,255,0.95);
-  border-bottom: 1px solid #eeeeee;
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid #eee;
   z-index: 1000;
 }
 
@@ -92,41 +89,36 @@ body {
   font-weight: 500;
   font-size: 15px;
   cursor: pointer;
-  position: relative;
 }
 
 /* Dropdown */
+.dropdown {
+  position: relative;
+}
+
 .dropdown-content {
   position: absolute;
   top: 100%;
   left: 0;
-  background: #ffffff;
-  border: 1px solid #eeeeee;
+  background: #fff;
+  border: 1px solid #eee;
   display: flex;
   flex-direction: column;
   min-width: 140px;
-  padding: 0;
-  opacity: 0;
-  transform: translateY(-10px);
-  pointer-events: none;
-  transition: all 0.3s ease;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s ease;
   z-index: 1000;
 }
 
 .dropdown-content a {
-  padding: 10px 15px;
+  padding: 8px 15px;
   text-decoration: none;
   color: #000;
 }
 
 .dropdown-content a:hover {
   background: #f5f5f5;
-}
-
-.dropdown:hover .dropdown-content {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
 }
 
 /* ============================= */
@@ -138,28 +130,28 @@ body {
   margin: 0 auto;
   padding-left: 40px;
   padding-right: 40px;
-  z-index: 1;
   position: relative;
+  z-index: 1;
 }
 
 /* ============================= */
-/* HERO INTRO ABOVE SERVICES */
+/* HERO INTRO (DENDRITE + SLOGAN) */
 /* ============================= */
 .hero-intro {
   text-align: center;
-  padding-top: 180px; /* extra space from top */
+  padding-top: 120px; /* distance from top */
   margin-bottom: 60px; /* distance to services */
 }
 
 .hero-intro h1,
 .hero-intro h2 {
   display: block;
+  font-weight: 800;
   text-align: center;
 }
 
 .hero-intro h1 {
   font-size: 72px;
-  font-weight: 800;
   margin-bottom: 20px;
 }
 
@@ -167,33 +159,37 @@ body {
   font-size: 28px;
   font-weight: 500;
   color: #333;
-  margin-top: 0;
 }
 
 .hero-intro span {
   opacity: 0;
   transform: translateY(20px);
   display: inline-block;
-  transition: opacity 1s ease, transform 1s ease;
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
 /* ============================= */
-/* HERO SERVICES SECTION */
+/* SERVICES SECTION (INDEX) */
 /* ============================= */
 .home-page .services-text {
   text-align: center;
-  font-size: 28px;
+  font-size: 28px; /* slightly smaller */
   font-weight: 600;
   line-height: 1.6;
   color: #000;
-  margin-top: 80vh; /* pushes it far down for scrolling */
+  margin-top: 60vh; /* scroll distance */
+  margin-bottom: 200px; /* space above footer */
 }
 
 .home-page .services-text p {
   margin-bottom: 20px;
+}
+
+.home-page .services-text span {
   opacity: 0;
   transform: translateY(20px);
-  transition: all 0.8s ease;
+  display: inline-block;
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 /* ============================= */
@@ -210,8 +206,6 @@ body {
   aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 12px;
-  transform: rotate(var(--rotate, 0deg));
-  transition: transform 0.3s ease;
 }
 
 .video-card iframe {
@@ -265,9 +259,9 @@ body {
 /* ============================= */
 .contact-section {
   max-width: 700px;
-  margin: 60px auto;
+  margin: 60px auto 200px; /* footer spacing */
   padding: 60px 40px;
-  background: #ffffff;
+  background: #fff;
   border-radius: 12px;
   box-shadow: 0 15px 40px rgba(0,0,0,0.08);
 }
@@ -303,7 +297,7 @@ body {
 /* ============================= */
 footer {
   margin-top: auto;
-  padding: 50px 20px 20px 20px;
+  padding: 30px;
   text-align: center;
   background: #d9d9d9;
   border-top: 1px solid #eeeeee;
@@ -340,8 +334,7 @@ footer {
     padding-right: 20px;
   }
   .home-page .services-text {
-    font-size: 24px;
-    margin-top: 100vh;
+    font-size: 22px;
   }
   .video-grid {
     grid-template-columns: 1fr;
@@ -355,7 +348,6 @@ footer {
 @media (max-width: 480px) {
   .home-page .services-text {
     font-size: 20px;
-    margin-top: 120vh;
   }
   .image-grid {
     grid-template-columns: 1fr;
