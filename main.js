@@ -1,26 +1,20 @@
 /* =========================
-   NAV DROPDOWN (TOUCH SUPPORT)
+   ANIMATED NAV DROPDOWN
 ========================= */
 
 document.addEventListener("DOMContentLoaded", function () {
 
   const dropdown = document.querySelector(".dropdown");
-  const menu = document.querySelector(".dropdown-content");
 
-  if (dropdown && menu) {
+  if (dropdown) {
 
     dropdown.addEventListener("click", function (event) {
       event.stopPropagation();
-
-      if (menu.style.display === "flex") {
-        menu.style.display = "none";
-      } else {
-        menu.style.display = "flex";
-      }
+      dropdown.classList.toggle("active");
     });
 
     document.addEventListener("click", function () {
-      menu.style.display = "none";
+      dropdown.classList.remove("active");
     });
 
   }
@@ -82,10 +76,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const lightboxIframe = lightbox.querySelector("iframe");
 
   function buildVimeoURL(id, autoplay) {
-    return `https://player.vimeo.com/video/${id}?autoplay=${autoplay ? 1 : 0}&loop=0&muted=0`;
+    return "https://player.vimeo.com/video/" + id + "?autoplay=" + (autoplay ? 1 : 0) + "&loop=0&muted=0";
   }
 
   function closeLightbox() {
+
     lightbox.classList.remove("active");
 
     if (lightboxIframe) {
@@ -93,6 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     document.body.style.overflow = "auto";
+
   }
 
   cards.forEach(function (card) {
