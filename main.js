@@ -1,5 +1,5 @@
 /* =========================
-   NAV DROPDOWN (WORKING)
+   NAV DROPDOWN
 ========================= */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -50,4 +50,55 @@ document.addEventListener("DOMContentLoaded", function () {
 
       span.textContent = char === " " ? "\u00A0" : char;
       span.style.opacity = "0";
+      span.style.display = "inline-block";
       span.style.transform = "translateY(20px)";
+      span.style.transition = "0.4s ease";
+      span.style.transitionDelay = (index * 0.03) + "s";
+
+      container.appendChild(span);
+
+      setTimeout(() => {
+        span.style.opacity = "1";
+        span.style.transform = "translateY(0)";
+      }, 50);
+
+    });
+
+  }
+
+  animateText("dendrite-text");
+  animateText("slogan-text");
+
+});
+
+
+/* =========================
+   SERVICES SCROLL ANIMATION
+========================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const services = document.querySelectorAll(".services-text p");
+
+  function revealServices() {
+
+    services.forEach((el, index) => {
+
+      const rect = el.getBoundingClientRect();
+
+      if (rect.top < window.innerHeight - 100) {
+
+        setTimeout(() => {
+          el.classList.add("visible");
+        }, index * 150);
+
+      }
+
+    });
+
+  }
+
+  window.addEventListener("scroll", revealServices);
+  revealServices();
+
+});
