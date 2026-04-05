@@ -57,7 +57,8 @@ body{
   align-items:center;
 }
 
-.nav-links a, .nav-label{
+.nav-links a,
+.nav-label{
   text-decoration:none;
   color:#000;
   cursor:pointer;
@@ -90,6 +91,10 @@ body{
   opacity:1;
   transform:translateY(0);
   pointer-events:auto;
+}
+
+.dropdown-content a{
+  padding:8px 15px;
 }
 
 /* ================= HERO ================= */
@@ -151,18 +156,24 @@ footer{
 </video>
 
 <!-- NAV -->
-  <div class="dropdown">
-    <span class="nav-label">Works</span>
+<nav class="nav">
+  <div class="nav-container">
 
-    <div class="dropdown-content">
-      <a href="./videos.html">Videos</a>
-      <a href="./images.html">Images</a>
+    <div class="nav-links">
+
+      <div class="dropdown">
+        <span class="nav-label">Works</span>
+        <div class="dropdown-content">
+          <a href="./videos.html">Videos</a>
+          <a href="./images.html">Images</a>
+        </div>
+      </div>
+
+      <a href="./about.html">About</a>
+      <a href="./contact.html">Contact</a>
+
     </div>
-  </div>
 
-  <a href="./about.html">About</a>
-  <a href="./contact.html">Contact</a>
-</div>
   </div>
 </nav>
 
