@@ -1,61 +1,64 @@
-console.log("SCRIPT IS RUNNING");
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
-  /* ================= DROPDOWN ================= */
+  /* =========================
+     NAV DROPDOWN
+  ========================= */
 
   const dropdowns = document.querySelectorAll(".dropdown");
 
-  dropdowns.forEach(dropdown => {
+  dropdowns.forEach((dropdown) => {
 
     const trigger = dropdown.querySelector(".nav-label");
 
     if (!trigger) return;
 
-    trigger.addEventListener("click", (e) => {
-
+    trigger.addEventListener("click", function (e) {
       e.stopPropagation();
 
-      dropdowns.forEach(d => {
+      dropdowns.forEach((d) => {
         if (d !== dropdown) d.classList.remove("active");
       });
 
       dropdown.classList.toggle("active");
-
     });
 
   });
 
-  document.addEventListener("click", () => {
-    dropdowns.forEach(d => d.classList.remove("active"));
+  document.addEventListener("click", function () {
+    dropdowns.forEach((d) => d.classList.remove("active"));
   });
 
 
-  /* ================= HERO TEXT ================= */
+  /* =========================
+     HERO TEXT ANIMATION
+  ========================= */
 
   function animateText(id) {
 
-    const el = document.getElementById(id);
-    if (!el) return;
+    const element = document.getElementById(id);
+    if (!element) return;
 
-    const text = el.textContent;
-    el.textContent = "";
+    const text = element.textContent;
+    element.textContent = "";
 
-    text.split("").forEach((char, i) => {
+    [...text].forEach((char, index) => {
 
       const span = document.createElement("span");
 
       span.textContent = char === " " ? "\u00A0" : char;
+
       span.style.display = "inline-block";
       span.style.opacity = "0";
-      span.style.transform = "translateY(20px)";
-      span.style.transition = "0.5s ease";
+      span.style.transform = "translateY(25px)";
+      span.style.transition = "all 0.5s ease";
+      span.style.transitionDelay = `${index * 0.05}s`;
 
-      el.appendChild(span);
+      element.appendChild(span);
 
       setTimeout(() => {
         span.style.opacity = "1";
         span.style.transform = "translateY(0)";
-      }, i * 70);
+      }, 50);
 
     });
 
@@ -65,23 +68,24 @@ document.addEventListener("DOMContentLoaded", () => {
   animateText("slogan-text");
 
 
-  /* ================= SERVICES ================= */
+  /* =========================
+     SERVICES ANIMATION
+  ========================= */
 
   const services = document.querySelector(".services-text");
 
-  if (services) {
+  function revealServices() {
+    if (!services) return;
 
-    function reveal() {
-      const rect = services.getBoundingClientRect();
+    const rect = services.getBoundingClientRect();
 
-      if (rect.top < window.innerHeight - 100) {
-        services.classList.add("visible");
-      }
+    if (rect.top < window.innerHeight - 100) {
+      services.classList.add("visible");
     }
-
-    window.addEventListener("scroll", reveal);
-    reveal();
-
   }
+
+  // Run on load AND scroll
+  setTimeout(revealServices, 100);
+  window.addEventListener("scroll", revealServices);
 
 });
