@@ -51,6 +51,24 @@ body{
   padding:0 40px;
 }
 
+/* LOGO */
+.logo-wrap{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo-wrap img{
+  height:40px;
+}
+
+.logo-text{
+  font-size:14px;
+  letter-spacing:1px;
+  font-weight:600;
+}
+
+/* LINKS */
 .nav-links{
   display:flex;
   gap:25px;
@@ -62,9 +80,10 @@ body{
   text-decoration:none;
   color:#000;
   cursor:pointer;
+  font-size:14px;
 }
 
-/* ===== DROPDOWN ===== */
+/* DROPDOWN */
 .dropdown{
   position:relative;
 }
@@ -119,7 +138,7 @@ body{
   margin-top:10px;
 }
 
-/* ===== ARROW ===== */
+/* ARROW */
 .hero-arrow{
   margin-top:30px;
   animation:arrowMove 2s infinite;
@@ -155,22 +174,33 @@ footer{
   <source src="./image/background.mp4" type="video/mp4">
 </video>
 
-<!-- NAV -->
+<!-- NAVIGATION -->
 <nav class="nav">
   <div class="nav-container">
 
+    <!-- LOGO -->
+    <div class="logo-wrap">
+      <a href="index.html">
+        <img src="image/logo.png" alt="Logo">
+      </a>
+      <span class="logo-text">DENDRITE CREATIVE STUDIO</span>
+    </div>
+
+    <!-- LINKS -->
     <div class="nav-links">
+
+      <a href="index.html">Home</a>
 
       <div class="dropdown">
         <span class="nav-label">Works</span>
         <div class="dropdown-content">
-          <a href="./videos.html">Videos</a>
-          <a href="./images.html">Images</a>
+          <a href="videos.html">Videos</a>
+          <a href="images.html">Images</a>
         </div>
       </div>
 
-      <a href="./about.html">About</a>
-      <a href="./contact.html">Contact</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
 
     </div>
 
@@ -198,22 +228,13 @@ footer{
 </section>
 
 <!-- SERVICES -->
- <main class="page-content">
-
-    <section class="hero-section">
-
-      <!-- SERVICES LIST -->
-      <div class="services-text" id="services-text">
-        <p>Graphic Design</p>
-        <p>Music & Sound Design</p>
-        <p>Video Art | Motion Graphics</p>
-        <p>Live Stage Visuals</p>
-        <p>Web Design | Web Development</p>
-      </div>
-
-    </section>
-
-  </main>
+<div class="services-text">
+  <p>Graphic Design</p>
+  <p>Music & Sound Design</p>
+  <p>Video Art | Motion Graphics</p>
+  <p>Live Stage Visuals</p>
+  <p>Web Design | Development</p>
+</div>
 
 <footer>
 © 2026 Dendrite Creative Studio
@@ -221,7 +242,7 @@ footer{
 
 <script>
 
-/* ===== DROPDOWN MOBILE ===== */
+/* DROPDOWN MOBILE CLICK */
 document.addEventListener("DOMContentLoaded",function(){
   const dropdown=document.querySelector(".dropdown");
   const trigger=document.querySelector(".nav-label");
