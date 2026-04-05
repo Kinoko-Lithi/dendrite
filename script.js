@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
   dropdowns.forEach((dropdown) => {
 
     const trigger = dropdown.querySelector(".nav-label");
-
     if (!trigger) return;
 
     trigger.addEventListener("click", function (e) {
@@ -75,17 +74,21 @@ document.addEventListener("DOMContentLoaded", function () {
   const services = document.querySelector(".services-text");
 
   function revealServices() {
+
     if (!services) return;
 
     const rect = services.getBoundingClientRect();
 
-    if (rect.top < window.innerHeight - 100) {
+    if (rect.top < window.innerHeight * 0.85) {
       services.classList.add("visible");
     }
+
   }
 
-  // Run on load AND scroll
-  setTimeout(revealServices, 100);
   window.addEventListener("scroll", revealServices);
+  window.addEventListener("load", revealServices);
+
+  // Extra safety trigger
+  setTimeout(revealServices, 200);
 
 });
