@@ -34,6 +34,7 @@ body{
 .nav-links{
   display:flex;
   gap:25px;
+  align-items:center;
 }
 
 .nav-links a,
@@ -73,27 +74,19 @@ body{
   margin-top:60vh;
   text-align:center;
   font-size:28px;
-  line-height:1.6;
+  line-height:1.8;
+}
 
+/* IMPORTANT: initial hidden state */
+.services-text span{
+  display:block;
   opacity:0;
   transform:translateY(40px);
-  transition:all 0.8s ease;
-}
-
-.services-text.visible{
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* 🔥 THIS IS THE CRITICAL PART */
-.services-text span{
-  display:inline-block;
-  opacity:0;
-  transform:translateY(20px);
   transition:all 0.6s ease;
 }
 
-.services-text.visible span{
+/* visible state */
+.services-text span.visible{
   opacity:1;
   transform:translateY(0);
 }
