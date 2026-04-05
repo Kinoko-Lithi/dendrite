@@ -1,115 +1,6 @@
-/* =========================
-   MAIN INIT
-========================= */
+document.addEventListener("DOMContentLoaded", () => {
 
-window.addEventListener("DOMContentLoaded", function () {
-
-  /* =========================
-     TEXT ANIMATION (GENERIC)
-  ========================= */
-
-  function animateText(id, delayStep = 50) {
-
-    const element = document.getElementById(id);
-    if (!element) return;
-
-    const text = element.textContent;
-    element.textContent = "";
-
-    text.split("").forEach((char, index) => {
-
-      const span = document.createElement("span");
-
-      span.textContent = char === " " ? "\u00A0" : char;
-      span.style.display = "inline-block";
-      span.style.opacity = "0";
-      span.style.transform = "translateY(20px)";
-      span.style.transition = "0.5s ease";
-
-      element.appendChild(span);
-
-      setTimeout(() => {
-        span.style.opacity = "1";
-        span.style.transform = "translateY(0)";
-      }, index * delayStep);
-
-    });
-
-  }
-
-
-  /* =========================
-     HERO ANIMATION
-  ========================= */
-
-  animateText("dendrite-text", 80);
-  animateText("slogan-text", 60);
-
-
-  /* =========================
-     SERVICES ANIMATION (PER LINE)
-  ========================= */
-
-  const services = document.querySelector(".services-text");
-
-  if (services) {
-
-    const lines = services.querySelectorAll("p");
-
-    lines.forEach((line, lineIndex) => {
-
-      const text = line.textContent;
-      line.textContent = "";
-
-      text.split("").forEach((char, charIndex) => {
-
-        const span = document.createElement("span");
-
-        span.textContent = char === " " ? "\u00A0" : char;
-        span.style.display = "inline-block";
-        span.style.opacity = "0";
-        span.style.transform = "translateY(10px)";
-        span.style.transition = "0.4s ease";
-
-        line.appendChild(span);
-
-        setTimeout(() => {
-          span.style.opacity = "1";
-          span.style.transform = "translateY(0)";
-        }, charIndex * 30 + lineIndex * 150);
-
-      });
-
-    });
-
-  }
-
-
-  /* =========================
-     SCROLL REVEAL (SERVICES)
-  ========================= */
-
-  function revealServices() {
-
-    const element = document.querySelector(".services-text");
-
-    if (!element) return;
-
-    const rect = element.getBoundingClientRect();
-
-    if (rect.top < window.innerHeight - 100) {
-      element.classList.add("visible");
-    }
-
-  }
-
-  window.addEventListener("scroll", revealServices);
-  revealServices();
-
-
-  /* =========================
-     DROPDOWN
-  ========================= */
+  /* ================= DROPDOWN ================= */
 
   const dropdowns = document.querySelectorAll(".dropdown");
 
@@ -119,7 +10,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
     if (!trigger) return;
 
-    trigger.addEventListener("click", function (e) {
+    trigger.addEventListener("click", (e) => {
 
       e.stopPropagation();
 
@@ -133,55 +24,62 @@ window.addEventListener("DOMContentLoaded", function () {
 
   });
 
-  document.addEventListener("click", function () {
+  document.addEventListener("click", () => {
     dropdowns.forEach(d => d.classList.remove("active"));
   });
 
 
-  /* =========================
-     LIGHTBOX (VIMEO)
-  ========================= */
+  /* ================= HERO TEXT ================= */
 
-  const cards = document.querySelectorAll(".video-card");
-  const lightbox = document.getElementById("videoLightbox");
+  function animateText(id) {
 
-  if (cards.length && lightbox) {
+    const el = document.getElementById(id);
+    if (!el) return;
 
-    const iframe = lightbox.querySelector("iframe");
+    const text = el.textContent;
+    el.textContent = "";
 
-    function buildUrl(id, autoplay) {
-      return `https://player.vimeo.com/video/${id}?autoplay=${autoplay ? 1 : 0}`;
-    }
+    text.split("").forEach((char, i) => {
 
-    function closeLightbox() {
-      lightbox.classList.remove("active");
-      if (iframe) iframe.src = "";
-      document.body.style.overflow = "auto";
-    }
+      const span = document.createElement("span");
 
-    cards.forEach(card => {
+      span.textContent = char === " " ? "\u00A0" : char;
+      span.style.display = "inline-block";
+      span.style.opacity = "0";
+      span.style.transform = "translateY(20px)";
+      span.style.transition = "0.5s ease";
 
-      const videoId = card.dataset.vimeo;
-      if (!videoId) return;
+      el.appendChild(span);
 
-      card.addEventListener("click", () => {
-
-        if (!iframe) return;
-
-        iframe.src = buildUrl(videoId, true);
-
-        lightbox.classList.add("active");
-        document.body.style.overflow = "hidden";
-
-      });
+      setTimeout(() => {
+        span.style.opacity = "1";
+        span.style.transform = "translateY(0)";
+      }, i * 70);
 
     });
 
-    lightbox.addEventListener("click", closeLightbox);
+  }
 
-    document.addEventListener("keydown", e => {
-      if (e.key === "Escape") closeLightbox();
-    });
+  animateText("dendrite-text");
+  animateText("slogan-text");
+
+
+  /* ================= SERVICES ================= */
+
+  const services = document.querySelector(".services-text");
+
+  if (services) {
+
+    function reveal() {
+      const rect = services.getBoundingClientRect();
+
+      if (rect.top < window.innerHeight - 100) {
+        services.classList.add("visible");
+      }
+    }
+
+    window.addEventListener("scroll", reveal);
+    reveal();
 
   }
 
