@@ -1,7 +1,94 @@
-<h1 id="dendrite-text">Dendrite</h1>
+document.addEventListener("DOMContentLoaded", function () {
 
-<p class="services-text">
-  Your services content here
-</p>
+  /* =========================
+     NAV DROPDOWN
+  ========================= */
 
-<script src="script.js"></script>
+  const dropdowns = document.querySelectorAll(".dropdown");
+
+  dropdowns.forEach((dropdown) => {
+
+    const trigger = dropdown.querySelector(".nav-label");
+    if (!trigger) return;
+
+    trigger.addEventListener("click", function (e) {
+      e.stopPropagation();
+
+      dropdowns.forEach((d) => {
+        if (d !== dropdown) d.classList.remove("active");
+      });
+
+      dropdown.classList.toggle("active");
+    });
+
+  });
+
+  document.addEventListener("click", function () {
+    dropdowns.forEach((d) => d.classList.remove("active"));
+  });
+
+
+  /* =========================
+     HERO TEXT ANIMATION
+  ========================= */
+
+  function animateText(id) {
+
+    const element = document.getElementById(id);
+    if (!element) return;
+
+    const text = element.textContent;
+    element.textContent = "";
+
+    [...text].forEach((char, index) => {
+
+      const span = document.createElement("span");
+
+      span.textContent = char === " " ? "\u00A0" : char;
+
+      span.style.display = "inline-block";
+      span.style.opacity = "0";
+      span.style.transform = "translateY(25px)";
+      span.style.transition = "all 0.5s ease";
+      span.style.transitionDelay = `${index * 0.05}s`;
+
+      element.appendChild(span);
+
+      setTimeout(() => {
+        span.style.opacity = "1";
+        span.style.transform = "translateY(0)";
+      }, 50);
+
+    });
+
+  }
+
+  animateText("dendrite-text");
+  animateText("slogan-text");
+
+
+  /* =========================
+     SERVICES ANIMATION
+  ========================= */
+
+  const services = document.querySelector(".services-text");
+
+  function revealServices() {
+
+    if (!services) return;
+
+    const rect = services.getBoundingClientRect();
+
+    if (rect.top < window.innerHeight * 0.85) {
+      services.classList.add("visible");
+    }
+
+  }
+
+  window.addEventListener("scroll", revealServices);
+  window.addEventListener("load", revealServices);
+
+  // Extra safety trigger
+  setTimeout(revealServices, 200);
+
+});
