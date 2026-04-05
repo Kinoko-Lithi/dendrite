@@ -1,32 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================
-     DROPDOWN MENU
+     DROPDOWN
   ========================= */
 
-  const dropdowns = document.querySelectorAll(".dropdown");
+  const dropdown = document.querySelector(".dropdown");
+  const trigger = document.querySelector(".nav-label");
 
-  dropdowns.forEach((dropdown) => {
-
-    const trigger = dropdown.querySelector(".nav-label");
-    if (!trigger) return;
+  if (trigger && dropdown) {
 
     trigger.addEventListener("click", (e) => {
       e.stopPropagation();
-
-      dropdowns.forEach(d => {
-        if (d !== dropdown) d.classList.remove("active");
-      });
-
       dropdown.classList.toggle("active");
     });
 
-  });
+    document.addEventListener("click", () => {
+      dropdown.classList.remove("active");
+    });
 
-  document.addEventListener("click", () => {
-    dropdowns.forEach(d => d.classList.remove("active"));
-  });
-
+  }
 
   /* =========================
      HERO TEXT ANIMATION
@@ -45,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const span = document.createElement("span");
 
       span.textContent = char === " " ? "\u00A0" : char;
-
       span.style.display = "inline-block";
       span.style.opacity = "0";
       span.style.transform = "translateY(25px)";
@@ -66,9 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
   animateText("dendrite-text");
   animateText("slogan-text");
 
-
   /* =========================
-     SERVICES (WORKING FIX)
+     SERVICES ANIMATION (FIXED)
   ========================= */
 
   const services = document.querySelector(".services-text");
