@@ -4,20 +4,12 @@
   box-sizing:border-box;
 }
 
-html,body{
-  height:100%;
-  font-family:Arial, Helvetica, sans-serif;
-}
-
 body{
-  display:flex;
-  flex-direction:column;
+  font-family:Arial, Helvetica, sans-serif;
   background:#d9d9d9;
 }
 
-/* ============================= */
-/* NAVIGATION */
-/* ============================= */
+/* ================= NAV ================= */
 
 .nav{
   position:fixed;
@@ -31,7 +23,7 @@ body{
 
 .nav-container{
   max-width:1200px;
-  margin:0 auto;
+  margin:auto;
   height:100%;
   display:flex;
   justify-content:space-between;
@@ -48,13 +40,11 @@ body{
 .nav-label{
   text-decoration:none;
   color:#000;
-  font-weight:500;
   cursor:pointer;
+  font-size:14px;
 }
 
-/* ============================= */
-/* HERO */
-/* ============================= */
+/* ================= HERO ================= */
 
 .hero-section{
   min-height:100vh;
@@ -63,6 +53,7 @@ body{
   justify-content:center;
   align-items:center;
   text-align:center;
+  margin-top:70px;
 }
 
 #dendrite-text{
@@ -73,18 +64,16 @@ body{
 #slogan-text{
   font-size:26px;
   color:#333;
+  margin-top:10px;
 }
 
-/* ============================= */
-/* SERVICES */
-/* ============================= */
+/* ================= SERVICES ================= */
 
 .services-text{
+  margin-top:60vh;
   text-align:center;
-  font-size:30px;
-  font-weight:600;
+  font-size:28px;
   line-height:1.6;
-  margin-top:120px;
 
   opacity:0;
   transform:translateY(40px);
@@ -96,7 +85,7 @@ body{
   transform:translateY(0);
 }
 
-/* Animate each line */
+/* 🔥 THIS IS THE CRITICAL PART */
 .services-text span{
   display:inline-block;
   opacity:0;
@@ -109,9 +98,7 @@ body{
   transform:translateY(0);
 }
 
-/* ============================= */
-/* DROPDOWN */
-/* ============================= */
+/* ================= DROPDOWN ================= */
 
 .dropdown{
   position:relative;
@@ -129,14 +116,8 @@ body{
 
   opacity:0;
   transform:translateY(-10px);
-  transition:0.25s ease;
+  transition:0.25s;
   pointer-events:none;
-}
-
-.dropdown-content a{
-  padding:8px 15px;
-  text-decoration:none;
-  color:#000;
 }
 
 .dropdown:hover .dropdown-content,
@@ -144,4 +125,12 @@ body{
   opacity:1;
   transform:translateY(0);
   pointer-events:auto;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+  margin-top:100px;
+  text-align:center;
+  padding:30px;
 }
