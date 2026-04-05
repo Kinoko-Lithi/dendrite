@@ -1,17 +1,21 @@
 /* =========================
-   NAV DROPDOWN
+   DOM READY
 ========================= */
 
 document.addEventListener("DOMContentLoaded", function () {
 
+  /* =========================
+     NAV DROPDOWN
+  ========================= */
+
   const dropdowns = document.querySelectorAll(".dropdown");
 
-  dropdowns.forEach(function(dropdown){
+  dropdowns.forEach(function (dropdown) {
 
     const trigger = dropdown.querySelector(".nav-label");
     if (!trigger) return;
 
-    trigger.addEventListener("click", function(e){
+    trigger.addEventListener("click", function (e) {
       e.stopPropagation();
 
       dropdowns.forEach(d => {
@@ -27,35 +31,31 @@ document.addEventListener("DOMContentLoaded", function () {
     dropdowns.forEach(d => d.classList.remove("active"));
   });
 
-});
 
-
-/* =========================
-   HERO TEXT ANIMATION
-========================= */
-
-document.addEventListener("DOMContentLoaded", function () {
+  /* =========================
+     HERO TEXT ANIMATION
+  ========================= */
 
   function animateText(id) {
 
-    const container = document.getElementById(id);
-    if (!container) return;
+    const element = document.getElementById(id);
+    if (!element) return;
 
-    const text = container.textContent;
-    container.textContent = "";
+    const text = element.textContent;
+    element.textContent = "";
 
     text.split("").forEach((char, index) => {
 
       const span = document.createElement("span");
 
       span.textContent = char === " " ? "\u00A0" : char;
-      span.style.opacity = "0";
       span.style.display = "inline-block";
+      span.style.opacity = "0";
       span.style.transform = "translateY(20px)";
       span.style.transition = "0.4s ease";
       span.style.transitionDelay = (index * 0.03) + "s";
 
-      container.appendChild(span);
+      element.appendChild(span);
 
       setTimeout(() => {
         span.style.opacity = "1";
@@ -69,32 +69,22 @@ document.addEventListener("DOMContentLoaded", function () {
   animateText("dendrite-text");
   animateText("slogan-text");
 
-});
 
+  /* =========================
+     SERVICES SCROLL ANIMATION
+  ========================= */
 
-/* =========================
-   SERVICES SCROLL ANIMATION
-========================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  const services = document.querySelectorAll(".services-text p");
+  const services = document.querySelector(".services-text");
 
   function revealServices() {
 
-    services.forEach((el, index) => {
+    if (!services) return;
 
-      const rect = el.getBoundingClientRect();
+    const rect = services.getBoundingClientRect();
 
-      if (rect.top < window.innerHeight - 100) {
-
-        setTimeout(() => {
-          el.classList.add("visible");
-        }, index * 150);
-
-      }
-
-    });
+    if (rect.top < window.innerHeight - 100) {
+      services.classList.add("visible");
+    }
 
   }
 
