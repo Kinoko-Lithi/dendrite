@@ -1,3 +1,4 @@
+
 /* ============================= */
 /* RESET & GLOBALS */
 /* ============================= */
@@ -148,7 +149,7 @@ body{
   pointer-events:auto;
 }
 
-/* MOBILE */
+/* MOBILE CLICK */
 .dropdown.active .dropdown-content{
   opacity:1;
   transform:translateY(0);
@@ -257,6 +258,16 @@ body{
 
 .services-text p{
   margin-bottom:22px;
+}
+
+/* ============================= */
+/* LIGHT TEXT ANIMATION SUPPORT */
+/* ============================= */
+
+#dendrite-text span,
+#slogan-text span,
+.services-text span{
+  will-change:transform, opacity;
 }
 
 /* ============================= */
