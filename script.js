@@ -1,7 +1,7 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================
-     NAV DROPDOWN
+     DROPDOWN MENU
   ========================= */
 
   const dropdowns = document.querySelectorAll(".dropdown");
@@ -11,10 +11,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const trigger = dropdown.querySelector(".nav-label");
     if (!trigger) return;
 
-    trigger.addEventListener("click", function (e) {
+    trigger.addEventListener("click", (e) => {
       e.stopPropagation();
 
-      dropdowns.forEach((d) => {
+      dropdowns.forEach(d => {
         if (d !== dropdown) d.classList.remove("active");
       });
 
@@ -23,8 +23,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   });
 
-  document.addEventListener("click", function () {
-    dropdowns.forEach((d) => d.classList.remove("active"));
+  document.addEventListener("click", () => {
+    dropdowns.forEach(d => d.classList.remove("active"));
   });
 
 
@@ -34,13 +34,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function animateText(id) {
 
-    const element = document.getElementById(id);
-    if (!element) return;
+    const el = document.getElementById(id);
+    if (!el) return;
 
-    const text = element.textContent;
-    element.textContent = "";
+    const text = el.textContent;
+    el.textContent = "";
 
-    [...text].forEach((char, index) => {
+    [...text].forEach((char, i) => {
 
       const span = document.createElement("span");
 
@@ -50,9 +50,9 @@ document.addEventListener("DOMContentLoaded", function () {
       span.style.opacity = "0";
       span.style.transform = "translateY(25px)";
       span.style.transition = "all 0.5s ease";
-      span.style.transitionDelay = `${index * 0.05}s`;
+      span.style.transitionDelay = `${i * 0.05}s`;
 
-      element.appendChild(span);
+      el.appendChild(span);
 
       setTimeout(() => {
         span.style.opacity = "1";
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* =========================
-     SERVICES ANIMATION (FIXED)
+     SERVICES (WORKING FIX)
   ========================= */
 
   const services = document.querySelector(".services-text");
@@ -77,12 +77,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const observer = new IntersectionObserver((entries) => {
 
-      entries.forEach((entry) => {
-
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
           services.classList.add("visible");
         }
-
       });
 
     }, {
