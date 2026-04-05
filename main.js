@@ -137,4 +137,21 @@ window.addEventListener("DOMContentLoaded", function () {
       }, index * 70); // slower for more dramatic effect
     });
   }
-   
+   /* DROPDOWN FIX (MOBILE + DESKTOP) */
+document.addEventListener("DOMContentLoaded", function () {
+
+  const dropdown = document.querySelector(".dropdown");
+  if (!dropdown) return;
+
+  const trigger = dropdown.querySelector(".nav-label");
+
+  trigger.addEventListener("click", function (e) {
+    e.stopPropagation();
+    dropdown.classList.toggle("active");
+  });
+
+  document.addEventListener("click", function () {
+    dropdown.classList.remove("active");
+  });
+
+});
