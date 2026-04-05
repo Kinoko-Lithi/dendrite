@@ -68,27 +68,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* =========================
-     SERVICES ANIMATION
+     SERVICES ANIMATION (FIXED)
   ========================= */
 
   const services = document.querySelector(".services-text");
 
-  function revealServices() {
+  if (services) {
 
-    if (!services) return;
+    const observer = new IntersectionObserver((entries) => {
 
-    const rect = services.getBoundingClientRect();
+      entries.forEach((entry) => {
 
-    if (rect.top < window.innerHeight * 0.85) {
-      services.classList.add("visible");
-    }
+        if (entry.isIntersecting) {
+          services.classList.add("visible");
+        }
+
+      });
+
+    }, {
+      threshold: 0.3
+    });
+
+    observer.observe(services);
 
   }
-
-  window.addEventListener("scroll", revealServices);
-  window.addEventListener("load", revealServices);
-
-  // Extra safety trigger
-  setTimeout(revealServices, 200);
 
 });
