@@ -1,81 +1,230 @@
 <!DOCTYPE html>
-<html lang="el">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Dendrite Creative Studio — Home</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="./style.css">
+<title>Dendrite Creative Studio</title>
+
+<style>
+
+/* ================= RESET ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Arial, Helvetica, sans-serif;
+  background:#d9d9d9;
+}
+
+/* ================= VIDEO BG ================= */
+.background-video{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-1;
+}
+
+/* ================= NAV ================= */
+.nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  height:70px;
+  background:rgba(255,255,255,0.9);
+  border-bottom:1px solid #eee;
+  z-index:1000;
+}
+
+.nav-container{
+  max-width:1200px;
+  margin:auto;
+  height:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 40px;
+}
+
+.nav-links{
+  display:flex;
+  gap:25px;
+  align-items:center;
+}
+
+.nav-links a, .nav-label{
+  text-decoration:none;
+  color:#000;
+  cursor:pointer;
+}
+
+/* ===== DROPDOWN ===== */
+.dropdown{
+  position:relative;
+}
+
+.dropdown-content{
+  position:absolute;
+  top:100%;
+  left:0;
+  background:#fff;
+  border:1px solid #eee;
+  display:flex;
+  flex-direction:column;
+  min-width:140px;
+  padding:10px 0;
+
+  opacity:0;
+  transform:translateY(-10px);
+  transition:0.25s;
+  pointer-events:none;
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown.active .dropdown-content{
+  opacity:1;
+  transform:translateY(0);
+  pointer-events:auto;
+}
+
+/* ================= HERO ================= */
+.hero-section{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  margin-top:70px;
+}
+
+#dendrite-text{
+  font-size:70px;
+  font-weight:800;
+}
+
+#slogan-text{
+  font-size:26px;
+  color:#333;
+  margin-top:10px;
+}
+
+/* ===== ARROW ===== */
+.hero-arrow{
+  margin-top:30px;
+  animation:arrowMove 2s infinite;
+}
+
+@keyframes arrowMove{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(10px);}
+  100%{transform:translateY(0);}
+}
+
+/* ================= SERVICES ================= */
+.services-text{
+  margin-top:60vh;
+  text-align:center;
+  font-size:28px;
+}
+
+/* ================= FOOTER ================= */
+footer{
+  margin-top:100px;
+  text-align:center;
+  padding:30px;
+}
+
+</style>
 </head>
 
-<body class="home-page">
+<body>
 
-  <!-- VIDEO BACKGROUND -->
-  <video class="background-video" autoplay muted loop playsinline preload="auto">
-    <source src="./image/background.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+<!-- VIDEO -->
+<video class="background-video" autoplay muted loop>
+  <source src="./image/background.mp4" type="video/mp4">
+</video>
 
-  <!-- NAVIGATION -->
-  <nav class="nav">
-    <div class="nav-container">
-      <div class="logo-wrap">
-        <a href="./index.html">
-          <img src="./image/logo.png" alt="Dendrite Creative Studio Logo">
-        </a>
-        <span class="logo-text">DENDRITE CREATIVE STUDIO</span>
-      </div>
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-container">
 
-      <div class="nav-links">
-        <a href="./index.html">Home</a>
-        <div class="dropdown">
-          <span class="nav-label">Works</span>
-          <div class="dropdown-content">
-            <a href="./videos.html">Videos</a>
-            <a href="./images.html">Images</a>
-          </div>
+    <div>DENDRITE</div>
+
+    <div class="nav-links">
+      <a href="#">Home</a>
+
+      <div class="dropdown">
+        <span class="nav-label">Works</span>
+        <div class="dropdown-content">
+          <a href="#">Videos</a>
+          <a href="#">Images</a>
         </div>
-        <a href="./about.html">About</a>
-        <a href="./contact.html">Contact</a>
       </div>
+
+      <a href="#">About</a>
+      <a href="#">Contact</a>
     </div>
-  </nav>
 
-  <!-- MAIN CONTENT -->
-  <main class="page-content">
+  </div>
+</nav>
 
-   <center> <!-- HERO INTRO -->
-    <div class="hero-intro">
-      <h1 id="dendrite-text">DENDRITE</h1>
-      <h2 id="slogan-text">Creative Ideas in Motion</h2>
-<div class="hero-arrow">
-<svg width="28" height="28" viewBox="0 0 24 24">
-  <path d="M12 5v12M6 13l6 6 6-6"
-        stroke="black"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        fill="none"/>
-</svg>
-</div></center>
-    <!-- HERO SERVICES SECTION -->
-    <section class="hero-section">
-      <div class="services-text" id="services-text">
-        <p>Graphic Design</p>
-        <p>Music & Sound Design</p>
-        <p>Video Art | Motion Graphics</p>
-        <p>Live Stage Visuals</p>
-        <p>Web Design | Web Development</p>
-      </div>
-    </section>
+<!-- HERO -->
+<section class="hero-section">
 
-  </main>
+  <h1 id="dendrite-text">DENDRITE</h1>
+  <h2 id="slogan-text">Creative Ideas in Motion</h2>
 
-  <!-- FOOTER -->
-  <footer>
-    © 2026 Dendrite Creative Studio
-  </footer>
+  <!-- ARROW -->
+  <div class="hero-arrow">
+    <svg width="28" height="28" viewBox="0 0 24 24">
+      <path d="M12 5v12M6 13l6 6 6-6"
+      stroke="black"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      fill="none"/>
+    </svg>
+  </div>
 
-  <!-- JAVASCRIPT -->
-  <script src="./main.js"></script>
+</section>
+
+<!-- SERVICES -->
+<div class="services-text">
+  <p>Graphic Design</p>
+  <p>Music & Sound Design</p>
+  <p>Video Art | Motion Graphics</p>
+  <p>Live Stage Visuals</p>
+  <p>Web Design | Development</p>
+</div>
+
+<footer>
+© 2026 Dendrite Creative Studio
+</footer>
+
+<script>
+
+/* ===== DROPDOWN MOBILE ===== */
+document.addEventListener("DOMContentLoaded",function(){
+  const dropdown=document.querySelector(".dropdown");
+  const trigger=document.querySelector(".nav-label");
+
+  trigger.addEventListener("click",function(e){
+    e.stopPropagation();
+    dropdown.classList.toggle("active");
+  });
+
+  document.addEventListener("click",function(){
+    dropdown.classList.remove("active");
+  });
+});
+
+</script>
+
 </body>
 </html>
