@@ -1,14 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================
-     DROPDOWN
+     NAV DROPDOWN
   ========================= */
 
   const dropdown = document.querySelector(".dropdown");
   const trigger = document.querySelector(".nav-label");
 
   if (trigger && dropdown) {
-
     trigger.addEventListener("click", (e) => {
       e.stopPropagation();
       dropdown.classList.toggle("active");
@@ -17,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("click", () => {
       dropdown.classList.remove("active");
     });
-
   }
 
   /* =========================
@@ -25,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
   ========================= */
 
   function animateText(id) {
-
     const el = document.getElementById(id);
     if (!el) return;
 
@@ -33,25 +30,23 @@ document.addEventListener("DOMContentLoaded", () => {
     el.textContent = "";
 
     [...text].forEach((char, i) => {
-
       const span = document.createElement("span");
 
       span.textContent = char === " " ? "\u00A0" : char;
+
       span.style.display = "inline-block";
       span.style.opacity = "0";
-      span.style.transform = "translateY(25px)";
+      span.style.transform = "translateY(20px)";
       span.style.transition = "all 0.5s ease";
       span.style.transitionDelay = `${i * 0.05}s`;
 
       el.appendChild(span);
 
-      setTimeout(() => {
+      requestAnimationFrame(() => {
         span.style.opacity = "1";
         span.style.transform = "translateY(0)";
-      }, 50);
-
+      });
     });
-
   }
 
   animateText("dendrite-text");
@@ -63,22 +58,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const services = document.querySelector(".services-text");
 
-  if (services) {
+  if (!services) return;
 
-    const observer = new IntersectionObserver((entries) => {
+  const lines = services.querySelectorAll("span");
 
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          services.classList.add("visible");
-        }
+  // hide everything first
+  lines.forEach(span => {
+    span.style.opacity = "0";
+    span.style.transform = "translateY(30px)";
+    span.style.display = "inline-block";
+    span.style.transition = "all 0.6s ease";
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+      if (!entry.isIntersecting) return;
+
+      lines.forEach((span, i) => {
+        setTimeout(() => {
+          span.style.opacity = "1";
+          span.style.transform = "translateY(0)";
+        }, i * 200);
       });
 
-    }, {
-      threshold: 0.3
+      observer.disconnect(); // run only once
+
     });
 
-    observer.observe(services);
+  }, { threshold: 0.3 });
 
-  }
+  observer.observe(services);
 
 });
