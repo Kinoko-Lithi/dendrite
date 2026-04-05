@@ -1,3 +1,4 @@
+console.log("SCRIPT IS RUNNING");
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ================= DROPDOWN ================= */
