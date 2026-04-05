@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================
-     NAV DROPDOWN
+     DROPDOWN
   ========================= */
 
   const dropdown = document.querySelector(".dropdown");
@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ========================= */
 
   function animateText(id) {
+
     const el = document.getElementById(id);
     if (!el) return;
 
@@ -30,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     el.textContent = "";
 
     [...text].forEach((char, i) => {
+
       const span = document.createElement("span");
 
       span.textContent = char === " " ? "\u00A0" : char;
@@ -46,7 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
         span.style.opacity = "1";
         span.style.transform = "translateY(0)";
       });
+
     });
+
   }
 
   animateText("dendrite-text");
@@ -60,34 +64,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!services) return;
 
-  const lines = services.querySelectorAll("span");
+  const items = services.querySelectorAll("span");
 
-  // hide everything first
-  lines.forEach(span => {
-    span.style.opacity = "0";
-    span.style.transform = "translateY(30px)";
-    span.style.display = "inline-block";
-    span.style.transition = "all 0.6s ease";
-  });
-
+  // observer
   const observer = new IntersectionObserver((entries) => {
 
     entries.forEach(entry => {
 
       if (!entry.isIntersecting) return;
 
-      lines.forEach((span, i) => {
+      items.forEach((item, index) => {
+
         setTimeout(() => {
-          span.style.opacity = "1";
-          span.style.transform = "translateY(0)";
-        }, i * 200);
+          item.classList.add("visible");
+        }, index * 200);
+
       });
 
-      observer.disconnect(); // run only once
+      observer.unobserve(services); // run once
 
     });
 
-  }, { threshold: 0.3 });
+  }, {
+    threshold: 0.3
+  });
 
   observer.observe(services);
 
